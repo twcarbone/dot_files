@@ -9,6 +9,13 @@ set background=dark
 " other configs
 set number
 
+" auto-completion
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap {<CR> {<CR>}<C-o>O
+
 " based on filetype
 filetype detect
 if (&ft=='c')
@@ -24,12 +31,6 @@ if (&ft=='c')
     " syntax highlighting (spellcheck comments)
     syntax enable
     
-    " auto-completion
-    inoremap " ""<left>
-    inoremap ' ''<left>
-    inoremap ( ()<left>
-    inoremap [ []<left>
-    inoremap {<CR> {<CR>}<C-o>O
 endif
 
 
