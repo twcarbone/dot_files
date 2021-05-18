@@ -14,7 +14,11 @@ inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap [ []<left>
-inoremap {<CR> {<CR>}<C-o>O
+inoremap {<CR> {<CR>}<C-o>
+
+" switching between tabs
+nnoremap <C-PageDown> gt
+nnoremap <C-PageUp> gT
 
 " based on filetype
 filetype detect
