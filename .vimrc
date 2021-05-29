@@ -20,6 +20,8 @@ inoremap {<CR> {<CR>}<C-o>
 nnoremap <C-PageDown> gt
 nnoremap <C-PageUp> gT
 
+set colorcolumn=80
+
 " based on filetype
 filetype detect
 if (&ft=='c')
