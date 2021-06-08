@@ -14,7 +14,7 @@ inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap [ []<left>
-inoremap {<CR> {<CR>}<C-o>
+inoremap {<CR> {<CR>}<C-o>O
 
 " switching between tabs
 nnoremap <C-PageDown> gt
