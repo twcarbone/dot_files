@@ -36,6 +36,9 @@ if (&ft=='c')
 
     " syntax highlighting (spellcheck comments)
     syntax enable
+
+    " key binding for entering c-style comment block
+    inoremap <C-k> /*<Space><Space>*/<left><left><left>
     
 endif
 
