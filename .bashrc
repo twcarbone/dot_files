@@ -26,4 +26,5 @@ alias ll="ls -lha"
 alias gs="git status"
 alias ga="git add"
 alias gc="git commit"
+alias gb="git branch"
 
