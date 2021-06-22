@@ -22,6 +22,12 @@ nnoremap <C-PageUp> gT
 
 set colorcolumn=80
 
+" hitting tab 'snaps' outside (), [], and {}
+inoremap <expr> <Tab> search('\%#[]>)}]', 'n') ? '<Right>' : '<Tab>'
+
+" also tab snaps out of quotes
+inoremap <expr> <Tab> search('\%#[]>)}''"`]', 'n') ? '<Right>' : '<Tab>'
+
 " based on filetype
 filetype detect
 if (&ft=='c')
