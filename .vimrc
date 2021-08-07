@@ -5,6 +5,7 @@ function! SetupGlobal()
 
     inoremap " ""<left>
     inoremap ' ''<left>
+    inoremap ` ``<left>
     inoremap ( ()<left>
     inoremap [ []<left>
     inoremap {<CR> {<CR>}<C-o>O
@@ -21,6 +22,9 @@ function! SetupGlobal()
     
     set textwidth=79    
     set colorcolumn=80
+
+    set tabstop=4 
+    set shiftwidth=4
 
 endfunction
 
