@@ -1,4 +1,5 @@
 function! SetupGlobal()
+	" These properties are set up for all instances of Vim.
 
     set background=dark " this is so tmux colors look normal
     set number
@@ -29,6 +30,8 @@ function! SetupGlobal()
 endfunction
 
 function! SetupPython()
+	" These properties are only set up for Python files.
+	
     syntax enable
 
     set tabstop=4       " how many cols of a \t is worth
@@ -41,6 +44,8 @@ function! SetupPython()
 endfunction
 
 function! SetupC()
+	" These properties are only set up for C files.
+	
     colorscheme blue
     syntax enable
 
@@ -48,12 +53,12 @@ function! SetupC()
     set shiftwidth=4
     set cindent
 
-    " Ctrl + K for entering c-style comment block
+    " Ctrl + k for entering c-style comment block
     inoremap <C-k> /*<Space><Space>*/<left><left><left>
 
 endfunction
 
-
+" main entry point
 call SetupGlobal()
 autocmd BufNewFile,BufRead *.py call SetupPython()
 autocmd BufNewFile,BufRead *.c,*.h call SetupC()
