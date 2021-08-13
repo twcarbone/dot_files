@@ -22,7 +22,7 @@ export PS1="\u@\h \w $ "
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
-alias ll="ls -lha"
+alias ll="ls -lha --group-directories-first"
 alias gs="git status"
 alias ga="git add"
 alias gc="git commit"
