@@ -9,7 +9,8 @@ function! SetupGlobal()
     inoremap ` ``<left>
     inoremap ( ()<left>
     inoremap [ []<left>
-    inoremap {<CR> {<CR>}<C-o>O
+	inoremap { {}<left>
+	inoremap <lt> <lt>><left>
 
     " Ctrl + PgUp and Ctrl + PgDn to switch between tabs
     nnoremap <C-PageDown> gt
@@ -56,11 +57,21 @@ function! SetupC()
     " Ctrl + k for entering c-style comment block
     inoremap <C-k> /*<Space><Space>*/<left><left><left>
 
+	" special key-mapping for {}
+	inoremap {<CR> {<CR>}<C-o>O
+endfunction
+
+function! SetupHTML()
+	" These properties are only set up for html files.
+	
+	inoremap % %<Space><Space>%<left><left>
+
 endfunction
 
 " main entry point
 call SetupGlobal()
 autocmd BufNewFile,BufRead *.py call SetupPython()
 autocmd BufNewFile,BufRead *.c,*.h call SetupC()
+autocmd BufNewFile,BufRead *.html call SetupHTML()
 
 
