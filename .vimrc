@@ -46,6 +46,7 @@ function! SetupPython()
     set autoindent
     set smartindent
 
+	highlight Comment ctermfg=Green
 endfunction
 
 function! SetupC()
