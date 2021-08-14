@@ -4,6 +4,7 @@ function! SetupGlobal()
     set background=dark " this is so tmux colors look normal
     set number
 
+	" auto-closing
     inoremap " ""<left>
     inoremap ' ''<left>
     inoremap ` ``<left>
@@ -11,6 +12,9 @@ function! SetupGlobal()
     inoremap [ []<left>
 	inoremap { {}<left>
 	inoremap <lt> <lt>><left>
+
+	" remap escape
+	inoremap jk <Esc>
 
     " Ctrl + PgUp and Ctrl + PgDn to switch between tabs
     nnoremap <C-PageDown> gt
