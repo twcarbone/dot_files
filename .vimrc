@@ -68,8 +68,11 @@ endfunction
 
 function! SetupHTML()
 	" These properties are only set up for html files.
-	
+
 	inoremap % %<Space><Space>%<left><left>
+
+	set autoindent
+	set smartindent
 
 endfunction
 
