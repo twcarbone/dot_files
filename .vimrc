@@ -1,7 +1,6 @@
 function! SetupGlobal()
 	" These properties are set up for all instances of Vim.
 
-    set background=dark " this is so tmux colors look normal
     set number
 
 	" auto-closing
@@ -25,6 +24,23 @@ function! SetupGlobal()
 
     " tab also snaps out of single and double quotes
     inoremap <expr> <Tab> search('\%#[]>)}''"`]', 'n') ? '<Right>' : '<Tab>'
+
+	call plug#begin('~/.vim/bundle/')
+	Plug 'ajmwagar/vim-deus'
+	call  plug#end()
+
+	" These are needed for vim-deus
+	set t_Co=256
+	set termguicolors
+
+	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+	set background=dark    " Setting dark mode
+	colorscheme deus
+	let g:deus_termcolors=256
+
+
     
     set textwidth=79    
     set colorcolumn=80
@@ -38,7 +54,6 @@ function! SetupPython()
 	" These properties are only set up for Python files.
 	
     syntax enable
-	colorscheme blue
 
     set tabstop=4       " how many cols of a \t is worth
     set shiftwidth=4    " how many cols of a lvl of indentation is
@@ -53,7 +68,6 @@ endfunction
 function! SetupC()
 	" These properties are only set up for C files.
 	
-    colorscheme blue
     syntax enable
 
     set tabstop=4
