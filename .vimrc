@@ -19,6 +19,11 @@ function! SetupGlobal()
     nnoremap <C-PageDown> gt
     nnoremap <C-PageUp> gT
 
+	" remap switching between buffers
+	map bn :bn<cr>
+	map bp :bp<cr>
+	map bd :bd<cr>
+
     " tab 'snaps' out of (), [], and {}
     inoremap <expr> <Tab> search('\%#[]>)}]', 'n') ? '<Right>' : '<Tab>'
 
