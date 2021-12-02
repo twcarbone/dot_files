@@ -67,6 +67,11 @@ function! SetupPython()
     set autoindent
     set smartindent
 
+	" Ctrl + j to comment block of code
+	" Ctrl + k to uncomment block of code
+	vnoremap <silent> <C-j> :s/^/#/<cr>:noh<cr>
+	vnoremap <silent> <C-k> :s/^#//<cr>:noh<cr>
+
 	highlight Comment ctermfg=Green
 endfunction
 
