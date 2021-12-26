@@ -10,7 +10,7 @@ function! SetupGlobal()
     inoremap ( ()<left>
     inoremap [ []<left>
 	inoremap { {}<left>
-	inoremap <lt> <lt>><left>
+	"inoremap <lt> <lt>><left>
 
 	" remap escape
 	inoremap jk <Esc>
@@ -32,6 +32,7 @@ function! SetupGlobal()
 
 	call plug#begin('~/.vim/bundle/')
 	Plug 'ajmwagar/vim-deus'
+	Plug 'alvan/vim-closetag'
 	call  plug#end()
 
 	" These are needed for vim-deus
@@ -45,7 +46,7 @@ function! SetupGlobal()
 	colorscheme deus
 	let g:deus_termcolors=256
 
-
+	let g:closetag_shortcut = '>'
     
     set textwidth=79    
     set colorcolumn=80
