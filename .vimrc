@@ -54,6 +54,28 @@ function! SetupGlobal()
     set tabstop=4 
     set shiftwidth=4
 
+	" STATUS LINE --------------------------------------------------------- {{{
+	
+	" Set statusline color
+	hi StatusLine  ctermfg=black cterm=bold
+	
+	" Clear status line when vimrc is reloaded.
+	set statusline=
+
+	" Status line left side.
+	set statusline+=\ (%Y)\ %F\ %M\ %R
+
+	" Use a divider to separate the left side from the right side.
+	set statusline+=%=
+
+	" Status line right side.
+	set statusline+=\ ASCII:\ %b\ HEX:\ 0x%B\ (%l,%c)
+
+	" Show the status on the second to last line.
+	set laststatus=2
+
+	" }}}
+
 endfunction
 
 function! SetupPython()
