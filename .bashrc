@@ -12,10 +12,6 @@ fi
 #fi
 #export PATH
 
-# custom prompt
-parse_git_branch() {
-	git branch 2> /dev/null |sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
 export PS1="\u@\h \w $ "
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
