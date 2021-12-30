@@ -32,7 +32,7 @@ function! SetupGlobal()
 
 	call plug#begin('~/.vim/bundle/')
 	Plug 'ajmwagar/vim-deus'
-	Plug 'alvan/vim-closetag'
+	"Plug 'alvan/vim-closetag'
 	call  plug#end()
 
 	" These are needed for vim-deus
