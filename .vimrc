@@ -81,8 +81,6 @@ endfunction
 function! SetupPython()
 	" These properties are only set up for Python files.
 	
-    syntax enable
-
     set tabstop=4       " how many cols of a \t is worth
     set shiftwidth=4    " how many cols of a lvl of indentation is
     set expandtab       " tabs are replaced with spaces
@@ -101,8 +99,6 @@ endfunction
 function! SetupC()
 	" These properties are only set up for C files.
 	
-    syntax enable
-
     set tabstop=4
     set shiftwidth=4
     set cindent
