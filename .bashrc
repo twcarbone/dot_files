@@ -26,5 +26,6 @@ alias gb="git branch"
 
 if [[ $OSTYPE == "msys" ]]; then
 	alias python3="winpty python.exe"
+	alias pip="winpty python.exe -m pip"
 fi
 
