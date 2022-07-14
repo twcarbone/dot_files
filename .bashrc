@@ -24,3 +24,7 @@ alias ga="git add"
 alias gc="git commit"
 alias gb="git branch"
 
+if [[ $OSTYPE == "msys" ]]; then
+	alias python3="winpty python.exe"
+fi
+
