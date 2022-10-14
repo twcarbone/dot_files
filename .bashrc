@@ -30,8 +30,8 @@ alias gb="git branch"
 # Functions
 ext () {
     # Usage: `ext DIR`
-    # Prints each unique file extension from DIR
-    find $1 -type f | perl -ne 'print $1 if m/\.([^.\/]+)$/' | sort -u;
+    # Prints each distinct file extension from DIR as a comma-separated sequence
+    find $1 -type f | perl -ne 'print $1 if m/\.([^.\/]+)$/' | sort -u | sed -e :a -e '$!N; s/\n/, /; ta';
 }
 
 tot () {
