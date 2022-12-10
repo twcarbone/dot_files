@@ -25,6 +25,9 @@ alias gs="git status"
 alias ga="git add"
 alias gc="git commit"
 alias gb="git branch"
+alias gds="git diff --staged"
+alias gd="git diff"
+alias gss="git status -s"
 
 #
 # Functions
