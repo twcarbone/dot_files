@@ -20,11 +20,14 @@ export PS1="\[\e[38;5;46m\]\u@\h \[\e[38;5;39m\]\w \[\e[00m\]\$ "
 #
 # Aliases
 
-alias ll="ls -lhva --group-directories-first"
+alias ll="ls -lhva --group-directories-first --color=auto"
 alias gs="git status"
 alias ga="git add"
 alias gc="git commit"
 alias gb="git branch"
+alias gds="git diff --staged"
+alias gd="git diff"
+alias gss="git status -s"
 
 #
 # Functions
@@ -51,4 +54,6 @@ if [[ $OSTYPE == "msys" ]]; then
 	alias python="winpty python.exe"
 	alias pip="winpty python.exe -m pip"
 fi
+
+LS_COLORS=$LS_COLORS:'di=94'; export LS_COLORS
 
