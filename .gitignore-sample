@@ -1,0 +1,12 @@
+*.swo
+*.swp
+
+*.pyc
+
+# MS office owner files
+*~$*.*
+
+.venv/
+.vscode/
+
+resources/
