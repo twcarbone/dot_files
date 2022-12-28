@@ -3,5 +3,6 @@
 	name = Tyler Carbone
 [core]
 	editor = vim
+	autocrlf = input
 [alias]
     ql = log --oneline -n 20
