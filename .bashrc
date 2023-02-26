@@ -1,36 +1,47 @@
 # .bashrc
-# testing
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# User specific environment
-#if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
-#then
-#   PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-#fi
-#export PATHi
+#
+# Prompts
+#
 
 export PS1="\[\e[38;5;46m\]\u@\h \[\e[38;5;39m\]\w \[\e[00m\]\$ "
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
-
 #
 # Aliases
+#
 
+# General aliases
 alias ll="ls -lhva --group-directories-first --color=auto"
+
+# git aliases
 alias gs="git status"
 alias ga="git add"
+alias gd="git diff"
 alias gc="git commit"
 alias gb="git branch"
-alias gds="git diff --staged"
-alias gd="git diff"
+alias gr="git restore"
+
 alias gss="git status -s"
+alias gap="git add -p"
+alias gdl="git diff --color=always | less -r"
+alias gds="git diff --staged"
+alias gba="git branch -a"
+alias grs="git restore --staged"
+
+alias gdsl="git diff --staged --color=always | less -r"
+
+# alembic aliases
+alias ac="alembic current"
 
 #
 # Functions
+#
+
 ext () {
     # Usage: `ext DIR`
     # Prints each distinct file extension from DIR as a comma-separated sequence
