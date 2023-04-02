@@ -9,7 +9,7 @@ fi
 # Prompts
 #
 
-export PS1="\[\e[38;5;46m\]\u@\h \[\e[38;5;39m\]\w \[\e[00m\]\$ "
+export PS1="\[\e[38;5;46m\]\u@\h \[\e[38;5;39m\]\$PWD \[\e[00m\]\$ "
 
 #
 # Aliases
