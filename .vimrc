@@ -30,6 +30,13 @@ function! SetupGlobal()
     " tab also snaps out of single and double quotes
     inoremap <expr> <Tab> search('\%#[]>)}''"`]', 'n') ? '<Right>' : '<Tab>'
 
+	" Install VimPlug, if it isn't already installed
+	let data_dir = '~/.vim'
+	if empty(glob(data_dir . '/autoload/plug.vim'))
+	  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+	  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	endif
+
 	call plug#begin('~/.vim/bundle/')
 	Plug 'ajmwagar/vim-deus'
 	"Plug 'alvan/vim-closetag'
