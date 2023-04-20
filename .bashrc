@@ -64,6 +64,8 @@ if [[ $OSTYPE == "msys" ]]; then
 	alias python3="winpty python.exe"
 	alias python="winpty python.exe"
 	alias pip="winpty python.exe -m pip"
+    alias pip-install-unsafe="winpty python.exe -m pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org"
+    alias pip-freeze="winpty -Xallow-non-tty -Xplain python.exe -m pip freeze"
 fi
 
 LS_COLORS=$LS_COLORS:'di=94'; export LS_COLORS
