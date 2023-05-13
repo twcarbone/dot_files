@@ -17,6 +17,12 @@ export PS1="${BASH_PROMPT_COLOR:-\[\e[38;5;46m\]}\u@\h \[\e[38;5;39m\]\$PWD \[\e
 
 # General aliases
 alias ll="ls -lhva --group-directories-first --color=auto"
+alias ql="git ql"
+alias cl="clear"
+
+# Python aliases
+alias py="python3"
+alias py3="python3"
 
 # git aliases
 alias gs="git status"
@@ -37,6 +43,7 @@ alias gdsl="git diff --staged --color=always | less -r"
 
 # alembic aliases
 alias ac="alembic current"
+alias ah="alembic history"
 
 #
 # Functions
