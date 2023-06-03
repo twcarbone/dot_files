@@ -9,7 +9,7 @@ fi
 # Prompts
 #
 
-export PS1="\[\e[38;5;46m\]\u@\h \[\e[38;5;39m\]\$PWD \[\e[00m\]\$ "
+export PS1="${BASH_PROMPT_COLOR:-\[\e[38;5;46m\]}\u@\h \[\e[38;5;39m\]\$PWD \[\e[00m\]\$ "
 
 #
 # Aliases
@@ -17,6 +17,12 @@ export PS1="\[\e[38;5;46m\]\u@\h \[\e[38;5;39m\]\$PWD \[\e[00m\]\$ "
 
 # General aliases
 alias ll="ls -lhva --group-directories-first --color=auto"
+alias ql="git ql"
+alias cl="clear"
+
+# Python aliases
+alias py="python3"
+alias py3="python3"
 
 # git aliases
 alias gs="git status"
@@ -37,6 +43,7 @@ alias gdsl="git diff --staged --color=always | less -r"
 
 # alembic aliases
 alias ac="alembic current"
+alias ah="alembic history"
 
 #
 # Functions
@@ -64,6 +71,8 @@ if [[ $OSTYPE == "msys" ]]; then
 	alias python3="winpty python.exe"
 	alias python="winpty python.exe"
 	alias pip="winpty python.exe -m pip"
+    alias pip-install-unsafe="winpty python.exe -m pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org"
+    alias pip-freeze="winpty -Xallow-non-tty -Xplain python.exe -m pip freeze"
 fi
 
 LS_COLORS=$LS_COLORS:'di=94'; export LS_COLORS
