@@ -67,6 +67,14 @@ qty () {
     find $1 -type f -not -path "*.git/*" | wc -l;
 }
 
+dir2gpg () {
+	tar -czf - "$1" | gpg -c > "$1.tar.gz.gpg"
+}
+
+gpg2dir () {
+	gpg -d "$1.tar.gz.gpg" | tar -xzf -
+}
+
 if [[ $OSTYPE == "msys" ]]; then
 	alias python3="winpty python.exe"
 	alias python="winpty python.exe"
