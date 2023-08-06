@@ -38,6 +38,7 @@ alias gdl="git diff --color=always | less -r"
 alias gds="git diff --staged"
 alias gba="git branch -a"
 alias grs="git restore --staged"
+alias gwd="git diff --word-diff"
 
 alias gdsl="git diff --staged --color=always | less -r"
 
