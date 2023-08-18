@@ -1,89 +1,74 @@
 function! SetupGlobal()
 	" These properties are set up for all instances of Vim.
 
-    set number
+	" GENERAL ---------------------------------------------------------------------------
+	
+    set textwidth=89
+    set colorcolumn=90
 
-	" auto-closing
+	" Do not wrap text while typing - only when done explicitly (e.g., 'gq')
+	set formatoptions-=t
+
+    set tabstop=4 
+    set shiftwidth=4
+
+    set number
+	set relativenumber
+
+	inoremap jk <Esc>
+	inoremap kj <Esc>
+	nnoremap <space> :
+	
+	" Auto-complete quotes, parentheses, etc.
     inoremap " ""<left>
     inoremap ' ''<left>
     inoremap ` ``<left>
     inoremap ( ()<left>
     inoremap [ []<left>
 	inoremap { {}<left>
-	"inoremap <lt> <lt>><left>
+	inoremap <lt> <lt>><left>
 
-	" remap escape
-	inoremap jk <Esc>
-
-    " Ctrl + PgUp and Ctrl + PgDn to switch between tabs
-    nnoremap <C-PageDown> gt
-    nnoremap <C-PageUp> gT
-
-	" remap switching between buffers
-	map bn :bn<cr>
-	map bp :bp<cr>
-	map bd :bd<cr>
-
-    " tab 'snaps' out of (), [], and {}
-    inoremap <expr> <Tab> search('\%#[]>)}]', 'n') ? '<Right>' : '<Tab>'
-
-    " tab also snaps out of single and double quotes
+    " <Tab> snaps out of enclosing tokens (e.g., '', (), [])
     inoremap <expr> <Tab> search('\%#[]>)}''"`]', 'n') ? '<Right>' : '<Tab>'
 
-	" Install VimPlug, if it isn't already installed
-	let data_dir = '~/.vim'
-	if empty(glob(data_dir . '/autoload/plug.vim'))
-	  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-	  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-	endif
+	" Search and replace for the word under the cursor
+	nnoremap <leader>d :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
 
-	call plug#begin('~/.vim/bundle/')
-	Plug 'ajmwagar/vim-deus'
-	"Plug 'alvan/vim-closetag'
-	call  plug#end()
-
-	" These are needed for vim-deus
-	set t_Co=256
-	set termguicolors
-
-	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-	set background=dark    " Setting dark mode
-	colorscheme deus
-	let g:deus_termcolors=256
-
-	let g:closetag_shortcut = '>'
-    
-    set textwidth=79    
-    set colorcolumn=80
-
-    set tabstop=4 
-    set shiftwidth=4
-
-	" STATUS LINE --------------------------------------------------------- {{{
+	" NAVIGATION ------------------------------------------------------------------------
 	
-	" Set statusline color
-	hi StatusLine  ctermfg=black cterm=bold
+	" Center cursor on screen after jumping half-screens
+	nnoremap <C-d> <C-d>zz
+	nnoremap <C-u> <C-u>zz
+
+	" Swap G and gg
+	nnoremap gg G
+	nnoremap G gg
+
+	" BUFFERS ---------------------------------------------------------------------------
 	
-	" Clear status line when vimrc is reloaded.
-	set statusline=
+	" Cycle through buffers
+	noremap <leader><tab> :bn<cr>
 
-	" Status line left side.
-	set statusline+=\ (%Y)\ %F\ %M\ %R
+	" List buffers and prompt for selecting a new buffer
+	nnoremap <leader>b :ls<cr>:b
 
-	" Use a divider to separate the left side from the right side.
-	set statusline+=%=
+	" SPLITS ----------------------------------------------------------------------------
+	
+	" Cycle through splits
+	noremap <leader>w <C-w>w
 
-	" Status line right side.
-	set statusline+=\ ASCII:\ %b\ HEX:\ 0x%B\ (%l,%c)
+	" OTHER -----------------------------------------------------------------------------
 
-	" Show the status on the second to last line.
-	set laststatus=2
+	call StatusLine()
 
-	" }}}
+	noremap <Up> <NOP>
+	noremap <Down> <NOP>
+	noremap <Left> <NOP>
+	noremap <Right> <NOP>
+
 
 endfunction
+
 
 function! SetupPython()
 	" These properties are only set up for Python files.
@@ -95,13 +80,10 @@ function! SetupPython()
     set autoindent
     set smartindent
 
-	" Ctrl + j to comment block of code
-	" Ctrl + k to uncomment block of code
-	vnoremap <silent> <C-j> :s/^/#/<cr>:noh<cr>
-	vnoremap <silent> <C-k> :s/^#//<cr>:noh<cr>
+	set colorcolumn 90, 100
 
-	highlight Comment ctermfg=Green
 endfunction
+
 
 function! SetupC()
 	" These properties are only set up for C files.
@@ -115,7 +97,9 @@ function! SetupC()
 
 	" special key-mapping for {}
 	inoremap {<CR> {<CR>}<C-o>O
+
 endfunction
+
 
 function! SetupHTML()
 	" These properties are only set up for html files.
@@ -128,10 +112,64 @@ function! SetupHTML()
 
 endfunction
 
+
+function! SetupVimPlug()
+
+	" Install VimPlug, if it isn't already installed
+	let data_dir = '~/.vim'
+	if empty(glob(data_dir . '/autoload/plug.vim'))
+	  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+	  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	endif
+
+endfunction
+
+
+function! ColorSchemeVimDeus()
+
+	call plug#begin('~/.vim/bundle/')
+	Plug 'ajmwagar/vim-deus'
+	call  plug#end()
+
+	" These are needed for vim-deus
+	set t_Co=256
+	set termguicolors
+
+	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+	set background=dark    " Setting dark mode
+	colorscheme deus
+	let g:deus_termcolors=256
+
+endfunction
+
+
+function! StatusLine()
+
+	hi StatusLine  ctermfg=black cterm=bold
+
+	" Clear status line when .vimrc is loaded
+	set statusline=
+
+	" Status line left side
+	set statusline+=\ (%Y)\ %F\ %M\ %R
+
+	" Use a divider to separate the left side from the right side
+	set statusline+=%=
+
+	" Status line right side
+	set statusline+=\ ASCII:\ %b\ HEX:\ 0x%B\ (%l,%c)
+
+	" Show the status on the second to last line
+	set laststatus=2
+
+endfunction
+
+
 " main entry point
 call SetupGlobal()
 autocmd BufNewFile,BufRead *.py call SetupPython()
 autocmd BufNewFile,BufRead *.c,*.h call SetupC()
 autocmd BufNewFile,BufRead *.html call SetupHTML()
-
 
