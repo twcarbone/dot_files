@@ -75,11 +75,11 @@ function! SetupPython()
 	" These properties are only set up for Python files.
 	
     set tabstop=4       " how many cols of a \t is worth
+    set softtabstop=4
     set shiftwidth=4    " how many cols of a lvl of indentation is
     set expandtab       " tabs are replaced with spaces
     
-    set autoindent
-    set smartindent
+    let g:pyindent_open_paren = 'shiftwidth()'
 
 	set colorcolumn 90, 100
 
