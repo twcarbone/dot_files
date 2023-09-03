@@ -15,6 +15,8 @@ function! SetupGlobal()
     set number
 	set relativenumber
 
+    filetype indent on
+
 	inoremap jk <Esc>
 	inoremap kj <Esc>
 	nnoremap <space> :
