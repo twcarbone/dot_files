@@ -18,7 +18,6 @@ function! SetupGlobal()
     filetype indent on
 
 	inoremap jk <Esc>
-	inoremap kj <Esc>
 	nnoremap <space> :
 	
 	" Auto-complete quotes, parentheses, etc.
