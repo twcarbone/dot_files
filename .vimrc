@@ -82,6 +82,9 @@ function! SetupPython()
     let g:pyindent_open_paren = 'shiftwidth()'
     let g:python_no_doctest_highlight = 1
 
+    colorscheme chs
+    syntax on
+
 	set colorcolumn=90,100
 
 endfunction
