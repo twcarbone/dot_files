@@ -81,10 +81,10 @@ endfunction
 function! SetupPython()
 	" These properties are only set up for Python files.
 	
-    set tabstop=4       " how many cols of a \t is worth
-    set softtabstop=4
-    set shiftwidth=4    " how many cols of a lvl of indentation is
-    set expandtab       " tabs are replaced with spaces
+	" expandtab - Insert *tabstop* space bytes instead of a tab byte
+	" softtabstop - How much whitespace is inserted/removed when pressing Tab/Backspace
+    set expandtab
+	set softtabstop=4
     
     let g:pyindent_open_paren = 'shiftwidth()'
     let g:python_no_doctest_highlight = 1
