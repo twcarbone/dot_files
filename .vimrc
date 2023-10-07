@@ -3,18 +3,25 @@ function! SetupGlobal()
 
 	" GENERAL ---------------------------------------------------------------------------
 	
+	" textwidth - Automatically wrap text at this column
+	" colorcolumn - Display a vertical bar at this column
     set textwidth=89
     set colorcolumn=90
 
-	" Do not wrap text while typing - only when done explicitly (e.g., 'gq')
+	" Do not wrap text automatically while typing, only when using ':gq'
 	set formatoptions-=t
 
+	" tabstop - How many character blocks a tab byte appears as on the screen
+	" shiftwidth - How many character blocks are inserted using >> (and friends)
     set tabstop=4 
     set shiftwidth=4
 
+	" number - Show absolute number of current line
+	" relativenumber - Show relative numbers for all other lines
     set number
 	set relativenumber
 
+	" Load the indent file based on file type
     filetype indent on
 
 	inoremap jk <Esc>
@@ -29,10 +36,10 @@ function! SetupGlobal()
 	inoremap { {}<left>
 	inoremap <lt> <lt>><left>
 
-    " <Tab> snaps out of enclosing tokens (e.g., '', (), [])
+    " Tab snaps out of enclosing characters (e.g., '', (), [])
     inoremap <expr> <Tab> search('\%#[]>)}''"`]', 'n') ? '<Right>' : '<Tab>'
 
-	" Search and replace for the word under the cursor
+	" \-d to to find and replace for the word under the cursor
 	nnoremap <leader>d :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
 
 	" NAVIGATION ------------------------------------------------------------------------
@@ -41,21 +48,21 @@ function! SetupGlobal()
 	nnoremap <C-d> <C-d>zz
 	nnoremap <C-u> <C-u>zz
 
-	" Swap G and gg
+	" Swap G and gg (gg == 'good game' == end of file)
 	nnoremap gg G
 	nnoremap G gg
 
 	" BUFFERS ---------------------------------------------------------------------------
 	
-	" Cycle through buffers
+	" \-Tab to cycle through buffers
 	noremap <leader><tab> :bn<cr>
 
-	" List buffers and prompt for selecting a new buffer
+	" \-b to list active buffers and prompt for a buffer switch
 	nnoremap <leader>b :ls<cr>:b
 
 	" SPLITS ----------------------------------------------------------------------------
 	
-	" Cycle through splits
+	" \-w to cycle through splits
 	noremap <leader>w <C-w>w
 
 	" OTHER -----------------------------------------------------------------------------
