@@ -6,3 +6,5 @@
 	autocrlf = input
 [alias]
     ql = log --oneline -n 20
+[init]
+	defaultBranch = master
