@@ -26,6 +26,9 @@ function! SetupGlobal()
 
 	inoremap jk <Esc>
 	nnoremap <space> :
+
+	" Use # to search for word under cursor (without moving to next occurrence)
+	nnoremap # #N
 	
 	" Auto-complete quotes, parentheses, etc.
     inoremap " ""<left>
