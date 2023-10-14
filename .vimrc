@@ -2,6 +2,9 @@ function! SetupGlobal()
 	" These properties are set up for all instances of Vim.
 
 	" GENERAL ---------------------------------------------------------------------------
+
+	" Default color scheme
+	colorscheme slate
 	
 	" textwidth - Automatically wrap text at this column
 	" colorcolumn - Display a vertical bar at this column
