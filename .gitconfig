@@ -5,6 +5,6 @@
 	editor = vim
 	autocrlf = input
 [alias]
-    ql = log --oneline -n 20
+    ql = log --oneline -n 30
 [init]
 	defaultBranch = master
