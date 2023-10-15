@@ -91,6 +91,11 @@ function! SetupPython()
 	" softtabstop - How much whitespace is inserted/removed when pressing Tab/Backspace
     set expandtab
 	set softtabstop=4
+
+	" Start a python docstring on the line below.
+	" Inserts two sets of triple quotes below the current line, with the cursor sitting
+	" in insert mode on the line between the quotes.
+	map <leader>k o"""<cr><esc>ko
     
     let g:pyindent_open_paren = 'shiftwidth()'
     let g:python_no_doctest_highlight = 1
