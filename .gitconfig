@@ -5,6 +5,9 @@
 	editor = vim
 	autocrlf = input
 [alias]
-    ql = log --oneline -n 30
+	ql = log --oneline -n 30
+	qlg = ql --graph
+	ll = log --oneline
+	llg = ll --graph
 [init]
 	defaultBranch = master
