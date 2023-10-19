@@ -17,14 +17,17 @@ export PS1="${BASH_PROMPT_COLOR:-\[\e[38;5;46m\]}\u@\h \[\e[38;5;39m\]\$PWD \[\e
 
 # General aliases
 alias ll="ls -lhva --group-directories-first --color=auto"
-alias ql="git ql"
 alias cl="clear"
 
 # Python aliases
 alias py="python3"
 alias py3="python3"
 
-# git aliases
+# Git aliases that point to aliases in ~/.gitconfig
+alias ql="git ql"
+alias qlg="git qlg"
+
+# Regular git aliases
 alias gs="git status"
 alias ga="git add"
 alias gd="git diff"
