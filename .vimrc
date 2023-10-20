@@ -11,7 +11,15 @@ function! SetupGlobal()
 	set termguicolors
 
 	syntax on
-	colorscheme slate
+
+	let g:chs_terminal_italics = 1
+
+	let g:pyindent_open_paren = 'shiftwidth()'
+	let g:python_no_doctest_highlight = 1
+
+	colorscheme chs
+
+	set spell
 	
 	" textwidth - Automatically wrap text at this column
 	" colorcolumn - Display a vertical bar at this column
@@ -112,11 +120,6 @@ function! SetupPython()
 	" in insert mode on the line between the quotes.
 	map <leader>k o"""<cr><esc>ko
     
-    let g:pyindent_open_paren = 'shiftwidth()'
-    let g:python_no_doctest_highlight = 1
-
-    colorscheme chs
-
 	set colorcolumn=90,100
 
 endfunction
