@@ -3,7 +3,14 @@ function! SetupGlobal()
 
 	" GENERAL ---------------------------------------------------------------------------
 
-	" Default color scheme
+	" Required for 24-bit truecolor
+	if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
+		let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+		let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+	endif
+	set termguicolors
+
+	syntax on
 	colorscheme slate
 	
 	" textwidth - Automatically wrap text at this column
@@ -109,7 +116,6 @@ function! SetupPython()
     let g:python_no_doctest_highlight = 1
 
     colorscheme chs
-    syntax on
 
 	set colorcolumn=90,100
 
