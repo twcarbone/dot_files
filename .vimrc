@@ -61,7 +61,6 @@ function! SetupGlobal()
     inoremap ( ()<left>
     inoremap [ []<left>
 	inoremap { {}<left>
-	inoremap <lt> <lt>><left>
 
     " Tab snaps out of enclosing characters (e.g., '', (), [])
     inoremap <expr> <Tab> search('\%#[]>)}''"`]', 'n') ? '<Right>' : '<Tab>'
