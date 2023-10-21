@@ -20,6 +20,12 @@ function! SetupGlobal()
 	colorscheme chs
 
 	set spell
+
+	" Configure tab completion for files
+	" wildmode, wildmenu - first tab completes as much as possible, second tab shows
+	" list, third tab cycles through list
+	set wildmode=longest,full
+	set wildmenu
 	
 	" textwidth - Automatically wrap text at this column
 	" colorcolumn - Display a vertical bar at this column
