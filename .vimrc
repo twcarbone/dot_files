@@ -29,24 +29,24 @@ function! SetupGlobal()
 	
 	" textwidth - Automatically wrap text at this column
 	" colorcolumn - Display a vertical bar at this column
-    set textwidth=89
-    set colorcolumn=90
+	set textwidth=89
+	set colorcolumn=90
 
 	" Do not wrap text automatically while typing, only when using ':gq'
 	set formatoptions-=t
 
 	" tabstop - How many character blocks a tab byte appears as on the screen
 	" shiftwidth - How many character blocks are inserted using >> (and friends)
-    set tabstop=4 
-    set shiftwidth=4
+	set tabstop=4
+	set shiftwidth=4
 
 	" number - Show absolute number of current line
 	" relativenumber - Show relative numbers for all other lines
-    set number
+	set number
 	set relativenumber
 
 	" Load the indent file based on file type
-    filetype indent on
+	filetype indent on
 
 	inoremap jk <Esc>
 	nnoremap <space> :
@@ -59,15 +59,15 @@ function! SetupGlobal()
 	nnoremap # #N
 	
 	" Auto-complete quotes, parentheses, etc.
-    inoremap " ""<left>
-    inoremap ' ''<left>
-    inoremap ` ``<left>
-    inoremap ( ()<left>
-    inoremap [ []<left>
+	inoremap " ""<left>
+	inoremap ' ''<left>
+	inoremap ` ``<left>
+	inoremap ( ()<left>
+	inoremap [ []<left>
 	inoremap { {}<left>
 
-    " Tab snaps out of enclosing characters (e.g., '', (), [])
-    inoremap <expr> <Tab> search('\%#[]>)}''"`]', 'n') ? '<Right>' : '<Tab>'
+	" Tab snaps out of enclosing characters (e.g., '', (), [])
+	inoremap <expr> <Tab> search('\%#[]>)}''"`]', 'n') ? '<Right>' : '<Tab>'
 
 	" \-d to to find and replace for the word under the cursor
 	nnoremap <leader>d :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
@@ -131,14 +131,14 @@ function! SetupPython()
 	
 	" expandtab - Insert *tabstop* space bytes instead of a tab byte
 	" softtabstop - How much whitespace is inserted/removed when pressing Tab/Backspace
-    set expandtab
+	set expandtab
 	set softtabstop=4
 
 	" Start a python docstring on the line below.
 	" Inserts two sets of triple quotes below the current line, with the cursor sitting
 	" in insert mode on the line between the quotes.
 	map <leader>k o"""<cr><esc>ko
-    
+
 	set colorcolumn=90,100
 
 endfunction
@@ -147,12 +147,12 @@ endfunction
 function! SetupC()
 	" These properties are only set up for C files.
 	
-    set tabstop=4
-    set shiftwidth=4
-    set cindent
+	set tabstop=4
+	set shiftwidth=4
+	set cindent
 
-    " Ctrl + k for entering c-style comment block
-    inoremap <C-k> /*<Space><Space>*/<left><left><left>
+	" Ctrl + k for entering c-style comment block
+	inoremap <C-k> /*<Space><Space>*/<left><left><left>
 
 	" special key-mapping for {}
 	inoremap {<CR> {<CR>}<C-o>O
