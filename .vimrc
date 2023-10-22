@@ -66,6 +66,11 @@ function! SetupGlobal()
 	inoremap [ []<left>
 	inoremap { {}<left>
 
+	" Double of open paren, bracket, or curly inserts indented blank line
+	inoremap (( (<cr>)<esc>O
+	inoremap [[ [<cr>]<esc>O
+	inoremap {{ {<cr>}<esc>O
+
 	" Tab snaps out of enclosing characters (e.g., '', (), [])
 	inoremap <expr> <Tab> search('\%#[]>)}''"`]', 'n') ? '<Right>' : '<Tab>'
 
