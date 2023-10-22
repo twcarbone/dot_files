@@ -98,6 +98,9 @@ function! SetupGlobal()
 	" \-b to list active buffers and prompt for a buffer switch
 	nnoremap <leader>b :ls<cr>:b
 
+	" :H <command> opens help ('starting.txt') for <command> in new buffer
+	command! -nargs=1 -complete=help H :enew | :set buftype=help | :h <args>
+
 	" SPLITS ----------------------------------------------------------------------------
 	
 	" \-w to cycle through splits
