@@ -32,8 +32,11 @@ function! SetupGlobal()
 	set textwidth=89
 	set colorcolumn=90
 
-	" Do not wrap text automatically while typing, only when using ':gq'
-	set formatoptions-=t
+	" c - Auto-wrap comments using textwidth; insert the comment leader automatically
+	" r - Automatically insert comment leader after hitting <Enter> in Insert mode
+	" o - Automatically insert comment leader after hitting 'o' or 'O' in Normal mode
+	" q - Allow formatting of comments using `gq`
+	set formatoptions=croq
 
 	" tabstop - How many character blocks a tab byte appears as on the screen
 	" shiftwidth - How many character blocks are inserted using >> (and friends)
