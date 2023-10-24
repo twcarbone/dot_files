@@ -34,6 +34,7 @@ alias gd="git diff"
 alias gc="git commit"
 alias gb="git branch"
 alias gr="git restore"
+alias gg="git grep -En"
 
 alias gss="git status -s"
 alias gap="git add -p"
