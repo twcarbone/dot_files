@@ -147,7 +147,7 @@ function! SetupPython()
 	" in insert mode on the line between the quotes.
 	map <leader>k o"""<cr><esc>ko
 
-	set colorcolumn=90,100
+	set colorcolumn=90,120
 
 endfunction
 
