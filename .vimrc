@@ -88,6 +88,9 @@ function! SetupGlobal()
 	" Use Ctrl-l to clear any highlighted search patterns
 	noremap <silent> <c-l> :nohlsearch<cr>
 
+	" <F2> to toggle paste mode
+	set pastetoggle=<F2>
+
 	" NAVIGATION ------------------------------------------------------------------------
 	
 	" Center cursor on screen after jumping half-screens
