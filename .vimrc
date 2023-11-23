@@ -38,8 +38,14 @@ function! SetupGlobal()
 	" q - Allow formatting of comments using `gq`
 	set formatoptions=croq
 
+	" ------------
+	" Tab settings
+	" ------------
+
 	" tabstop - How many character blocks a tab byte appears as on the screen
 	" shiftwidth - How many character blocks are inserted using >> (and friends)
+	" expandtab - Insert *tabstop* space bytes instead of a tab byte
+	" softtabstop - How much whitespace is inserted/removed when pressing Tab/Backspace
 	set tabstop=4
 	set shiftwidth=4
 
@@ -140,8 +146,7 @@ endfunction
 function! SetupPython()
 	" These properties are only set up for Python files.
 	
-	" expandtab - Insert *tabstop* space bytes instead of a tab byte
-	" softtabstop - How much whitespace is inserted/removed when pressing Tab/Backspace
+	" See 'Tab settings' for definitions
 	set expandtab
 	set softtabstop=4
 
@@ -158,8 +163,10 @@ endfunction
 function! SetupC()
 	" These properties are only set up for C files.
 	
+	" See 'Tab settings' for definitions
 	set tabstop=4
 	set shiftwidth=4
+
 	set cindent
 
 	" Ctrl + k for entering c-style comment block
@@ -174,6 +181,11 @@ endfunction
 function! SetupHTML()
 	" These properties are only set up for html files.
 
+	" See 'Tab settings' for definitions
+	set tabstop=2
+	set shiftwidth=2
+	set expandtab
+	set softtabstop=2
 
 	set autoindent
 	set smartindent
