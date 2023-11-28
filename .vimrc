@@ -61,8 +61,8 @@ function! SetupGlobal()
 	nnoremap <space> :
 
 	" Swap normal G and gg, logic being gg == 'good game' == end of file
-	nnoremap gg G
-	nnoremap G gg
+	noremap gg G
+	noremap G gg
 
 	" Use # to search for word under cursor (without moving to next occurrence)
 	nnoremap # #N
