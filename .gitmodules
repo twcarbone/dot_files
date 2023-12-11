@@ -7,3 +7,6 @@
 [submodule ".vim/pack/plugins/start/vim-prettier"]
 	path = .vim/pack/plugins/start/vim-prettier
 	url = git@github.com:prettier/vim-prettier.git
+[submodule ".vim/pack/plugins/start/YouCompleteMe"]
+	path = .vim/pack/plugins/start/YouCompleteMe
+	url = git@github.com:ycm-core/YouCompleteMe.git
