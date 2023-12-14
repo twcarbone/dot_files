@@ -85,9 +85,6 @@ function! SetupGlobal()
 	inoremap [[ [<cr>]<esc>O
 	inoremap {{ {<cr>}<esc>O
 
-	" Tab snaps out of enclosing characters (e.g., '', (), [])
-	inoremap <expr> <Tab> search('\%#[]>)}''"`]', 'n') ? '<Right>' : '<Tab>'
-
 	" \-d to to find and replace for the word under the cursor
 	nnoremap <leader>d :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
 
