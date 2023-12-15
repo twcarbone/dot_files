@@ -86,8 +86,8 @@ function! SetupGlobal()
 	inoremap [[ [<cr>]<esc>O
 	inoremap {{ {<cr>}<esc>O
 
-	" \-d to to find and replace for the word under the cursor
-	nnoremap <leader>d :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
+	" \-c to to find and replace for the word under the cursor
+	nnoremap <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
 
 	" incsearch - highlight matches while typing a regex
 	" hlsearch - highlight search matches
