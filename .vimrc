@@ -19,6 +19,7 @@ function! SetupGlobal()
 
 	let g:ycm_key_list_select_completion = ['<Tab>']
 	let g:ycm_add_preview_to_completeopt="popup"
+	let g:ycm_show_detailed_diag_in_popup = 1
 
 	nnoremap gd :YcmCompleter GoToDefinition<cr>
 
