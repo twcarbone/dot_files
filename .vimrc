@@ -17,7 +17,7 @@ function! SetupGlobal()
 	let g:pyindent_open_paren = 'shiftwidth()'
 	let g:python_no_doctest_highlight = 1
 
-	let g:ycm_key_list_select_completion = ['<Tab>']
+	let g:ycm_key_list_select_completion = ['<C-n>']
 	let g:ycm_add_preview_to_completeopt="popup"
 	let g:ycm_show_detailed_diag_in_popup = 1
 

@@ -4,10 +4,7 @@ endf!
 
 function s:onTabPress()
 
-	if pumvisible()
-		" Advance to next item in popup menu
-		return "\<C-n>"
-	elseif search('\%#[]>)}''"`]', 'n')
+	if search('\%#[]>)}''"`]', 'n')
 		" Snap out of quotes, parentheses, etc.
 		return  "\<Right>"
 	elseif search('\%#<', 'n')
