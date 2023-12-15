@@ -1,52 +1,80 @@
 function! SetupGlobal()
-	" These properties are set up for all instances of Vim.
 
-	" GENERAL ---------------------------------------------------------------------------
+	"""" 24-bit true color
 
-	" Required for 24-bit truecolor
 	if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
 		let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 		let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	endif
-	set termguicolors
 
-	syntax on
 
-	let g:chs_terminal_italics = 1
+	"""" Basic settings
 
+	filetype indent on			" Load the indent file based on file type
+	syntax on					" Enable syntax highlighting
+	set termguicolors			" Use 24-bit 'true color' attributes (e.g., 'guifg')
+	set spell					" Highlight bad spelling
+	set number					" Show line numbers
+	set relativenumber			" Show relative line numbers above/below cursor
+	set incsearch				" Highlight matches while typing a regex
+	set hlsearch				" Highlight search matches
+	set pastetoggle=<F2>		" Toggle 'INSERT (paste)' mode
+	set textwidth=89			" Wrap text at this column
+	set colorcolumn=90			" Show vertical bar at this column
+	set signcolumn=no			" Do not show anything int he gutter
+
+
+	"""" Filetype settings
+
+	" Python
 	let g:pyindent_open_paren = 'shiftwidth()'
 	let g:python_no_doctest_highlight = 1
+
+
+	"""" Colorscheme Chs
+
+	let g:chs_terminal_italics = 1
+	colorscheme chs
+
+
+	"""" YouCompleteMe
 
 	let g:ycm_key_list_select_completion = ['<C-n>']
 	let g:ycm_add_preview_to_completeopt="popup"
 	let g:ycm_show_detailed_diag_in_popup = 1
 
+	highlight YcmErrorLine guibg=#3f0000
+	highlight YcmErrorSection gui=NONE
+
 	nnoremap gd :YcmCompleter GoToDefinition<cr>
+	nnoremap <leader>f :YcmCompleter FixIt<cr>
 
-	colorscheme chs
 
-	set spell
+	"""" vim-closetag
 
-	" Configure tab completion for files
+	" Default filenames and filetypes do not include *.js
+	let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.jsx,*.ts,*.tsx'
+	let g:closetag_filetypes = 'html,xhtml,phtml,js,jsx,ts,tsx'
+
+
+	"""" Wildmenu
+
 	" wildmode, wildmenu - first tab completes as much as possible, second tab shows
 	" list, third tab cycles through list
 	set wildmode=longest,full
 	set wildmenu
+
 	
-	" textwidth - Automatically wrap text at this column
-	" colorcolumn - Display a vertical bar at this column
-	set textwidth=89
-	set colorcolumn=90
+	"""" Wrapping
 
 	" c - Auto-wrap comments using textwidth; insert the comment leader automatically
 	" r - Automatically insert comment leader after hitting <Enter> in Insert mode
 	" o - Automatically insert comment leader after hitting 'o' or 'O' in Normal mode
 	" q - Allow formatting of comments using `gq`
 	set formatoptions=croq
+	
 
-	" ------------
-	" Tab settings
-	" ------------
+	"""" Tabs
 
 	" tabstop - How many character blocks a tab byte appears as on the screen
 	" shiftwidth - How many character blocks are inserted using >> (and friends)
@@ -55,16 +83,16 @@ function! SetupGlobal()
 	set tabstop=4
 	set shiftwidth=4
 
-	" number - Show absolute number of current line
-	" relativenumber - Show relative numbers for all other lines
-	set number
-	set relativenumber
 
-	" Load the indent file based on file type
-	filetype indent on
+	"""" Mappings
 
+	" Basics 
 	inoremap jk <Esc>
 	nnoremap <space> :
+	noremap <Up> <NOP>
+	noremap <Down> <NOP>
+	noremap <Left> <NOP>
+	noremap <Right> <NOP>
 
 	" Swap normal G and gg, logic being gg == 'good game' == end of file
 	noremap gg G
@@ -89,19 +117,9 @@ function! SetupGlobal()
 	" \-c to to find and replace for the word under the cursor
 	nnoremap <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
 
-	" incsearch - highlight matches while typing a regex
-	" hlsearch - highlight search matches
-	set incsearch
-	set hlsearch
-
 	" Use Ctrl-l to clear any highlighted search patterns
 	noremap <silent> <c-l> :nohlsearch<cr>
 
-	" <F2> to toggle paste mode
-	set pastetoggle=<F2>
-
-	" NAVIGATION ------------------------------------------------------------------------
-	
 	" Center cursor on screen after jumping half-screens
 	nnoremap <C-d> <C-d>zz
 	nnoremap <C-u> <C-u>zz
@@ -110,38 +128,22 @@ function! SetupGlobal()
 	nnoremap gg G
 	nnoremap G gg
 
-	" BUFFERS ---------------------------------------------------------------------------
-	
-	" \-Tab to cycle through buffers
+	" Cycle through buffers
 	noremap <leader><tab> :bn<cr>
 
-	" \-b to list active buffers and prompt for a buffer switch
+	" List active buffers and prompt for a buffer switch
 	nnoremap <leader>b :ls<cr>:b
 
 	" :H <command> opens help ('starting.txt') for <command> in new buffer
 	command! -nargs=1 -complete=help H :enew | :set buftype=help | :h <args>
 
-	" SPLITS ----------------------------------------------------------------------------
-	
-	" \-w to cycle through splits
+	" Cycle through splits
 	noremap <leader>w <C-w>w
 
-	" PLUGIN CONFIGURATION --------------------------------------------------------------
 
-	" vim-closetag
-	" Default filenames and filetypes do not include *.js
-	let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.jsx,*.ts,*.tsx'
-	let g:closetag_filetypes = 'html,xhtml,phtml,js,jsx,ts,tsx'
-
-	" OTHER -----------------------------------------------------------------------------
+	"""" Functions
 
 	call StatusLine()
-
-	noremap <Up> <NOP>
-	noremap <Down> <NOP>
-	noremap <Left> <NOP>
-	noremap <Right> <NOP>
-
 
 endfunction
 
