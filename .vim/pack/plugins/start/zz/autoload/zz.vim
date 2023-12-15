@@ -10,7 +10,7 @@ function s:onTabPress()
 	elseif search('\%#[]>)}''"`]', 'n')
 		" Snap out of quotes, parentheses, etc.
 		return  "\<Right>"
-	elseif search('<', 'n')
+	elseif search('\%#<', 'n')
 		" Snap to end of enclosing tag
 		return "\<C-O>f>\<Right>"
 	else
