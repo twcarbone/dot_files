@@ -110,9 +110,7 @@ function! SetupGlobal()
 	inoremap { {}<left>
 
 	" Double of open paren, bracket, or curly inserts indented blank line
-	inoremap (( (<cr>)<esc>O
-	inoremap [[ [<cr>]<esc>O
-	inoremap {{ {<cr>}<esc>O
+	inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
 
 	" \-c to to find and replace for the word under the cursor
 	nnoremap <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
