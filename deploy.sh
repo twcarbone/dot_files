@@ -31,6 +31,6 @@ ln -s ~/vim-chs/colors/chs.vim .vim/colors/chs.vim
 ln -s ~/vim-chs/after/syntax/python.vim .vim/after/syntax/python.vim
 
 # nvm
-PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash'
+PROFILE=/dev/null bash -c 'curl -so- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
