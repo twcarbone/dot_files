@@ -1,3 +1,6 @@
+# init submodules
+git -C ~/dot_files submodule update --init --recursive
+
 # config files
 rm -f .bashrc
 rm -f .vimrc
