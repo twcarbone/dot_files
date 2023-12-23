@@ -1,0 +1,20 @@
+# Brace style
+--style=kr
+
+# Padding
+--break-blocks
+--pad-oper
+--pad-comma
+--pad-header
+
+# Pointers
+--align-pointer=name
+
+# Remove braces around single line function body
+--remove-braces
+
+# Max line length
+--max-code-length=90
+
+# Modify the file in-place
+--suffix=none
