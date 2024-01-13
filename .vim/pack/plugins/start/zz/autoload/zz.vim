@@ -22,7 +22,7 @@ function s:onLeaderPPress()
 	" Run code formatting based on file extension
 
 	let l:usePrettier = ["js", "ts", "jsx", "tsx", "json", "css", "html"]
-	let l:useClangFormat = ["cpp"]
+	let l:useClangFormat = ["cpp", "h"]
 	let l:useBlack = ["py"]
 
 	if index(l:usePrettier, expand("%:e")) >= 0
