@@ -30,6 +30,12 @@ function! SetupGlobal()
 	let g:pyindent_open_paren = 'shiftwidth()'
 	let g:python_no_doctest_highlight = 1
 
+	" C / C++
+	set cinoptions+=f0			" First opening brace at column 0
+
+	" C++
+	set cinoptions+=g0			" Scope declarations at column 0
+
 
 	"""" Colorscheme Chs
 
