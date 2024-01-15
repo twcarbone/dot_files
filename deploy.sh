@@ -10,6 +10,7 @@ ln -s dot_files/.bashrc .bashrc
 ln -s dot_files/.vimrc .vimrc
 ln -s dot_files/.gitconfig .gitconfig
 ln -s dot_files/.tmux.conf .tmux.conf
+ln -s dot_files/.clang-format .clang-format
 
 # ~/.vim
 rm -rf .vim
