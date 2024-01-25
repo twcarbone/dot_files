@@ -216,38 +216,6 @@ function! SetupHTML()
 endfunction
 
 
-function! SetupVimPlug()
-
-	" Install VimPlug, if it isn't already installed
-	let data_dir = '~/.vim'
-	if empty(glob(data_dir . '/autoload/plug.vim'))
-	  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-	  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-	endif
-
-endfunction
-
-
-function! ColorSchemeVimDeus()
-
-	call plug#begin('~/.vim/bundle/')
-	Plug 'ajmwagar/vim-deus'
-	call  plug#end()
-
-	" These are needed for vim-deus
-	set t_Co=256
-	set termguicolors
-
-	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-	set background=dark    " Setting dark mode
-	colorscheme deus
-	let g:deus_termcolors=256
-
-endfunction
-
-
 " main entry point
 call SetupGlobal()
 autocmd BufNewFile,BufRead *.py call SetupPython()
