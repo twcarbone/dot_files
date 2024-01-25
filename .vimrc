@@ -18,6 +18,9 @@ function! SetupGlobal()
 	set relativenumber			" Show relative line numbers above/below cursor
 	set incsearch				" Highlight matches while typing a regex
 	set hlsearch				" Highlight search matches
+	set noshowmode				" Do not show '-- INSERT --' below statusline
+								" This is handled by lightline.vim
+	set laststatus=2			" Show status line on 2nd to last line
 	set pastetoggle=<F2>		" Toggle 'INSERT (paste)' mode
 	set textwidth=89			" Wrap text at this column
 	set colorcolumn=90			" Show vertical bar at this column
@@ -61,6 +64,21 @@ function! SetupGlobal()
 	" Default filenames and filetypes do not include *.js
 	let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.jsx,*.ts,*.tsx'
 	let g:closetag_filetypes = 'html,xhtml,phtml,js,jsx,ts,tsx'
+
+
+	"""" lightline
+
+	let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileencoding', 'filetype', 'charvalue' ] ]
+      \ },
+      \ 'component': {
+      \   'charvalue': '%3b (0x%2B)',
+      \ },
+      \ }
 
 
 	"""" Wildmenu
@@ -145,10 +163,6 @@ function! SetupGlobal()
 	noremap <leader>w <C-w>w
 
 
-	"""" Functions
-
-	call StatusLine()
-
 endfunction
 
 
@@ -230,28 +244,6 @@ function! ColorSchemeVimDeus()
 	set background=dark    " Setting dark mode
 	colorscheme deus
 	let g:deus_termcolors=256
-
-endfunction
-
-
-function! StatusLine()
-
-	hi StatusLine  ctermfg=black cterm=bold
-
-	" Clear status line when .vimrc is loaded
-	set statusline=
-
-	" Status line left side
-	set statusline+=\ (%Y)\ %F\ %M\ %R
-
-	" Use a divider to separate the left side from the right side
-	set statusline+=%=
-
-	" Status line right side
-	set statusline+=\ ASCII:\ %b\ HEX:\ 0x%B\ (%l,%c)
-
-	" Show the status on the second to last line
-	set laststatus=2
 
 endfunction
 
