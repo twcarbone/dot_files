@@ -24,7 +24,8 @@ function! SetupGlobal()
 	set pastetoggle=<F2>		" Toggle 'INSERT (paste)' mode
 	set textwidth=89			" Wrap text at this column
 	set colorcolumn=90			" Show vertical bar at this column
-	set signcolumn=no			" Do not show anything int he gutter
+	set signcolumn=no			" Do not show anything in the gutter
+	set cursorline				" Enable syntax highlighting on the current line
 
 
 	"""" Filetype settings
