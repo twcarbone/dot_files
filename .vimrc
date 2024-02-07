@@ -28,6 +28,11 @@ function! SetupGlobal()
 	set cursorline				" Enable syntax highlighting on the current line
 
 
+	"""" Colorscheme
+
+	colorscheme gruber
+
+
 	"""" Filetype settings
 
 	" Python
@@ -39,12 +44,6 @@ function! SetupGlobal()
 
 	" C++
 	set cinoptions+=g0			" Scope declarations at column 0
-
-
-	"""" Colorscheme Chs
-
-	let g:chs_terminal_italics = 1
-	colorscheme chs
 
 
 	"""" YouCompleteMe
