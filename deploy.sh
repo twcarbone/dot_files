@@ -32,6 +32,9 @@ ln -s ~/vim-chs/syntax/python.vim .vim/syntax/python.vim
 ln -s ~/vim-chs/colors/chs.vim .vim/colors/chs.vim
 ln -s ~/vim-chs/after/syntax/python.vim .vim/after/syntax/python.vim
 
+# colors
+ln -s ~/dot_files/.vim/colors/gruber.vim .vim/colors/gruber.vim
+
 # nvm
 PROFILE=/dev/null bash -c 'curl -so- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash'
 export NVM_DIR="$HOME/.nvm"
