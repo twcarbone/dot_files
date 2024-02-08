@@ -8,14 +8,14 @@ set background=dark
 let g:colors_name = "gruber"
 
 " Colors
-let s:black      = ["#1c1c1c", "234"]
+let s:black      = ["#181818", "234"]
 let s:lightblack = ["#262626", "235"]
 let s:darkgray   = ["#444444", "238"]
 let s:gray       = ["#626262", "241"]
 let s:white      = ["#e4e4e4", "254"]
 let s:red     = ["#ff5f5f", "203"]
 let s:green   = ["#87d75f", "113"]
-let s:yellow  = ["#ffd700", "220"]
+let s:yellow  = ["#fadc37", "220"]
 let s:blue    = ["#87afd7", "110"]
 let s:magenta = ["#afafd7", "146"]
 let s:cyan    = ["#afd7af", "151"]
