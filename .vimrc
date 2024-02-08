@@ -107,7 +107,7 @@ function! SetupGlobal()
 
 
 	"""" Statusline
-	set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%=0x%B\
+	set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%=0x%B
 
 
 	"""" Mappings
