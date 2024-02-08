@@ -18,8 +18,6 @@ function! SetupGlobal()
 	set relativenumber			" Show relative line numbers above/below cursor
 	set incsearch				" Highlight matches while typing a regex
 	set hlsearch				" Highlight search matches
-	set noshowmode				" Do not show '-- INSERT --' below statusline
-								" This is handled by lightline.vim
 	set laststatus=2			" Show status line on 2nd to last line
 	set pastetoggle=<F2>		" Toggle 'INSERT (paste)' mode
 	set textwidth=89			" Wrap text at this column
@@ -106,6 +104,10 @@ function! SetupGlobal()
 	" softtabstop - How much whitespace is inserted/removed when pressing Tab/Backspace
 	set tabstop=4
 	set shiftwidth=4
+
+
+	"""" Statusline
+	set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%=0x%B\
 
 
 	"""" Mappings
