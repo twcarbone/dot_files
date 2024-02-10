@@ -12,6 +12,7 @@ ln -s dot_files/.vimrc .vimrc
 ln -s dot_files/.gitconfig .gitconfig
 ln -s dot_files/.tmux.conf .tmux.conf
 ln -s dot_files/.clang-format .clang-format
+ln -s dot_files/.emacs .emacs
 
 # ~/.vim
 rm -rf .vim
