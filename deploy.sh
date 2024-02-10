@@ -7,6 +7,7 @@ rm -f .vimrc
 rm -f .gitconfig
 rm -f .tmux.conf
 rm -f .clang-format
+rm -f .emacs
 ln -s dot_files/.bashrc .bashrc
 ln -s dot_files/.vimrc .vimrc
 ln -s dot_files/.gitconfig .gitconfig
