@@ -24,6 +24,9 @@
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 
+;; company
+(add-hook 'after-init-hook 'global-company-mode)
+
 ;; Line numbers
 (global-display-line-numbers-mode)
 (setq display-line-numbers-type 'relative)
@@ -45,7 +48,7 @@
  '(custom-enabled-themes '(gruber-darker))
  '(custom-safe-themes
    '("e27c9668d7eddf75373fa6b07475ae2d6892185f07ebed037eedf783318761d7" default))
- '(package-selected-packages '(clang-format magit gruber-darker-theme smex)))
+ '(package-selected-packages '(company clang-format magit gruber-darker-theme smex)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
