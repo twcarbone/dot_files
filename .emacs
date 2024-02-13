@@ -10,6 +10,9 @@
 (column-number-mode 1)
 (ido-mode 1)
 
+;; Keybindings
+(global-set-key (kbd "M-o") 'other-window)
+
 ;; Packages
 (require 'package)
 (add-to-list 'package-archives
