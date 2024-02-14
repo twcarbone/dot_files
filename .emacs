@@ -40,6 +40,22 @@
 ;; Other
 (setq compile-command "")
 
+;; Insert newline below current without breaking
+;; https://stackoverflow.com/a/57332647
+(global-set-key (kbd "<C-return>") (lambda ()
+				     (interactive)
+				     (end-of-line)
+				     (newline-and-indent)))
+
+;; Insert newline above current without breaking
+;; https://stackoverflow.com/a/57332647
+(global-set-key (kbd "<C-S-return>") (lambda ()
+				       (interactive)
+				       (previous-line)
+				       (end-of-line)
+				       (newline-and-indent)
+				       ))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
