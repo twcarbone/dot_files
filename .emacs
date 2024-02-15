@@ -40,6 +40,10 @@
 ;; Other
 (setq compile-command "")
 
+;; Movement
+(require 'misc)
+(global-set-key (kbd "M-f") 'forward-to-word)
+
 ;; Insert newline below current without breaking
 ;; https://stackoverflow.com/a/57332647
 (global-set-key (kbd "<C-return>") (lambda ()
