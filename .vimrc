@@ -46,6 +46,20 @@ function! SetupGlobal()
 	set cinoptions+=g0			" Scope declarations at column 0
 
 
+	"""" netrw
+
+	" noma - buffer cannot be modified
+	" nomod - buffer is considered to be not modified
+	" rnu - display current line number and relative line numbers
+	" nowrap - do not wrap long lines
+	" ro - read-only
+	let g:netrw_bufsettings = 'noma nomod rnu nowrap ro'
+
+	let g:netrw_banner=0		" Do not show banner
+	let g:netrw_liststyle=3		" Tree listing style
+	let g:netrw_winsize=30		" Occupy 30% of the total width
+
+
 	"""" YouCompleteMe
 
 	let g:ycm_key_list_select_completion = ['<C-n>']
@@ -176,6 +190,11 @@ function! SetupGlobal()
 
 	" Cycle through splits
 	noremap <leader>w <C-w>w
+
+	" Open netrw in the directory of the current file (dd) or the current working
+	" directory (da)
+	nnoremap <leader>dd :Lexplore %:p:h<cr>
+	nnoremap <leader>da :Lexplore<cr>
 
 
 endfunction
