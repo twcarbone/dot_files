@@ -51,9 +51,10 @@ function! SetupGlobal()
 	" noma - buffer cannot be modified
 	" nomod - buffer is considered to be not modified
 	" rnu - display current line number and relative line numbers
+	" nobl - do not display in buffer list
 	" nowrap - do not wrap long lines
 	" ro - read-only
-	let g:netrw_bufsettings = 'noma nomod rnu nowrap ro'
+	let g:netrw_bufsettings = 'noma nomod rnu nobl nowrap ro'
 
 	let g:netrw_banner=0		" Do not show banner
 	let g:netrw_liststyle=3		" Tree listing style
