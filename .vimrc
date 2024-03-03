@@ -107,7 +107,18 @@ function! SetupGlobal()
 
 
 	"""" Statusline
+
 	set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%=0x%B
+
+
+	"""" Terminal mode
+
+	" Create vertical terminal using <leader>t
+	noremap <silent> <leader>t :vertical :terminal<cr>
+
+	" Enter terminal-normal mode
+	tnoremap <Esc> <C-w>N
+	tnoremap jk <C-w>N
 
 
 	"""" Mappings
@@ -218,9 +229,19 @@ function! SetupHTML()
 endfunction
 
 
+function! SetupTerminal()
+	" These are set for terminal mode only
+
+	set nospell 			" Do not highlight spelling errors
+	set colorcolumn=		" Do not show a vertical column
+
+endfunction
+
+
 " main entry point
 call SetupGlobal()
 autocmd BufNewFile,BufRead *.py call SetupPython()
 autocmd BufNewFile,BufRead *.c,*.h call SetupC()
 autocmd BufNewFile,BufRead *.html call SetupHTML()
+autocmd TerminalWinOpen * call SetupTerminal()
 
