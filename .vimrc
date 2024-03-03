@@ -25,6 +25,7 @@ function! SetupGlobal()
 	set signcolumn=no			" Do not show anything in the gutter
 	set cursorline				" Enable syntax highlighting on the current line
 	set hidden					" Do not prompt to save buffers when switching
+	set splitright				" Put new split to the right, not left
 
 
 	"""" Colorscheme
