@@ -24,6 +24,7 @@ function! SetupGlobal()
 	set colorcolumn=90			" Show vertical bar at this column
 	set signcolumn=no			" Do not show anything in the gutter
 	set cursorline				" Enable syntax highlighting on the current line
+	set hidden					" Do not prompt to save buffers when switching
 
 
 	"""" Colorscheme
