@@ -81,21 +81,6 @@ function! SetupGlobal()
 	let g:closetag_filetypes = 'html,xhtml,phtml,js,jsx,ts,tsx'
 
 
-	"""" lightline
-
-	let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'fileencoding', 'filetype', 'charvalue' ] ]
-      \ },
-      \ 'component': {
-      \   'charvalue': '%3b (0x%2B)',
-      \ },
-      \ }
-
-
 	"""" Wildmenu
 
 	" wildmode, wildmenu - first tab completes as much as possible, second tab shows
