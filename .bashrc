@@ -68,6 +68,9 @@ alias gdsl="git diff --staged --color=always | less -r"
 # Color directories blue
 LS_COLORS=$LS_COLORS:'di=94'; export LS_COLORS
 
+# Set up FZF
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_COMMAND='find . -name .git -prune -o -print'
 
 # ---------
 # Utilities
