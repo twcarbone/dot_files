@@ -250,5 +250,4 @@ call SetupGlobal()
 autocmd BufNewFile,BufRead *.py call SetupPython()
 autocmd BufNewFile,BufRead *.c,*.h call SetupC()
 autocmd BufNewFile,BufRead *.html call SetupHTML()
-autocmd TerminalWinOpen * call SetupTerminal()
-
+autocmd TerminalOpen * call SetupTerminal()
