@@ -81,6 +81,12 @@ function! SetupGlobal()
 	let g:closetag_filetypes = 'html,xhtml,phtml,js,jsx,ts,tsx'
 
 
+	"""" FZF
+
+	set runtimepath+=~/.fzf
+	command -nargs=* -complete=dir FF :FZF! <args>
+
+
 	"""" Wildmenu
 
 	" wildmode, wildmenu - first tab completes as much as possible, second tab shows
