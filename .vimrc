@@ -137,8 +137,8 @@ function! SetupGlobal()
 	noremap gg G
 	noremap G gg
 
-	" Use # to search for word under cursor (without moving to next occurrence)
-	nnoremap # #N
+	" Use * to search for word under cursor and keep the current position
+	nnoremap <expr> * ':%s/'.expand('<cword>').'//gn<CR>``'
 	
 	" Auto-complete quotes, parentheses, etc.
 	inoremap " ""<left>
