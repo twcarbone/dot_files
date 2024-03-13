@@ -113,6 +113,8 @@ function! SetupGlobal()
 	" softtabstop - How much whitespace is inserted/removed when pressing Tab/Backspace
 	set tabstop=4
 	set shiftwidth=4
+    set expandtab
+    set softtabstop=4
 
 
 	"""" Statusline
@@ -196,10 +198,6 @@ endfunction
 function! SetupPython()
 	" These properties are only set up for Python files.
 	
-	" See 'Tab settings' for definitions
-	set expandtab
-	set softtabstop=4
-
 	" Start a python docstring on the line below.
 	" Inserts two sets of triple quotes below the current line, with the cursor sitting
 	" in insert mode on the line between the quotes.
@@ -213,10 +211,6 @@ endfunction
 function! SetupC()
 	" These properties are only set up for C files.
 	
-	" See 'Tab settings' for definitions
-	set tabstop=4
-	set shiftwidth=4
-
 	set cindent
 
 	" Ctrl + k for entering c-style comment block
