@@ -124,12 +124,30 @@ function! SetupGlobal()
 
     """" Terminal mode
 
-    " Create vertical terminal using <leader>t
-    noremap <silent> <leader>t :vertical :terminal<cr>
-
     " Enter terminal-normal mode
     tnoremap <Esc> <C-w>N
     tnoremap jk <C-w>N
+
+
+    """"" Leader commands
+
+    " Tab   Cycle through buffers
+    " b     List active buffers and prompt for new buffer number
+    " w     Cycle through splits
+    " dd    Open netrw of current file
+    " da    Open netrw of current working directory
+    " m     Save file and run 'term make'
+    " t     Create vertical terminal
+    " c     Find and replace word under cursor
+
+    nnoremap <silent> <leader><tab> :bn<cr>
+    nnoremap <silent> <leader>b :ls<cr>:b
+    nnoremap <silent> <leader>w <C-w>w
+    nnoremap <silent> <leader>dd :Lexplore %:p:h<cr>
+    nnoremap <silent> <leader>da :Lexplore<cr>
+    nnoremap <silent> <leader>m :w<cr> :term make<cr>
+    nnoremap <silent> <leader>t :vertical :terminal<cr>
+    nnoremap <silent> <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
 
 
     """" Mappings
@@ -160,9 +178,6 @@ function! SetupGlobal()
     " Double of open paren, bracket, or curly inserts indented blank line
     inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
 
-    " <leader>-c to to find and replace for the word under the cursor
-    nnoremap <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
-
     " Use Ctrl-l to clear any highlighted search patterns
     noremap <silent> <c-l> :nohlsearch<cr>
 
@@ -174,23 +189,8 @@ function! SetupGlobal()
     nnoremap gg G
     nnoremap G gg
 
-    " Cycle through buffers
-    noremap <leader><tab> :bn<cr>
-
-    " List active buffers and prompt for a buffer switch
-    nnoremap <leader>b :ls<cr>:b
-
     " :H <command> opens help ('starting.txt') for <command> in new buffer
     command! -nargs=1 -complete=help H :enew | :set buftype=help | :h <args>
-
-    " Cycle through splits
-    noremap <leader>w <C-w>w
-
-    " Open netrw in the directory of the current file (dd) or the current working
-    " directory (da)
-    nnoremap <leader>dd :Lexplore %:p:h<cr>
-    nnoremap <leader>da :Lexplore<cr>
-
 
 endfunction
 
