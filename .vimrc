@@ -27,7 +27,6 @@ function! SetupGlobal()
     set hidden                  " Do not prompt to save buffers when switching
     set splitright              " Put new split to the right, not left
     set scrolloff=1             " Keep 1 line above/below cursor
-    set cmdheight=2             " Command window is 2 lines talj
 
 
     """" Colorscheme
