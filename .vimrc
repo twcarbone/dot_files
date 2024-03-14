@@ -27,6 +27,7 @@ function! SetupGlobal()
     set hidden                  " Do not prompt to save buffers when switching
     set splitright              " Put new split to the right, not left
     set scrolloff=1             " Keep 1 line above/below cursor
+    set cmdheight=2             " Command window is 2 lines talj
 
 
     """" Colorscheme
@@ -160,7 +161,7 @@ function! SetupGlobal()
     " Double of open paren, bracket, or curly inserts indented blank line
     inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
 
-    " \-c to to find and replace for the word under the cursor
+    " <leader>-c to to find and replace for the word under the cursor
     nnoremap <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
 
     " Use Ctrl-l to clear any highlighted search patterns
