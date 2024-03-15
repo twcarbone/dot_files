@@ -136,8 +136,8 @@ function! SetupGlobal()
     " w     Cycle through splits
     " dd    Open netrw of current file
     " da    Open netrw of current working directory
-    " m     Save file and run 'term make'
-    " t     Create vertical terminal
+    " t     Create full-screen terminal (kind of... maximized window)
+    " m     Save file and run make in terminal in new tab
     " c     Find and replace word under cursor
 
     nnoremap <silent> <leader><tab> :bn<cr>
@@ -145,8 +145,8 @@ function! SetupGlobal()
     nnoremap <silent> <leader>w <C-w>w
     nnoremap <silent> <leader>dd :Lexplore %:p:h<cr>
     nnoremap <silent> <leader>da :Lexplore<cr>
-    nnoremap <silent> <leader>m :w<cr> :term make<cr>
-    nnoremap <silent> <leader>t :vertical :terminal<cr>
+    nnoremap <silent> <leader>t :terminal<cr> <c-w>_
+    nnoremap <silent> <leader>m :w<cr> :tab term make<cr>
     nnoremap <silent> <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
 
 
