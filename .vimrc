@@ -132,6 +132,7 @@ function! SetupGlobal()
     """"" Leader commands
 
     " Tab   Cycle through buffers
+    " f     Format buffer based on file extension
     " b     List active buffers and prompt for new buffer number
     " w     Cycle through splits
     " dd    Open netrw of current file
@@ -141,6 +142,7 @@ function! SetupGlobal()
     " c     Find and replace word under cursor
 
     nnoremap <silent> <leader><tab> :bn<cr>
+    nnoremap <silent> <leader>f :call FormatBuffer()<cr>
     nnoremap <silent> <leader>b :ls<cr>:b
     nnoremap <silent> <leader>w <C-w>w
     nnoremap <silent> <leader>dd :Lexplore %:p:h<cr>
@@ -191,6 +193,23 @@ function! SetupGlobal()
 
     " :H <command> opens help ('starting.txt') for <command> in new buffer
     command! -nargs=1 -complete=help H :enew | :set buftype=help | :h <args>
+
+endfunction
+
+
+function! FormatBuffer()
+    " Format current buffer based on file extension
+
+    silent write
+    let l:position = getpos('.')
+	if index(["c", "cpp", "h"], expand("%:e")) >= 0
+        silent %!clang-format
+        echo "clang-format on buffer... done"
+    else
+        echo "Error: cannot format buffer"
+    endif
+    call setpos('.', l:position)
+    silent write
 
 endfunction
 
