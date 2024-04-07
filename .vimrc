@@ -8,25 +8,25 @@ function! SetupGlobal()
     endif
 
 
-    """" Basic settings
+    """" Basic
+
+    " This needs to be sourced if vim was built from source
+    source $VIMRUNTIME/defaults.vim
 
     filetype indent on          " Load the indent file based on file type
-    syntax on                   " Enable syntax highlighting
-    set termguicolors           " Use 24-bit 'true color' attributes (e.g., 'guifg')
-    set spell                   " Highlight bad spelling
-    set number                  " Show line numbers
-    set relativenumber          " Show relative line numbers above/below cursor
-    set incsearch               " Highlight matches while typing a regex
-    set hlsearch                " Highlight search matches
-    set laststatus=2            " Show status line on 2nd to last line
-    set pastetoggle=<F2>        " Toggle 'INSERT (paste)' mode
-    set textwidth=89            " Wrap text at this column
     set colorcolumn=90          " Show vertical bar at this column
-    set signcolumn=no           " Do not show anything in the gutter
     set cursorline              " Enable syntax highlighting on the current line
     set hidden                  " Do not prompt to save buffers when switching
-    set splitright              " Put new split to the right, not left
+    set laststatus=2            " Show status line on 2nd to last line
+    set number                  " Show line numbers
+    set pastetoggle=<F2>        " Toggle 'INSERT (paste)' mode
+    set relativenumber          " Show relative line numbers above/below cursor
     set scrolloff=1             " Keep 1 line above/below cursor
+    set spell                   " Highlight bad spelling
+    set splitright              " Put new split to the right, not left
+    set termguicolors           " Use 24-bit 'true color' attributes (e.g., 'guifg')
+    set textwidth=89            " Wrap text at this column
+    syntax on                   " Enable syntax highlighting
 
 
     """" Colorscheme
@@ -44,7 +44,7 @@ function! SetupGlobal()
     set cinoptions+=f0          " First opening brace at column 0
 
     " C++
-    set cinoptions+=g0          " Scope declarations at column 0
+    set cinoptions+=g0          " Access modifiers at column 0
 
 
     """" netrw
@@ -64,15 +64,14 @@ function! SetupGlobal()
 
     """" YouCompleteMe
 
-    let g:ycm_key_list_select_completion = ['<C-n>']
     let g:ycm_add_preview_to_completeopt="popup"
+    let g:ycm_clangd_binary_path = "/usr/bin/clangd"
+    let g:ycm_enable_diagnostic_highlighting = 0
+    let g:ycm_enable_diagnostic_signs = 0
+    let g:ycm_error_symbol = "E"
+    let g:ycm_key_list_select_completion = ['<C-n>']
     let g:ycm_show_detailed_diag_in_popup = 1
-
-    highlight YcmErrorLine guibg=#3f0000
-    highlight YcmErrorSection gui=NONE
-
-    nnoremap gd :YcmCompleter GoToDefinition<cr>
-    nnoremap <leader>f :YcmCompleter FixIt<cr>
+    let g:ycm_warning_symbol = "W"
 
 
     """" vim-closetag
@@ -85,7 +84,6 @@ function! SetupGlobal()
     """" FZF
 
     set runtimepath+=~/.fzf
-    command -nargs=* -complete=dir FF :FZF! <args>
 
 
     """" Wildmenu
@@ -107,69 +105,107 @@ function! SetupGlobal()
 
     """" Tabs
 
-    " tabstop - How many character blocks a tab byte appears as on the screen
-    " shiftwidth - How many character blocks are inserted using >> (and friends)
     " expandtab - Insert *tabstop* space bytes instead of a tab byte
+    " shiftwidth - How many character blocks are inserted using >> (and friends)
     " softtabstop - How much whitespace is inserted/removed when pressing Tab/Backspace
-    set tabstop=4
-    set shiftwidth=4
+    " tabstop - How many character blocks a tab byte appears as on the screen
     set expandtab
+    set shiftwidth=4
     set softtabstop=4
+    set tabstop=4
 
+
+    """" Searching
+
+    " hlsearch - Highlight search matches
+    " ignorecase - Case-insensitive searching
+    " incsearch - Highlight matches while typing a search regex
+    " smartcase - Searches with all lowercase are case-insensitive; searches containing
+    "             at least one capital are case-sensitive (\c and \C override this
+    "             behavior)
+    set hlsearch
+    set ignorecase
+    set incsearch
+    set smartcase
 
     """" Statusline
 
-    set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%=0x%B
+    set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%=%{getcwd()}
 
 
-    """" Terminal mode
+    """" Commands
 
-    " Enter terminal-normal mode
-    tnoremap <Esc> <C-w>N
-    tnoremap jk <C-w>N
+    " :H opens help in new buffer
+    command! -nargs=1 -complete=help H :enew | :set buftype=help | :h <args>
+
+    " :FF opens fuzzy-file-finder (fzf)
+    command! -nargs=* -complete=dir FF :FZF! <args>
 
 
-    """"" Leader commands
+    """"" Leader mappings
 
     " Tab   Cycle through buffers
-    " f     Format buffer based on file extension
     " b     List active buffers and prompt for new buffer number
-    " w     Cycle through splits
-    " dd    Open netrw of current file
-    " da    Open netrw of current working directory
-    " t     Open terminal in new tab
-    " m     Save file and run make in terminal in new tab
     " c     Find and replace word under cursor
+    " d     Show documentation for word under cursor (YouCompleteMe)
+    " f     Format buffer based on file extension
+    " m     Save file and run make in terminal in new tab
+    " t     Open terminal in new tab
 
-    nnoremap <silent> <leader><tab> :bn<cr>
-    nnoremap <silent> <leader>f :call FormatBuffer()<cr>
-    nnoremap <silent> <leader>b :ls<cr>:b
-    nnoremap <silent> <leader>w <C-w>w
-    nnoremap <silent> <leader>dd :Lexplore %:p:h<cr>
-    nnoremap <silent> <leader>da :Lexplore<cr>
-    nnoremap <silent> <leader>t :tab term<cr>
-    nnoremap <silent> <leader>m :w<cr> :tab term make<cr>
-    nnoremap <silent> <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
+    nnoremap <silent>        <leader><tab> :bn<cr>
+    nnoremap                 <leader>b     :ls<cr>:b
+    nnoremap <silent>        <leader>c     :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
+    nnoremap                 <leader>d     <plug>(YCMHover)
+    nnoremap <silent>        <leader>f     :call FormatBuffer()<cr>
+    nnoremap <silent>        <leader>m     :w<cr> :tab term make<cr>
+    nnoremap <silent>        <leader>t     :tab term<cr>
 
 
-    """" Mappings
+    """" Ctl mappings
 
-    " Basics 
-    inoremap jk <Esc>
-    nnoremap <space> :
-    noremap <Up> <NOP>
-    noremap <Down> <NOP>
-    noremap <Left> <NOP>
-    noremap <Right> <NOP>
+    " d     Center cursor after jumping up half screen
+    " l     Clear any highlights
+    " u     Center cursor after jumping down half screen
 
-    " Swap normal G and gg, logic being gg == 'good game' == end of file
+    nnoremap          <c-d> <C-d>zz
+     noremap <silent> <c-l> :nohlsearch<cr>
+     noremap          <c-s> <esc>:write<cr>
+
+
+    """" All mode mappings
+
     noremap gg G
     noremap G gg
+    noremap H ^
+    noremap L $
+
+
+    """" TERMINAL mode mappings
+
+    " Enter terminal-normal mode
+    tnoremap <esc> <C-w>N
+    tnoremap jk    <C-w>N
+
+
+    """" NORMAL mode mappings
+
+    nnoremap <space> :
+
+    " Put cursor at top of screen when jumping to functions (or paragraphs)
+    nnoremap [[ [[zt
+    nnoremap ]] ]]zt
 
     " Use * to search for word under cursor and keep the current position
     nnoremap <expr> * ':%s/'.expand('<cword>').'//gn<CR>``'
 
-    " Auto-complete quotes, parentheses, etc.
+    nnoremap gd :YcmCompleter GoToDefinition<cr>
+
+
+
+    """" INSERT mode mappings
+
+    inoremap jk <Esc>
+
     inoremap " ""<left>
     inoremap ' ''<left>
     inoremap ` ``<left>
@@ -177,25 +213,11 @@ function! SetupGlobal()
     inoremap [ []<left>
     inoremap { {}<left>
 
-    " Double of open paren, bracket, or curly inserts indented blank line
+    " Carriage return at closing parentheses, bracket, or braces inserts an indented
+    " blank line between the tokens
     inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
 
-    " Use Ctrl-l to clear any highlighted search patterns
-    noremap <silent> <c-l> :nohlsearch<cr>
-
-    " Center cursor on screen after jumping half-screens
-    nnoremap <C-d> <C-d>zz
-    nnoremap <C-u> <C-u>zz
-
-    " Swap G and gg (gg == 'good game' == end of file)
-    nnoremap gg G
-    nnoremap G gg
-
-    " :H <command> opens help ('starting.txt') for <command> in new buffer
-    command! -nargs=1 -complete=help H :enew | :set buftype=help | :h <args>
-
 endfunction
-
 
 function! FormatBuffer()
     " Format current buffer based on file extension
@@ -213,7 +235,6 @@ function! FormatBuffer()
 
 endfunction
 
-
 function! SetupPython()
     " These properties are only set up for Python files.
 
@@ -225,7 +246,6 @@ function! SetupPython()
     set colorcolumn=90,120
 
 endfunction
-
 
 function! SetupC()
     " These properties are only set up for C files.
@@ -239,7 +259,6 @@ function! SetupC()
     inoremap {<CR> {<CR>}<C-o>O
 
 endfunction
-
 
 function! SetupHTML()
     " These properties are only set up for html files.
@@ -255,19 +274,59 @@ function! SetupHTML()
 
 endfunction
 
+function! SetupCSV()
+    set nowrap
+    set colorcolumn=
+    set readonly
+endfunction
 
-function! SetupTerminal()
-    " These are set for terminal mode only
+function! SetupDiff()
+    set readonly
+    set nospell
+endfunction
 
-    set nospell             " Do not highlight spelling errors
-    set colorcolumn=        " Do not show a vertical column
+
+function! SetTermWindowMargin(margin)
+
+    " Set the width of the terminal to be a:margin columns less than the available space.
+    " This is a workaround to address the situation where long lines are wrapped in the
+    " terminal by inserting newlines in the terminal output. When going to terminal
+    " normal mode (and showing line numbers) the wrapping gets ugly. This basically pads
+    " the terminal so that showing line numbers doesn't fudge up the wrapping.
+    "
+    " See https://github.com/vim/vim/issues/2865.
+
+    execute "set termwinsize=0x" . (winwidth("%") - a:margin)
 
 endfunction
 
 
-" main entry point
+function! OnTerminalOpen()
+
+    set nospell             " Do not highlight spelling errors
+    set colorcolumn=        " Do not show a vertical column
+    set nohidden
+
+    call SetTermWindowMargin(6)
+
+endfunction
+
+function! OnVimResized()
+
+    call SetTermWindowMargin(6)
+
+endfunction
+
+
+"""" Main entry
+
 call SetupGlobal()
-autocmd BufNewFile,BufRead *.py call SetupPython()
-autocmd BufNewFile,BufRead *.c,*.h call SetupC()
-autocmd BufNewFile,BufRead *.html call SetupHTML()
-autocmd TerminalOpen * call SetupTerminal()
+
+autocmd BufNewFile,BufRead *.py     call SetupPython()
+autocmd BufNewFile,BufRead *.c,*.h  call SetupC()
+autocmd BufNewFile,BufRead *.html   call SetupHTML()
+autocmd BufNewFile,BufRead *.csv    call SetupCSV()
+autocmd BufNewFile,BufRead *.diff   call SetupDiff()
+
+autocmd TerminalOpen *              call OnTerminalOpen()
+autocmd VimResized *                call OnVimResized()
