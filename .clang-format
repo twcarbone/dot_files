@@ -79,19 +79,20 @@ IfMacros:
   - KJ_IF_MAYBE
 IncludeBlocks:   Regroup
 IncludeCategories:
-  - Regex:           '^"(llvm|llvm-c|clang|clang-c)/'
-    Priority:        2
-    SortPriority:    0
-    CaseSensitive:   false
-  - Regex:           '^(<|"(gtest|gmock|isl|json)/)'
+  # Headers in <> from Qt (i.e., begins with Q)
+  - Regex:           '<Q([A-Za-z0-9])+>'
     Priority:        3
-    SortPriority:    0
-    CaseSensitive:   false
-  - Regex:           '.*'
+  # Headers in <> without extension
+  - Regex:           '<([A-Za-z0-9\/-_])+>'
     Priority:        1
-    SortPriority:    0
-    CaseSensitive:   false
-IncludeIsMainRegex: '(Test)?$'
+  # Headers in <> with extension
+  - Regex:           '<([A-Za-z0-9.\/-_])+>'
+    Priority:        2
+  # Headers in "" with extension
+  - Regex:           '"([A-Za-z0-9.\/-_])+"'
+    Priority:        4
+  - Regex:           '.*'
+IncludeIsMainRegex: '$'
 IncludeIsMainSourceRegex: ''
 IndentAccessModifiers: false
 IndentCaseLabels: false
