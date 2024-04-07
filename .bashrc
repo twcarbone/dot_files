@@ -56,49 +56,49 @@ export FZF_DEFAULT_OPTS='-m'
 
 ext()
 {
-    # Usage: `ext DIR`
+    # Usage: ext DIR
     # List each distinct file extension from DIR, recursively
     find $1 -type f | perl -ne 'print $1 if m/\.([^.\/]+)$/' | sort -u
 }
 
 dir2gpg()
 {
-    # Usage: `dir2gpg DIR`
+    # Usage: dir2gpg DIR
     # Creates DIR.tar.gz.gpg
     tar -czf - "$1" | gpg -c > "$1.tar.gz.gpg"
 }
 
 gg()
 {
-    # Usage: `gg [options] <regex>`
+    # Usage: gg [options] <regex>
     # Performs 'git grep -En', in addition to [options]
     git grep -En "$@"
 }
 
 ggl()
 {
-    # Usage: `ggl [options] <regex>`
+    # Usage: ggl [options] <regex>
     # Performs 'git grep -En', in addition to [options], piping output to 'less'
     git grep -En --color=always "$@" | less -R
 }
 
 gpg2dir()
 {
-    # Usage: `gpg2dir DIR`
+    # Usage: gpg2dir DIR
     # Decrypts and restores DIR.tar.gz.gpg
     gpg -d "$1.tar.gz.gpg" | tar -xzf -
 }
 
 tot()
 {
-    # Usage: `tot DIR`
+    # Usage: tot DIR
     # Prints the total line count for all files in DIR, recursively
     find $1 -type f -exec wc -l {} \; | awk '{total += $1} END{print total}';
 }
 
 qty()
 {
-    # Usage: `qty DIR`
+    # Usage: qty DIR
     # Prints the count of files in DIR, recursively. Ignores files in .git directory.
     find $1 -type f -not -path "*.git/*" | wc -l;
 }
