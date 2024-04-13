@@ -226,6 +226,10 @@ function! SetupGlobal()
     inoremap [ []<left>
     inoremap { {}<left>
 
+    " [TODO: Needs work. Mapping <tab> ignores vim-zz.]
+    " inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+    " inoremap <s-tab> <c-p>
+
     " Carriage return at closing parentheses, bracket, or braces inserts an indented
     " blank line between the tokens
     inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
@@ -246,6 +250,17 @@ function! FormatBuffer()
     call setpos('.', l:position)
     silent write
 
+endfunction
+
+function! InsertTabWrapper()
+    " <Tab> indents if at the beginning of a line; otherwise does completion
+    " Credit: https://github.com/mislav/vimfiles
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-n>"
+    endif
 endfunction
 
 function! SetupPython()
