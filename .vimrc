@@ -224,7 +224,7 @@ function! FormatBuffer()
 
     silent write
     let l:position = getpos('.')
-	if index(["c", "cpp", "h"], expand("%:e")) >= 0
+    if index(["c", "cpp", "h"], expand("%:e")) >= 0
         silent %!clang-format
         echo "clang-format on buffer... done"
     else
