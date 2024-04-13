@@ -1,5 +1,8 @@
 set -Eeuo pipefail
 
+VIM_PLUGIN_DIR=.vim/pack/plugins/start
+GITHUB_USER=twcarbone
+
 init_fzf()
 {
     if [[ ! -d $HOME/.fzf ]]; then
@@ -17,10 +20,27 @@ init_nvm()
 
 init_personal()
 {
-    local user=twcarbone
+    if [[ ! -d "$HOME/$1" ]]; then
+        git clone git@github.com:${GITHUB_USER}/${1}.git
+    fi
+}
 
-    if [[ ! -d "$HOME/${1}" ]]; then
-        eval "git clone git@github.com:${user}/${1}.git"
+init_vim_plugin()
+{
+    # Usage: init_vim_plugin '<user>/<repository>'
+
+    cd $VIM_PLUGIN_DIR
+    if [[ ! -d $(basename $1) ]]; then
+        read -p "Install $1? [y/N] "
+        if [[ $REPLY != 'y' ]]; then
+            echo "Skipping $1"
+        else
+            echo -n "Installing $1 in $VIM_PLUGIN_DIR... "
+            git clone --quiet git@github.com:${1}.git 1> /dev/null
+            echo "Done"
+        fi
+    else
+        echo "${VIM_PLUGIN_DIR}/$(basename $1) already exists."
     fi
 }
 
@@ -66,6 +86,9 @@ main()
     ln -s $HOME/vim-syntax/syntax/python.vim        .vim/syntax/python.vim
     ln -s $HOME/vim-syntax/after/syntax/python.vim  .vim/after/syntax/python.vim
     ln -s $HOME/vim-zz                              .vim/pack/plugins/start/zz
+
+    # Create repositories in ~/.vim/pack/plugins/start
+    init_vim_plugin 'tpope/vim-commentary'
 }
 
 main
