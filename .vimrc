@@ -128,6 +128,15 @@ function! SetupGlobal()
     set incsearch
     set smartcase
 
+
+    """" Whitespace
+
+    " list - Show invisible characters from 'listchars'
+    " listchars - trail:U2219,tab:U2192
+    set list
+    set listchars=trail:∙,tab:→\∙
+
+
     """" Statusline
 
     set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%=%{getcwd()}
