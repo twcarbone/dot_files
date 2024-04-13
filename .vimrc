@@ -150,6 +150,10 @@ function! SetupGlobal()
     " :FF opens fuzzy-file-finder (fzf)
     command! -nargs=* -complete=dir FF :FZF! <args>
 
+    " Remove trailing whitespace from entire file
+    " Inspired by: https://github.com/mislav/vimfiles
+    command! KillTrailingWhitespace :normal :%s/ *$//g<cr><c-o><cr><c-l>
+
 
     """"" Leader mappings
 
