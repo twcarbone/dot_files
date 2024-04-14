@@ -265,15 +265,7 @@ function! InsertTabWrapper()
 endfunction
 
 function! SetupPython()
-    " These properties are only set up for Python files.
-
-    " Start a python docstring on the line below.
-    " Inserts two sets of triple quotes below the current line, with the cursor sitting
-    " in insert mode on the line between the quotes.
-    map <leader>k o"""<cr><esc>ko
-
-    set colorcolumn=90,120
-
+    set colorcolumn=90
 endfunction
 
 function! SetupC()
