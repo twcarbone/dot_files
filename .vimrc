@@ -277,16 +277,7 @@ function! SetupPython()
 endfunction
 
 function! SetupC()
-    " These properties are only set up for C files.
-
-    set cindent
-
-    " Ctrl + k for entering c-style comment block
-    inoremap <C-k> /*<Space><Space>*/<left><left><left>
-
-    " special key-mapping for {}
-    inoremap {<CR> {<CR>}<C-o>O
-
+    set signcolumn=yes
 endfunction
 
 function! SetupHTML()
@@ -351,11 +342,11 @@ endfunction
 
 call SetupGlobal()
 
-autocmd BufNewFile,BufRead *.py     call SetupPython()
-autocmd BufNewFile,BufRead *.c,*.h  call SetupC()
-autocmd BufNewFile,BufRead *.html   call SetupHTML()
-autocmd BufNewFile,BufRead *.csv    call SetupCSV()
-autocmd BufNewFile,BufRead *.diff   call SetupDiff()
+autocmd BufNewFile,BufRead *.py             call SetupPython()
+autocmd BufNewFile,BufRead *.c,*.cpp,*.h    call SetupC()
+autocmd BufNewFile,BufRead *.html           call SetupHTML()
+autocmd BufNewFile,BufRead *.csv            call SetupCSV()
+autocmd BufNewFile,BufRead *.diff           call SetupDiff()
 
-autocmd TerminalOpen *              call OnTerminalOpen()
-autocmd VimResized *                call OnVimResized()
+autocmd TerminalOpen *                      call OnTerminalOpen()
+autocmd VimResized *                        call OnVimResized()
