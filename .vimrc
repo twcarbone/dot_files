@@ -65,13 +65,14 @@ function! SetupGlobal()
     """" YouCompleteMe
 
     let g:ycm_add_preview_to_completeopt="popup"
-    let g:ycm_clangd_binary_path = "/usr/bin/clangd"
+    let g:ycm_clangd_binary_path = exepath("clangd")
+    let g:ycm_clangd_uses_ycmd_caching = 0
     let g:ycm_enable_diagnostic_highlighting = 0
-    let g:ycm_enable_diagnostic_signs = 0
+    let g:ycm_enable_diagnostic_signs = 1
     let g:ycm_error_symbol = "E"
+    let g:ycm_warning_symbol = "W"
     let g:ycm_key_list_select_completion = ['<C-n>']
     let g:ycm_show_detailed_diag_in_popup = 1
-    let g:ycm_warning_symbol = "W"
 
 
     """" vim-closetag
