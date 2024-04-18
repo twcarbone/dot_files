@@ -13,6 +13,9 @@ function! SetupGlobal()
     " This needs to be sourced if vim was built from source
     source $VIMRUNTIME/defaults.vim
 
+    " Vim swap files
+    set directory=$HOME/.vim/swapfiles//
+
     filetype indent on          " Load the indent file based on file type
     set colorcolumn=90          " Show vertical bar at this column
     set cursorline              " Enable syntax highlighting on the current line

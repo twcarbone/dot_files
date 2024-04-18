@@ -77,6 +77,7 @@ main()
     mkdir .vim
     mkdir .vim/colors
     mkdir .vim/syntax
+    mkdir .vim/swapfiles
     mkdir -p .vim/after/syntax
     mkdir -p .vim/pack/plugins/start
 
