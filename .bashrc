@@ -30,9 +30,7 @@ alias gb="git branch"
 alias gba="git branch -a"
 alias gc="git commit"
 alias gd="git diff"
-alias gdl="git diff --color=always | less -r"
 alias gds="git diff --staged"
-alias gdsl="git diff --staged --color=always | less -r"
 alias gr="git restore"
 alias grs="git restore --staged"
 alias gs="git status"
@@ -73,6 +71,21 @@ gg()
     # Usage: gg [options] <regex>
     # Performs 'git grep -En', in addition to [options]
     git grep -En "$@"
+}
+
+gdl()
+{
+    git diff --color=always "$@" | less -r
+}
+
+gdsl()
+{
+    git diff --staged --color=always "$@" | less -r
+}
+
+gsl()
+{
+    git show --color=always "$@" | less -r
 }
 
 ggl()
