@@ -1,36 +1,36 @@
 [user]
-	email = tcarbone073@gmail.com
-	name = Tyler Carbone
+    email = tcarbone073@gmail.com
+    name = Tyler Carbone
 [core]
-	editor = vim
-	autocrlf = input
+    editor = vim
+    autocrlf = input
 [alias]
-	ql = log --oneline -n 30
-	qlg = ql --graph
-	ll = log --oneline
-	llg = ll --graph
+    ql = log --oneline -n 30
+    qlg = ql --graph
+    ll = log --oneline
+    llg = ll --graph
 
-	# Show diff of each submodule
-	sdiff = !git diff && git submodule foreach 'git diff'
+    # Show diff of each submodule
+    sdiff = !git diff && git submodule foreach 'git diff'
 
-	# Update submodules
-	supdate = submodule update --remote --merge
+    # Update submodules
+    supdate = submodule update --remote --merge
 [init]
-	defaultBranch = master
+    defaultBranch = master
 [diff]
-	# Show list of commits made to a submodule when running 'git diff'
-	submodule = log
+    # Show list of commits made to a submodule when running 'git diff'
+    submodule = log
 [status]
-	# Show list of commits made to a submodule when running 'git status'
-	submodulesummary = 1
+    # Show list of commits made to a submodule when running 'git status'
+    submodulesummary = 1
 [push]
-	# Refuse pushing main project if any submodules haven't been pushed
-	# Or 'on-demand' to attempt to push all submodules before pushing main project
-	recurseSubmodules = check
+    # Refuse pushing main project if any submodules haven't been pushed
+    # Or 'on-demand' to attempt to push all submodules before pushing main project
+    recurseSubmodules = check
 
 [submodule]
-	# Implicitly add '--recurse-submodules' flag to every supporting command
-	#
-	# For 'git checkout', this prevents a submodule directory from showing as untracked
-	# files when checking out branch A after a submodule was committed to branch B
-	recurse = true
+    # Implicitly add '--recurse-submodules' flag to every supporting command
+    #
+    # For 'git checkout', this prevents a submodule directory from showing as untracked
+    # files when checking out branch A after a submodule was committed to branch B
+    recurse = true
