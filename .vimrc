@@ -315,6 +315,11 @@ function! SetupDiff()
     set nospell
 endfunction
 
+function! SetupLog()
+    set colorcolumn=
+    set nospell
+    set readonly
+endfunction
 
 function! SetTermWindowMargin(margin)
 
@@ -352,11 +357,12 @@ endfunction
 
 call SetupGlobal()
 
-autocmd BufNewFile,BufRead *.py             call SetupPython()
 autocmd BufNewFile,BufRead *.c,*.cpp,*.h    call SetupC()
-autocmd BufNewFile,BufRead *.html           call SetupHTML()
 autocmd BufNewFile,BufRead *.csv            call SetupCSV()
 autocmd BufNewFile,BufRead *.diff           call SetupDiff()
+autocmd BufNewFile,BufRead *.html           call SetupHTML()
+autocmd BufNewFile,BufRead *.log            call SetupLog()
+autocmd BufNewFile,BufRead *.py             call SetupPython()
 
 autocmd TerminalOpen *                      call OnTerminalOpen()
 autocmd VimResized *                        call OnVimResized()
