@@ -166,6 +166,7 @@ function! SetupGlobal()
     " c     Find and replace word under cursor
     " d     Show documentation for word under cursor (YouCompleteMe)
     " f     Format buffer based on file extension
+    " j     Insert Doxygen comment block
     " m     Save file and run make in terminal in new tab
     " t     Open terminal in new tab
 
@@ -174,6 +175,7 @@ function! SetupGlobal()
     nnoremap <silent>        <leader>c     :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
     nnoremap                 <leader>d     <plug>(YCMHover)
     nnoremap <silent>        <leader>f     :call FormatBuffer()<cr>
+    nnoremap <silent> <expr> <leader>j     InsertDoxygenCommentBlock()
     nnoremap <silent>        <leader>m     :w<cr> :tab term make<cr>
     nnoremap <silent>        <leader>t     :tab term<cr>
 
@@ -264,6 +266,19 @@ function! InsertTabWrapper()
         return "\<tab>"
     else
         return "\<c-n>"
+    endif
+endfunction
+
+function! InsertDoxygenCommentBlock()
+    if index(["c", "cpp", "h"], expand("%:e")) >= 0
+        return "o/*\<cr>/\<esc>O
+            \@brief\<cr>
+            \@detail\<cr>
+            \@note\<cr>
+            \@param[in]\<cr>
+            \@exception\<cr>
+            \@return
+            \\<esc>kkkkkA"
     endif
 endfunction
 
