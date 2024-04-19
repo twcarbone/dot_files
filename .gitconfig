@@ -34,3 +34,7 @@
     # For 'git checkout', this prevents a submodule directory from showing as untracked
     # files when checking out branch A after a submodule was committed to branch B
     recurse = true
+
+[pretty]
+    v   = %C(auto)%h% (decorate:prefix=,suffix=,tag=,separator= ) %s
+    vv  = %C(auto)%h% (decorate:prefix=,suffix=,tag=,separator= ) %s %C(bold green)%cs (%cr) %C(bold blue)<%an>
