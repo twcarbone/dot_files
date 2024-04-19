@@ -231,6 +231,7 @@ function! SetupGlobal()
     inoremap ( ()<left>
     inoremap [ []<left>
     inoremap { {}<left>
+    inoremap < <><left>
 
     " [TODO: Needs work. Mapping <tab> ignores vim-zz.]
     " inoremap <tab> <c-r>=InsertTabWrapper()<cr>
@@ -302,6 +303,8 @@ function! SetupHTML()
     set autoindent
     set smartindent
 
+    " Closing tags are handled by vim-closetag
+    iunmap <
 endfunction
 
 function! SetupCSV()
