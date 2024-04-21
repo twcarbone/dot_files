@@ -37,4 +37,4 @@
 
 [pretty]
     v1 = %C(auto)%h% (decorate:prefix=,suffix=,tag=,separator= ) %s %C(bold red)%<(2,trunc)%b%-
-    v2 = %C(auto)%h% (decorate:prefix=,suffix=,tag=,separator= ) %s %C(brightgreen)%cs (%cr) %C(brightblue)<%an> %C(bold red)%<(2,trunc)%b%-
+    v2 = %C(auto)%h% (decorate:prefix=,suffix=,tag=,separator= ) %s %C(brightblue)<%an> %C(brightgreen)(%cr) %C(bold red)%<(2,trunc)%b%-
