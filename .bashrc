@@ -16,7 +16,6 @@ export PS1="\[\e[38;5;46m\]\u@\h \[\e[38;5;39m\]\w \[\e[00m\]\$ "
 ## Alias
 
 # .gitconfig
-alias ql="git ql"
 alias qlg="git qlg"
 
 # Alembic
@@ -73,6 +72,18 @@ gg()
     git grep -En "$@"
 }
 
+gl()
+{
+    # Usage: gl VERBOSITY [OPTIONS]
+    # Git log wrapper. VERBOSITY (default 1) is a verbosity level corresponding to the
+    # numeric portion of configured `--pretty` values (e.g., use `gl 1` to invoke
+    # `--pretty=v1`). OPTIONS are passed to `git log`.
+    git log --color=always --pretty=v${1:-1} "${@:2}" \
+        | sed -e 's/\.\.[[:space:]]*$/(more)/' \
+        | sed -e '/^[[:space:]]*$/d' \
+        | less -FR
+}
+
 gdl()
 {
     git diff --color=always "$@" | less -r
@@ -107,6 +118,13 @@ tot()
     # Usage: tot DIR
     # Prints the total line count for all files in DIR, recursively
     find $1 -type f -exec wc -l {} \; | awk '{total += $1} END{print total}';
+}
+
+ql()
+{
+    # Usage: ql VERBOSITY
+    # Show 30 most recent commits, passing VERBOSITY (default 1) to `gl`.
+    gl ${1:-1} -30
 }
 
 qty()
