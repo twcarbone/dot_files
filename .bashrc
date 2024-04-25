@@ -81,7 +81,7 @@ gl()
     git log --color=always --pretty=v${1:-1} "${@:2}" \
         | sed -e 's/\.\.[[:space:]]*$/(more)/' \
         | sed -e '/^[[:space:]]*$/d' \
-        | less -FR
+        | less -FRX
 }
 
 gdl()
