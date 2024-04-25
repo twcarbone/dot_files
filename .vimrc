@@ -214,6 +214,10 @@ function! SetupGlobal()
     nnoremap [[ [[zt
     nnoremap ]] ]]zt
 
+    " Center cursor when jumping to matches
+    nnoremap n nzz
+    nnoremap N Nzz
+
     " Use * to search for word under cursor and keep the current position
     nnoremap <expr> * ':%s/'.expand('<cword>').'//gn<CR>``'
 
