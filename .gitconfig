@@ -5,6 +5,7 @@
     editor = vim
     autocrlf = input
 [alias]
+    co = checkout
     ql = log --oneline -n 30
     qlg = ql --graph
     ll = log --oneline
