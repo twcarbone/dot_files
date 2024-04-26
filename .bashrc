@@ -41,6 +41,16 @@ alias cl="clear"
 alias ll="ls -lhva --group-directories-first --color=auto"
 
 
+## Environment
+
+# Less
+# i = Smart-case searching
+# F = Exit immediately if content fits on one screen
+# R = Display colors
+# X = Do not clear the screen when exiting
+export LESS="iFRX"
+
+
 ## Plugins
 
 # FZF
