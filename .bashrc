@@ -55,8 +55,14 @@ export LESS="iFRX"
 
 # FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_COMMAND='find . -name .git -prune -o -print'
-export FZF_DEFAULT_OPTS='-m'
+export FZF_DEFAULT_COMMAND='find . '\
+'-name .git -prune -o '\
+'-type f '\
+'-not -path */.moc/* '\
+'-not -path */.obj/* '\
+'-not -path *.swp '\
+'-print'
+export FZF_DEFAULT_OPTS="-m --height=-1"
 
 
 ## Functions
