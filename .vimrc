@@ -277,7 +277,7 @@ endfunction
 
 function! InsertDoxygenCommentBlock()
     if index(["c", "cpp", "h"], expand("%:e")) >= 0
-        return "o/*\<cr>/\<esc>O
+        return "o/**\<cr>/\<esc>O
             \@brief\<cr>
             \@detail\<cr>
             \@note\<cr>
