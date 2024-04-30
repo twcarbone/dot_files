@@ -6,10 +6,12 @@
     autocrlf = input
 [alias]
     co = checkout
+    cp = cherry-pick
     ql = log --oneline -n 30
     qlg = ql --graph
     ll = log --oneline
     llg = ll --graph
+    ss = show --stat
 
     # Show diff of each submodule
     sdiff = !git diff && git submodule foreach 'git diff'
