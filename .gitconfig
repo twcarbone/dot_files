@@ -9,9 +9,12 @@
     cp = cherry-pick
     ql = log --oneline -n 30
     qlg = ql --graph
+    ri = rebase --interactive
     ll = log --oneline
     llg = ll --graph
-    ss = show --stat
+    shl = stash list
+    shp = stash pop
+    sws = show --stat
 
     # Show diff of each submodule
     sdiff = !git diff && git submodule foreach 'git diff'
