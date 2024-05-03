@@ -38,7 +38,11 @@ alias gwd="git diff --word-diff"
 
 # System
 alias cl="clear"
-alias ll="ls -lhva --group-directories-first --color=auto"
+alias ll="ls \
+    -lhva \
+    --group-directories-first \
+    --color=auto \
+    --time-style=\"+%b %e %H:%M:%S\""
 
 
 ## Environment
