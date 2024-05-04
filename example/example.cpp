@@ -17,4 +17,7 @@
 int main(void)
 {
     std::cout << "Hello, world!" << std::endl;
+
+    // This is intentionally formatted incorrectly
+    if (1 == 1) { int i = 2; }
 }

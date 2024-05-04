@@ -162,6 +162,16 @@ function! SetupGlobal()
     " Inspired by: https://github.com/mislav/vimfiles
     command! KillTrailingWhitespace :normal :%s/ *$//g<cr><c-o><cr><c-l>
 
+    " This command is a thin wrapper around FormatBuffer() to allow the cursor to return
+    " to the original position. Without this, FormatBuffer, which accepts a range, puts
+    " the cursor at the beginning of the range after completing. When the range is the
+    " entire buffer, this means jumping to line 1... sigh.
+    " Credit to: https://stackoverflow.com/a/73002057.
+    command! -range -bar FormatBuffer
+        \ let s:pos = getcurpos() |
+        \ <line1>,<line2>call FormatBuffer() |
+        \ call setpos('.', s:pos)
+
 
     """"" Leader mappings
 
@@ -178,10 +188,12 @@ function! SetupGlobal()
     nnoremap                 <leader>b     :ls<cr>:b
     nnoremap <silent>        <leader>c     :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
     nnoremap                 <leader>d     <plug>(YCMHover)
-    nnoremap <silent>        <leader>f     :call FormatBuffer()<cr>
+    nnoremap <silent>        <leader>f     :%FormatBuffer<cr>
     nnoremap <silent> <expr> <leader>j     InsertDoxygenCommentBlock()
     nnoremap <silent>        <leader>m     :w<cr> :tab term make<cr>
     nnoremap <silent>        <leader>t     :tab term<cr>
+
+    vnoremap <silent>        <leader>f     :call FormatBuffer()<cr>
 
 
     """" Ctl mappings
@@ -254,18 +266,17 @@ function! SetupGlobal()
 
 endfunction
 
-function! FormatBuffer()
+function! FormatBuffer() range
     " Format current buffer based on file extension
+    " TODO: (5) Formatting buffer with range does not respect contextual indentation
 
     silent write
-    let l:position = getpos('.')
     if index(["c", "cpp", "h"], expand("%:e")) >= 0
-        silent %!clang-format
+        silent execute a:firstline ',' a:lastline '!clang-format'
         echo "clang-format on buffer... done"
     else
         echo "Error: cannot format buffer"
     endif
-    call setpos('.', l:position)
     silent write
 
 endfunction
