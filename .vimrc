@@ -227,6 +227,8 @@ function! SetupGlobal()
 
     nnoremap gd :YcmCompleter GoToDefinition<cr>
 
+    " Open command-line window
+    nnoremap q<space> q:
 
 
     """" INSERT mode mappings
