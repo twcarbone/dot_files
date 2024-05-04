@@ -223,7 +223,8 @@ function! SetupGlobal()
     nnoremap N Nzz
 
     " Use * to search for word under cursor and keep the current position
-    nnoremap <expr> * ':%s/'.expand('<cword>').'//gn<CR>``'
+    " TODO: (4) Searching for word under cursor jumps to beginning of line
+    nnoremap <expr> * ':%s/'.expand('<cword>').'//gn<CR>'
 
     nnoremap gd :YcmCompleter GoToDefinition<cr>
 
