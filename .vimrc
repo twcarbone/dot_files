@@ -13,6 +13,9 @@ function! SetupGlobal()
     " This needs to be sourced if vim was built from source
     source $VIMRUNTIME/defaults.vim
 
+    " Turn off hints (e.g., 'You discovered the command-line window...')
+    autocmd! vimHints
+
     " Vim swap files
     set directory=$HOME/.vim/swapfiles//
 
