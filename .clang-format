@@ -79,19 +79,29 @@ IfMacros:
   - KJ_IF_MAYBE
 IncludeBlocks:   Regroup
 IncludeCategories:
-  # Headers in <> from Qt (i.e., begins with Q)
-  - Regex:           '<Q([A-Za-z0-9])+>'
-    Priority:        3
-  # Headers in <> without extension
-  - Regex:           '<([A-Za-z0-9\/-_])+>'
-    Priority:        1
-  # Headers in <> with extension
-  - Regex:           '<([A-Za-z0-9.\/-_])+>'
-    Priority:        2
-  # Headers in "" with extension
-  - Regex:           '"([A-Za-z0-9.\/-_])+"'
-    Priority:        4
-  - Regex:           '.*'
+  # C headers (ex: <stdio.h>, <arpa/inet.h>)
+  - Regex:            '<([a-z\/])+\.h>'
+    Priority:         1
+    CaseSensitive:    true
+  # C++ headers (ex: <iostream>, <initializer_list>)
+  - Regex:            '<([a-z_])+>'
+    Priority:         2
+    CaseSensitive:    true
+  # Qt headers (ex: <QString>, <QByteArray>)
+  - Regex:            '<Q([A-Za-z0-9])+>'
+    Priority:         3
+    CaseSensitive:    true
+  # External project headers (ex: <MyHeader.h>, <../MyOtherHeader.h>)
+  - Regex:            '<([A-Za-z0-9\/-_.])+>'
+    Priority:         4
+    CaseSensitive:    true
+  # Local project headers (ex: "MyHeader.h", "../MyOtherHeader.h")
+  - Regex:           '"([A-Za-z0-9.\/-_.])+"'
+    Priority:         5
+    CaseSensitive:    true
+  # Everything else
+  - Regex:            '.*'
+    Priority:         6
 IncludeIsMainRegex: '$'
 IncludeIsMainSourceRegex: ''
 IndentAccessModifiers: false
