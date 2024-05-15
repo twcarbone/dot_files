@@ -153,3 +153,10 @@ qty()
     # Prints the count of files in DIR, recursively. Ignores files in .git directory.
     find $1 -type f -not -path "*.git/*" | wc -l;
 }
+
+sl()
+{
+    # Usage: sl
+    # Executes `git stash list`
+    git stash list
+}
