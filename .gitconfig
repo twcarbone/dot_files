@@ -1,9 +1,11 @@
 [user]
     email = tcarbone073@gmail.com
     name = Tyler Carbone
+
 [core]
     editor = vim
     autocrlf = input
+
 [alias]
     # Commands with no arguments
     b = branch
@@ -26,14 +28,18 @@
 
     # Update submodules
     supdate = submodule update --remote --merge
+
 [init]
     defaultBranch = master
+
 [diff]
     # Show list of commits made to a submodule when running 'git diff'
     submodule = log
+
 [status]
     # Show list of commits made to a submodule when running 'git status'
     submodulesummary = 1
+
 [push]
     # Refuse pushing main project if any submodules haven't been pushed
     # Or 'on-demand' to attempt to push all submodules before pushing main project
@@ -50,3 +56,9 @@
     v1 = %C(auto)%h% (decorate:prefix=,suffix=,tag=,separator= ) %s %C(bold yellow)%<(2,trunc)%b%-
     v2 = %C(auto)%h% (decorate:prefix=,suffix=,tag=,separator= ) %s %C(brightblue)<%an> %C(brightgreen)(%cr) %C(bold yellow)%<(2,trunc)%b%-
     v3 = %C(auto)%h% (decorate:prefix=,suffix=,tag=,separator= ) %C(magenta)%p %C(auto)%s %C(brightblue)<%an> %C(brightgreen)(%cr) %C(bold yellow)%<(2,trunc)%b%-
+
+[color]
+    # Always display colors. Useful for piping to 'less -R'
+    diff = always
+    grep = always
+    status = always
