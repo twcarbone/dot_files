@@ -5,13 +5,18 @@
     editor = vim
     autocrlf = input
 [alias]
+    # Commands with no arguments
+    b = branch
+    c = commit
     co = checkout
     cp = cherry-pick
+
+    # Commands with arguments
+    ll = log --oneline
+    llg = ll --graph
     ql = log --oneline -n 30
     qlg = ql --graph
     ri = rebase --interactive
-    ll = log --oneline
-    llg = ll --graph
     shl = stash list
     shp = stash pop
     sws = show --stat
