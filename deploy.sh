@@ -53,6 +53,7 @@ main()
     rm -f  .clang-format
     rm -f  .emacs
     rm -f  .gitconfig
+    rm -f  .inputrc
     rm -f  .tmux.conf
     rm -f  .vimrc
     rm -rf .fzf
@@ -63,8 +64,9 @@ main()
     ln -s dot_files/.clang-format   .clang-format
     ln -s dot_files/.emacs          .emacs
     ln -s dot_files/.gitconfig      .gitconfig
+    ln -s dot_files/.inputrc        .inputrc
     ln -s dot_files/.tmux.conf      .tmux.conf
-    ln -s dot_files/.vimrc .vimrc
+    ln -s dot_files/.vimrc          .vimrc
 
     # Create repositories
     init_personal 'vim-colors'
