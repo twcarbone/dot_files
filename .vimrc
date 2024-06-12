@@ -274,6 +274,8 @@ function! FormatBuffer() range
     if index(["c", "cpp", "h"], expand("%:e")) >= 0
         silent execute a:firstline ',' a:lastline '!clang-format'
         echo "clang-format on buffer... done"
+    elseif index(["csv"], expand("%:e")) >= 0
+        silent execute a:firstline ',' a:lastline '!column -s, -t'
     else
         echo "Error: cannot format buffer"
     endif
