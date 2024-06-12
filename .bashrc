@@ -133,6 +133,13 @@ gpg2dir()
     gpg -d "$1.tar.gz.gpg" | tar -xzf -
 }
 
+ppcsv()
+{
+    # Usage: ppcsv foo.csv
+    # Pretty-print a CSV file.
+    column -s, -t < $1
+}
+
 tot()
 {
     # Usage: tot DIR
