@@ -45,28 +45,30 @@ alias ll="ls \
     --time-style=\"+%b %e %H:%M:%S\""
 
 
-## Environment
+## Less
 
-# Less
-# i = Smart-case searching
-# F = Exit immediately if content fits on one screen
-# R = Display colors
-# X = Do not clear the screen when exiting
+# i     Smart-case searching
+# F     Exit immediately if content fits on one screen
+# R     Display colors
+# X     Do not clear the screen when exiting
 export LESS="iFRX"
 
 
-## Plugins
+## FZF
 
-# FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_COMMAND='find . '\
-'-name .git -prune -o '\
-'-type f '\
-'-not -path */.moc/* '\
-'-not -path */.obj/* '\
-'-not -path *.swp '\
-'-print'
-export FZF_DEFAULT_OPTS="-m --height=-1"
+
+# -m                Enable multiple selections using tab/shift-tab
+# --no-height       (Undocumented in 0.53.0 c4a9ccd)
+#                   (see github.com/junegunn/fzf/issues/1011)
+#                   Selection list is displayed in the entire screen, but unlike
+#                   --height=-1, the screen is not cleared. When FZF is exited, the
+#                   terminal returns to its original state.
+# --walker-skip     List of directories to skip while walking
+export FZF_DEFAULT_OPTS="-m --no-height --walker-skip .git,.venv,.moc,.obj,__pycache__"
+
+
+export FZF_CTRL_T_OPTS="--select-1 --exit-0"
 
 
 ## Functions
