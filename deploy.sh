@@ -92,6 +92,12 @@ main()
 
     # Create repositories in ~/.vim/pack/plugins/start
     init_vim_plugin 'tpope/vim-commentary'
+
+    # Install python tools
+    python3 -m venv .pytools
+    source .pytools/bin/activate
+    pip3 install -r dot_files/.pytools-packages
+    deactivate
 }
 
 main
