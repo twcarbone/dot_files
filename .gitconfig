@@ -39,6 +39,9 @@
 [log]
     follow = true
 
+[pager]
+    status = true
+
 [status]
     # Show list of commits made to a submodule when running 'git status'
     submodulesummary = 1
