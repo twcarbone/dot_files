@@ -276,6 +276,8 @@ function! FormatBuffer() range
         echo "clang-format on buffer... done"
     elseif index(["csv"], expand("%:e")) >= 0
         silent execute a:firstline ',' a:lastline '!column -s, -t'
+    elseif index(["json"], expand("%:e")) >= 0
+        silent execute a:firstline ',' a:lastline '!jq --indent 4 .'
     elseif index(["py"], expand("%:e")) >= 0
         silent execute a:firstline ',' a:lastline '!~/.pytools/bin/black - -q'
         echo "black format on buffer... done"
