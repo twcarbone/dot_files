@@ -27,7 +27,7 @@ init_personal()
 
 init_vim_plugin()
 {
-    # Usage: init_vim_plugin '<user>/<repository>'
+    # Usage: init_vim_plugin '<user>/<repository>' '<localname>'
 
     cd $VIM_PLUGIN_DIR
     if [[ ! -d $(basename $1) ]]; then
@@ -36,7 +36,7 @@ init_vim_plugin()
             echo "Skipping $1"
         else
             echo -n "Installing $1 in $VIM_PLUGIN_DIR... "
-            git clone --quiet git@github.com:${1}.git 1> /dev/null
+            git clone --quiet git@github.com:${1}.git ${2} 1> /dev/null
             echo "Done"
         fi
     else
@@ -91,7 +91,7 @@ main()
     ln -s $HOME/vim-zz                              .vim/pack/plugins/start/zz
 
     # Create repositories in ~/.vim/pack/plugins/start
-    init_vim_plugin 'tpope/vim-commentary'
+    init_vim_plugin 'tpope/vim-commentary' 'vim-commentary'
 
     # Install python tools
     python3 -m venv .pytools
