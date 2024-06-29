@@ -92,6 +92,9 @@ function! SetupGlobal()
     """" FZF
 
     set runtimepath+=~/.fzf
+    let g:fzf_vim = {}
+    let g:fzf_vim.preview_window = ['hidden']
+    let g:fzf_layout = { 'down': '40%' }
 
 
     """" Wildmenu
