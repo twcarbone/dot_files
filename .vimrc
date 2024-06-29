@@ -173,96 +173,53 @@ function! SetupGlobal()
         \ call setpos('.', s:pos)
 
 
-    """"" Leader mappings
+    """"" Mappings
 
-    " Tab   Cycle through buffers
-    " b     List active buffers and prompt for new buffer number
-    " c     Find and replace word under cursor
-    " d     Show documentation for word under cursor (YouCompleteMe)
-    " f     Format buffer based on file extension
-    " j     Insert Doxygen comment block
-    " m     Save file and run make in terminal in new tab
-    " t     Open terminal in new tab
+    " TODO: (4) 'nnoremap <expr> *' jumps to beginning of line
 
-    nnoremap <silent>        <leader><tab> :bn<cr>
-    nnoremap                 <leader>b     :ls<cr>:b
-    nnoremap <silent>        <leader>c     :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
-    nnoremap                 <leader>d     <plug>(YCMHover)
-    nnoremap <silent>        <leader>f     :%FormatBuffer<cr>
-    nnoremap <silent> <expr> <leader>j     InsertDoxygenCommentBlock()
-    nnoremap <silent>        <leader>m     :w<cr> :tab term make<cr>
-    nnoremap <silent>        <leader>t     :tab term<cr>
+     noremap                    G               gg
+     noremap                    H               ^
+     noremap                    L               $
+     noremap                    gg              G
+     noremap <silent>           <c-l>           :nohlsearch<cr>
 
-    vnoremap <silent>        <leader>f     :call FormatBuffer()<cr>
+    inoremap                    "               ""<left>
+    inoremap                    '               ''<left>
+    inoremap                    (               ()<left>
+    inoremap                    <               <><left>
+    inoremap                    [               []<left>
+    inoremap                    `               ``<left>
+    inoremap                    jk              <Esc>
+    inoremap                    {               {}<left>
+    inoremap          <expr>    <cr>            search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
 
+    nnoremap                    <c-d>           <c-d>zz
+    nnoremap                    <c-u>           <c-u>zz
+    nnoremap                    <leader>b       :Buffers<cr>
+    nnoremap                    <leader>d       <plug>(YCMHover)
+    nnoremap                    <leader>f       :GFiles<cr>
+    nnoremap                    <leader>l       :BLines<cr>
+    nnoremap                    <space>         :
+    nnoremap                    N               Nzz
+    nnoremap                    [[              [[zt
+    nnoremap                    ]]              ]]zt
+    nnoremap                    gd              :YcmCompleter GoToDefinition<cr>
+    nnoremap                    n               nzz
+    nnoremap                    q<space>        q:
+    nnoremap          <expr>    *               ':%s/'.expand('<cword>').'//gn<CR>'
+    nnoremap <silent>           <leader><tab>   :bn<cr>
+    nnoremap <silent>           <leader>c       :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
+    nnoremap <silent>           <leader>m       :w<cr> :tab term make<cr>
+    nnoremap <silent>           <leader>r       :%FormatBuffer<cr>
+    nnoremap <silent>           <leader>sv      :source ~/.vimrc<cr>
+    nnoremap <silent>           <leader>t       :term<cr>
+    nnoremap <silent> <expr>    <leader>j       InsertDoxygenCommentBlock()
 
-    """" Ctl mappings
+    tnoremap                    <esc>           <C-w>N
+    tnoremap                    jk              <C-w>N
 
-    " d     Center cursor after jumping up half screen
-    " l     Clear any highlights
-    " u     Center cursor after jumping down half screen
-
-    nnoremap          <c-d> <C-d>zz
-     noremap <silent> <c-l> :nohlsearch<cr>
-     noremap          <c-s> <esc>:write<cr>
-
-
-    """" All mode mappings
-
-    noremap gg G
-    noremap G gg
-    noremap H ^
-    noremap L $
-
-
-    """" TERMINAL mode mappings
-
-    " Enter terminal-normal mode
-    tnoremap <esc> <C-w>N
-    tnoremap jk    <C-w>N
-
-
-    """" NORMAL mode mappings
-
-    nnoremap <space> :
-
-    " Put cursor at top of screen when jumping to functions (or paragraphs)
-    nnoremap [[ [[zt
-    nnoremap ]] ]]zt
-
-    " Center cursor when jumping to matches
-    nnoremap n nzz
-    nnoremap N Nzz
-
-    " Use * to search for word under cursor and keep the current position
-    " TODO: (4) Searching for word under cursor jumps to beginning of line
-    nnoremap <expr> * ':%s/'.expand('<cword>').'//gn<CR>'
-
-    nnoremap gd :YcmCompleter GoToDefinition<cr>
-
-    " Open command-line window
-    nnoremap q<space> q:
-
-
-    """" INSERT mode mappings
-
-    inoremap jk <Esc>
-
-    inoremap " ""<left>
-    inoremap ' ''<left>
-    inoremap ` ``<left>
-    inoremap ( ()<left>
-    inoremap [ []<left>
-    inoremap { {}<left>
-    inoremap < <><left>
-
-    " [TODO: Needs work. Mapping <tab> ignores vim-zz.]
-    " inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-    " inoremap <s-tab> <c-p>
-
-    " Carriage return at closing parentheses, bracket, or braces inserts an indented
-    " blank line between the tokens
-    inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
+    vnoremap                    <space>         :
+    vnoremap <silent>           <leader>r       :call FormatBuffer()<cr>
 
 endfunction
 
