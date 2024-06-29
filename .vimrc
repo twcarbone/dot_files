@@ -158,9 +158,6 @@ function! SetupGlobal()
     " :H opens help in new buffer
     command! -nargs=1 -complete=help H :enew | :set buftype=help | :h <args>
 
-    " :FF opens fuzzy-file-finder (fzf)
-    command! -nargs=* -complete=dir FF :FZF! <args>
-
     " Remove trailing whitespace from entire file
     " Inspired by: https://github.com/mislav/vimfiles
     command! KillTrailingWhitespace :normal :%s/ *$//g<cr><c-o><cr><c-l>
