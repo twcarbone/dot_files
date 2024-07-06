@@ -93,7 +93,7 @@ main()
 
     # Create repositories in ~/.vim/pack/plugins/start
     init_vim_plugin 'tpope/vim-commentary' 'vim-commentary'
-    init_vim_plugin 'junegunn/fzf.vim.git' 'vim-fzf'
+    init_vim_plugin 'junegunn/fzf.vim' 'vim-fzf'
 
     # Install python tools
     python3 -m venv .pytools
