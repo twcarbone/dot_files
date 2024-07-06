@@ -29,7 +29,7 @@ init_vim_plugin()
 {
     # Usage: init_vim_plugin '<user>/<repository>' '<localname>'
 
-    cd $VIM_PLUGIN_DIR
+    pushd $VIM_PLUGIN_DIR 1> /dev/null
     if [[ ! -d $(basename $1) ]]; then
         read -p "Install $1? [y/N] "
         if [[ $REPLY != 'y' ]]; then
@@ -42,6 +42,7 @@ init_vim_plugin()
     else
         echo "${VIM_PLUGIN_DIR}/$(basename $1) already exists."
     fi
+    popd 1> /dev/null
 }
 
 main()
