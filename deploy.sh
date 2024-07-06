@@ -96,6 +96,7 @@ main()
     init_vim_plugin 'junegunn/fzf.vim' 'vim-fzf'
 
     # Install python tools
+    rm -rm .pytools
     python3 -m venv .pytools
     source .pytools/bin/activate
     pip3 install -r $HOME/dot_files/.pytools-packages
