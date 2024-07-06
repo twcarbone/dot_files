@@ -1,6 +1,6 @@
 set -Eeuo pipefail
 
-VIM_PLUGIN_DIR=.vim/pack/plugins/start
+VIM_PLUGIN_DIR=$HOME/.vim/pack/plugins/start
 GITHUB_USER=twcarbone
 
 init_fzf()
@@ -97,7 +97,7 @@ main()
     # Install python tools
     python3 -m venv .pytools
     source .pytools/bin/activate
-    pip3 install -r dot_files/.pytools-packages
+    pip3 install -r $HOME/dot_files/.pytools-packages
     deactivate
 }
 
