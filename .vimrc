@@ -230,14 +230,15 @@ function! FormatBuffer() range
     silent write
     if index(["c", "cpp", "h"], expand("%:e")) >= 0
         silent execute a:firstline ',' a:lastline '!clang-format'
-        echo "clang-format on buffer... done"
+        echo "Formatting buffer (clang-format)... done"
     elseif index(["csv"], expand("%:e")) >= 0
         silent execute a:firstline ',' a:lastline '!column -s, -t'
     elseif index(["json"], expand("%:e")) >= 0
         silent execute a:firstline ',' a:lastline '!jq --indent 4 .'
     elseif index(["py"], expand("%:e")) >= 0
         silent execute a:firstline ',' a:lastline '!~/.pytools/bin/black - -q'
-        echo "black format on buffer... done"
+        silent execute a:firstline ',' a:lastline '!~/.pytools/bin/isort --force-single-line-imports -'
+        echo "Formatting buffer (black, isort)... done"
     else
         echo "Error: cannot format buffer"
     endif
