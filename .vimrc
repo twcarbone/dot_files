@@ -297,7 +297,6 @@ endfunction
 function! SetupCSV()
     set nowrap
     set colorcolumn=
-    set readonly
 endfunction
 
 function! SetupDiff()
