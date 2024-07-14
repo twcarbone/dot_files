@@ -228,7 +228,6 @@ endfunction
 function! FormatRange() range
     " Format current buffer based on file extension
     " TODO: (5) Formatting buffer with range does not respect contextual indentation
-
     silent write
     if index(["c", "cpp", "h"], expand("%:e")) >= 0
         silent execute a:firstline ',' a:lastline '!clang-format'
@@ -303,7 +302,6 @@ function! SetupLog()
 endfunction
 
 function! SetTermWindowMargin(margin)
-
     " Set the width of the terminal to be a:margin columns less than the available space.
     " This is a workaround to address the situation where long lines are wrapped in the
     " terminal by inserting newlines in the terminal output. When going to terminal
@@ -311,39 +309,30 @@ function! SetTermWindowMargin(margin)
     " the terminal so that showing line numbers doesn't fudge up the wrapping.
     "
     " See https://github.com/vim/vim/issues/2865.
-
     execute "set termwinsize=0x" . (winwidth("%") - a:margin)
 
 endfunction
 
-
 function! OnTerminalOpen()
-
     set nospell             " Do not highlight spelling errors
     set colorcolumn=        " Do not show a vertical column
     set nohidden
-
     call SetTermWindowMargin(6)
-
 endfunction
 
 function! OnVimResized()
-
     call SetTermWindowMargin(6)
-
 endfunction
 
 
 """" Main entry
 
 call SetupGlobal()
-
 autocmd BufNewFile,BufRead *.c,*.cpp,*.h    call SetupC()
 autocmd BufNewFile,BufRead *.csv            call SetupCSV()
 autocmd BufNewFile,BufRead *.diff           call SetupDiff()
 autocmd BufNewFile,BufRead *.html,*.xml     call SetupMarkup()
 autocmd BufNewFile,BufRead *.log            call SetupLog()
 autocmd BufNewFile,BufRead *.py             call SetupPython()
-
 autocmd TerminalOpen *                      call OnTerminalOpen()
 autocmd VimResized *                        call OnVimResized()
