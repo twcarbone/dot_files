@@ -279,16 +279,8 @@ function! SetupC()
 endfunction
 
 function! SetupMarkup()
-    " See 'Tab settings' for definitions
-    set tabstop=2
-    set shiftwidth=2
-    set expandtab
-    set softtabstop=2
-
     set autoindent
     set smartindent
-
-    " Closing tags are handled by vim-closetag
     iunmap <
 endfunction
 
