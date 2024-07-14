@@ -162,14 +162,14 @@ function! SetupGlobal()
     " Inspired by: https://github.com/mislav/vimfiles
     command! KillTrailingWhitespace :normal :%s/ *$//g<cr><c-o><cr><c-l>
 
-    " This command is a thin wrapper around FormatBuffer() to allow the cursor to return
-    " to the original position. Without this, FormatBuffer, which accepts a range, puts
+    " This command is a thin wrapper around FormatRange() to allow the cursor to return
+    " to the original position. Without this, FormatRange, which accepts a range, puts
     " the cursor at the beginning of the range after completing. When the range is the
     " entire buffer, this means jumping to line 1... sigh.
     " Credit to: https://stackoverflow.com/a/73002057.
-    command! -range -bar FormatBuffer
+    command! -range -bar FormatRange
         \ let s:pos = getcurpos() |
-        \ <line1>,<line2>call FormatBuffer() |
+        \ <line1>,<line2>call FormatRange() |
         \ call setpos('.', s:pos)
 
 
@@ -210,7 +210,7 @@ function! SetupGlobal()
     nnoremap <silent>           <leader><tab>   :bn<cr>
     nnoremap <silent>           <leader>c       :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
     nnoremap <silent>           <leader>m       :w<cr> :tab term make<cr>
-    nnoremap <silent>           <leader>r       :%FormatBuffer<cr>
+    nnoremap <silent>           <leader>r       :%FormatRange<cr>
     nnoremap <silent>           <leader>sv      :source ~/.vimrc<cr>
     nnoremap <silent>           <leader>t       :term<cr>
     nnoremap <silent> <expr>    <leader>j       InsertDoxygenCommentBlock()
@@ -219,11 +219,11 @@ function! SetupGlobal()
     tnoremap                    jk              <C-w>N
 
     vnoremap                    <space>         :
-    vnoremap <silent>           <leader>r       :call FormatBuffer()<cr>
+    vnoremap <silent>           <leader>r       :call FormatRange()<cr>
 
 endfunction
 
-function! FormatBuffer() range
+function! FormatRange() range
     " Format current buffer based on file extension
     " TODO: (5) Formatting buffer with range does not respect contextual indentation
 
