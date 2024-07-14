@@ -208,7 +208,9 @@ function! SetupGlobal()
     nnoremap                    q<space>        q:
     nnoremap          <expr>    *               ':%s/'.expand('<cword>').'//gn<CR>'
     nnoremap <silent>           <leader><tab>   :bn<cr>
-    nnoremap <silent>           <leader>c       :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
+    nnoremap <silent>           <leader>h       :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
+    nnoremap <silent>           <leader>hgg     :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
+    nnoremap <silent>           <leader>hl      :.s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
     nnoremap <silent>           <leader>m       :w<cr> :tab term make<cr>
     nnoremap <silent>           <leader>r       :%FormatRange<cr>
     nnoremap <silent>           <leader>sv      :source ~/.vimrc<cr>
