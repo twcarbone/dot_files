@@ -85,8 +85,8 @@ function! SetupGlobal()
     """" vim-closetag
 
     " Default filenames and filetypes do not include *.js
-    let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.jsx,*.ts,*.tsx'
-    let g:closetag_filetypes = 'html,xhtml,phtml,js,jsx,ts,tsx'
+    let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.jsx,*.ts,*.tsx,*.xml'
+    let g:closetag_filetypes = 'html,xhtml,phtml,js,jsx,ts,tsx,xml'
 
 
     """" FZF
