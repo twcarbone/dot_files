@@ -339,7 +339,7 @@ call SetupGlobal()
 autocmd BufNewFile,BufRead *.c,*.cpp,*.h    call SetupC()
 autocmd BufNewFile,BufRead *.csv            call SetupCSV()
 autocmd BufNewFile,BufRead *.diff           call SetupDiff()
-autocmd BufNewFile,BufRead *.html           call SetupMarkup()
+autocmd BufNewFile,BufRead *.html,*.xml     call SetupMarkup()
 autocmd BufNewFile,BufRead *.log            call SetupLog()
 autocmd BufNewFile,BufRead *.py             call SetupPython()
 
