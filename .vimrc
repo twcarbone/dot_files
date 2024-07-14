@@ -278,9 +278,7 @@ function! SetupC()
     set signcolumn=yes
 endfunction
 
-function! SetupHTML()
-    " These properties are only set up for html files.
-
+function! SetupMarkup()
     " See 'Tab settings' for definitions
     set tabstop=2
     set shiftwidth=2
@@ -349,7 +347,7 @@ call SetupGlobal()
 autocmd BufNewFile,BufRead *.c,*.cpp,*.h    call SetupC()
 autocmd BufNewFile,BufRead *.csv            call SetupCSV()
 autocmd BufNewFile,BufRead *.diff           call SetupDiff()
-autocmd BufNewFile,BufRead *.html           call SetupHTML()
+autocmd BufNewFile,BufRead *.html           call SetupMarkup()
 autocmd BufNewFile,BufRead *.log            call SetupLog()
 autocmd BufNewFile,BufRead *.py             call SetupPython()
 
