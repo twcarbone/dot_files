@@ -92,8 +92,10 @@ main()
     ln -s $HOME/vim-zz                              .vim/pack/plugins/start/zz
 
     # Create repositories in ~/.vim/pack/plugins/start
-    init_vim_plugin 'tpope/vim-commentary' 'vim-commentary'
+    init_vim_plugin 'alvan/vim-closetag'
     init_vim_plugin 'junegunn/fzf.vim' 'vim-fzf'
+    init_vim_plugin 'tpope/vim-commentary' 'vim-commentary'
+    init_vim_plugin 'ycm-core/YouCompleteMe' 'vim-ycm'
 
     # Install python tools
     rm -rm .pytools
