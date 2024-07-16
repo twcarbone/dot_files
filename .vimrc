@@ -282,7 +282,7 @@ endfunction
 function! SetupMarkup()
     set autoindent
     set smartindent
-    iunmap <
+    silent! iunmap <
 endfunction
 
 function! SetupCSV()
