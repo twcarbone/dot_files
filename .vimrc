@@ -1,4 +1,4 @@
-function! SetupGlobal()
+function! SetupAll()
 
     """" 24-bit true color
 
@@ -84,7 +84,6 @@ function! SetupGlobal()
 
     """" vim-closetag
 
-    " Default filenames and filetypes do not include *.js
     let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.jsx,*.ts,*.tsx,*.xml'
     let g:closetag_filetypes = 'html,xhtml,phtml,js,jsx,ts,tsx,xml'
 
@@ -314,8 +313,8 @@ function! SetTermWindowMargin(margin)
 endfunction
 
 function! OnTerminalOpen()
-    set nospell             " Do not highlight spelling errors
-    set colorcolumn=        " Do not show a vertical column
+    set nospell
+    set colorcolumn=
     set nohidden
     call SetTermWindowMargin(6)
 endfunction
@@ -324,10 +323,7 @@ function! OnVimResized()
     call SetTermWindowMargin(6)
 endfunction
 
-
-"""" Main entry
-
-call SetupGlobal()
+call SetupAll()
 autocmd BufNewFile,BufRead *.c,*.cpp,*.h    call SetupC()
 autocmd BufNewFile,BufRead *.csv            call SetupCSV()
 autocmd BufNewFile,BufRead *.diff           call SetupDiff()
