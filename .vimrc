@@ -200,8 +200,6 @@ function! SetupAll()
     nnoremap                    <leader>l       :BLines<cr>
     nnoremap                    <space>         :
     nnoremap                    N               Nzz
-    nnoremap                    [[              [[zt
-    nnoremap                    ]]              ]]zt
     nnoremap                    gd              :YcmCompleter GoToDefinition<cr>
     nnoremap                    n               nzz
     nnoremap                    q<space>        q:
