@@ -149,7 +149,7 @@ function! SetupAll()
 
     """" Statusline
 
-    set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%=%{getcwd()}
+    set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%4b%=%{getcwd()}
 
 
     """" Commands
