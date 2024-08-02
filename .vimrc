@@ -177,8 +177,6 @@ function! SetupAll()
     " TODO: (4) 'nnoremap <expr> *' jumps to beginning of line
 
      noremap                    G               gg
-     noremap                    H               ^
-     noremap                    L               $
      noremap                    gg              G
      noremap <silent>           <c-l>           :nohlsearch<cr>
 
