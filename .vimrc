@@ -197,9 +197,7 @@ function! SetupAll()
     nnoremap                    <leader>f       :GFiles<cr>
     nnoremap                    <leader>l       :BLines<cr>
     nnoremap                    <space>         :
-    nnoremap                    N               Nzz
     nnoremap                    gd              :YcmCompleter GoToDefinition<cr>
-    nnoremap                    n               nzz
     nnoremap                    q<space>        q:
     nnoremap          <expr>    *               ':%s/'.expand('<cword>').'//gn<CR>'
     nnoremap <silent>           <leader><tab>   :bn<cr>
