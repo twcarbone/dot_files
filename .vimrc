@@ -292,6 +292,7 @@ endfunction
 function! SetupLog()
     set colorcolumn=
     set nospell
+    set nowrap
     set readonly
 endfunction
 
