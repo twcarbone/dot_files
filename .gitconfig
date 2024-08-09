@@ -68,3 +68,6 @@
     diff = always
     grep = always
     status = always
+
+[color "diff"]
+    meta = yellow
