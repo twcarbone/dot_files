@@ -179,6 +179,7 @@ function! SetupAll()
      noremap                    G               gg
      noremap                    gg              G
      noremap <silent>           <c-l>           :nohlsearch<cr>
+     noremap                    Y               y$
 
     inoremap                    "               ""<left>
     inoremap                    '               ''<left>
