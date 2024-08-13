@@ -208,7 +208,7 @@ function! SetupAll()
     nnoremap <silent>           <leader>m       :w<cr> :tab term make<cr>
     nnoremap <silent>           <leader>r       :%FormatRange<cr>
     nnoremap <silent>           <leader>sv      :source ~/.vimrc<cr>
-    nnoremap <silent>           <leader>t       :term<cr>
+    nnoremap <silent>           <leader>t       :vertical term<cr>
     nnoremap <silent> <expr>    <leader>j       InsertDoxygenCommentBlock()
 
     tnoremap                    <esc>           <C-w>N
