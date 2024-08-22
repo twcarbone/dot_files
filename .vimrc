@@ -176,46 +176,46 @@ function! SetupAll()
 
     " TODO: (4) 'nnoremap <expr> *' jumps to beginning of line
 
-     noremap                    G               gg
-     noremap                    gg              G
-     noremap <silent>           <c-l>           :nohlsearch<cr>
-     noremap                    Y               y$
+     noremap G gg
+     noremap gg G
+     noremap <silent> <c-l> :nohlsearch<cr>
+     noremap Y y$
 
-    inoremap                    "               ""<left>
-    inoremap                    '               ''<left>
-    inoremap                    (               ()<left>
-    inoremap                    <               <><left>
-    inoremap                    [               []<left>
-    inoremap                    `               ``<left>
-    inoremap                    jk              <Esc>
-    inoremap                    {               {}<left>
-    inoremap          <expr>    <cr>            search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
+     inoremap " ""<left>
+     inoremap ' ''<left>
+     inoremap ( ()<left>
+     inoremap < <><left>
+     inoremap [ []<left>
+     inoremap ` ``<left>
+     inoremap jk <Esc>
+     inoremap { {}<left>
+     inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
 
-    nnoremap                    <c-d>           <c-d>zz
-    nnoremap                    <c-u>           <c-u>zz
-    nnoremap                    <leader>b       :Buffers<cr>
-    nnoremap                    <leader>d       <plug>(YCMHover)
-    nnoremap                    <leader>f       :GFiles<cr>
-    nnoremap                    <leader>l       :BLines<cr>
-    nnoremap                    <space>         :
-    nnoremap                    gd              :YcmCompleter GoToDefinition<cr>
-    nnoremap                    q<space>        q:
-    nnoremap          <expr>    *               ':%s/'.expand('<cword>').'//gn<CR>'
-    nnoremap <silent>           <leader><tab>   :bn<cr>
-    nnoremap <silent>           <leader>h       :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
-    nnoremap <silent>           <leader>hgg     :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
-    nnoremap <silent>           <leader>hl      :.s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
-    nnoremap <silent>           <leader>m       :w<cr> :tab term make<cr>
-    nnoremap <silent>           <leader>r       :%FormatRange<cr>
-    nnoremap <silent>           <leader>sv      :source ~/.vimrc<cr>
-    nnoremap <silent>           <leader>t       :vertical term<cr>
-    nnoremap <silent> <expr>    <leader>j       InsertDoxygenCommentBlock()
+     nnoremap <c-d> <c-d>zz
+     nnoremap <c-u> <c-u>zz
+     nnoremap <leader>b :Buffers<cr>
+     nnoremap <leader>d <plug>(YCMHover)
+     nnoremap <leader>f :GFiles<cr>
+     nnoremap <leader>l :BLines<cr>
+     nnoremap <space> :
+     nnoremap gd :YcmCompleter GoToDefinition<cr>
+     nnoremap q<space> q:
+     nnoremap <expr> * ':%s/'.expand('<cword>').'//gn<CR>'
+     nnoremap <silent> <leader><tab> :bn<cr>
+     nnoremap <silent> <leader>h :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
+     nnoremap <silent> <leader>hgg :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
+     nnoremap <silent> <leader>hl :.s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
+     nnoremap <silent> <leader>m :w<cr> :tab term make<cr>
+     nnoremap <silent> <leader>r :%FormatRange<cr>
+     nnoremap <silent> <leader>sv :source ~/.vimrc<cr>
+     nnoremap <silent> <leader>t :vertical term<cr>
+     nnoremap <silent> <expr> <leader>j InsertDoxygenCommentBlock()
 
-    tnoremap                    <esc>           <C-w>N
-    tnoremap                    jk              <C-w>N
+     tnoremap <esc> <C-w>N
+     tnoremap jk <C-w>N
 
-    vnoremap                    <space>         :
-    vnoremap <silent>           <leader>r       :call FormatRange()<cr>
+     vnoremap <space> :
+     vnoremap <silent> <leader>r :call FormatRange()<cr>
 
 endfunction
 
