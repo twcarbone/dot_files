@@ -1,43 +1,84 @@
 function! SetupAll()
 
-    """" 24-bit true color
-
     if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     endif
 
-
-    """" Basic
+    colorscheme gruber
 
     " This needs to be sourced if vim was built from source
     source $VIMRUNTIME/defaults.vim
-
-    " Turn off hints (e.g., 'You discovered the command-line window...')
+    " Turn off hints (eg, 'You discovered the command-line window...')
     autocmd! vimHints
 
-    " Vim swap files
+    " Load the indent file based on file type
+    filetype indent on
+    " Enable syntax highlighting
+    syntax on
+
+    " Enable syntax highlighting on the current line
+    set cursorline
+    " Do not prompt to save buffers when switching
+    set hidden
+    " Show line number of the current line and relative numbers for above/below cursor
+    set number relativenumber
+    " Highlight bad spelling
+    set spell
+    " Put new split to the right, not left
+    set splitright
+    " Use 24-bit 'true color' attributes (e.g., 'guifg')
+    set termguicolors
+    " Enable wildmenu
+    set wildmenu
+    " Highlight search matches
+    set hlsearch
+    " Case-insensitive searching
+    set ignorecase
+    " Highlight matches while typing a search regex
+    set incsearch
+    " Searches with all lowercase are case-insensitive; searches containing at least one
+    " capital are case-sensitive (\c and \C override this behavior)
+    set smartcase
+    " Show invisible characters from 'listchars'
+    set list
+
+    " Location of swap files
     set directory=$HOME/.vim/swapfiles//
-
-    filetype indent on          " Load the indent file based on file type
-    set colorcolumn=90          " Show vertical bar at this column
-    set cursorline              " Enable syntax highlighting on the current line
-    set hidden                  " Do not prompt to save buffers when switching
-    set laststatus=2            " Show status line on 2nd to last line
-    set number                  " Show line numbers
-    set pastetoggle=<F2>        " Toggle 'INSERT (paste)' mode
-    set relativenumber          " Show relative line numbers above/below cursor
-    set scrolloff=1             " Keep 1 line above/below cursor
-    set spell                   " Highlight bad spelling
-    set splitright              " Put new split to the right, not left
-    set termguicolors           " Use 24-bit 'true color' attributes (e.g., 'guifg')
-    set textwidth=89            " Wrap text at this column
-    syntax on                   " Enable syntax highlighting
-
-
-    """" Colorscheme
-
-    colorscheme gruber
+    " Show vertical bar at this column
+    set colorcolumn=90
+    " Show status line on 2nd to last line
+    set laststatus=2
+    " Toggle paste mode
+    set pastetoggle=<F2>
+    " Keep 1 line above/below cursor
+    set scrolloff=1
+    " Wrap text at this column
+    set textwidth=89
+    " First tab completes as much as possible, second tab shows list, third tab cycles
+    " through list
+    set wildmode=longest,full
+    " c - Auto-wrap comments using textwidth; insert the comment leader automatically
+    " r - Automatically insert comment leader after hitting <Enter> in Insert mode
+    " o - Automatically insert comment leader after hitting 'o' or 'O' in Normal mode
+    " q - Allow formatting of comments using 'gq'
+    set formatoptions=croq
+    " Insert *tabstop* space bytes instead of a tab byte
+    set expandtab
+    " How many character blocks are inserted using >> (and friends)
+    set shiftwidth=4
+    " How much whitespace is inserted/removed when pressing Tab/Backspace
+    set softtabstop=4
+    " How many character blocks a tab byte appears as on the screen
+    set tabstop=4
+    " trailing:U2219, tab:U2192
+    set listchars=trail:∙,tab:→\∙
+    " Status line
+    set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%4b%=%{getcwd()}
+    " First opening brace is in column 0
+    set cinoptions+=f0
+    " Access modifiers (ie, public/protected/private)
+    set cinoptions+=g0
 
 
     """" Filetype settings
@@ -45,12 +86,6 @@ function! SetupAll()
     " Python
     let g:pyindent_open_paren = 'shiftwidth()'
     let g:python_no_doctest_highlight = 1
-
-    " C / C++
-    set cinoptions+=f0          " First opening brace at column 0
-
-    " C++
-    set cinoptions+=g0          " Access modifiers at column 0
 
 
     """" netrw
@@ -96,76 +131,22 @@ function! SetupAll()
     let g:fzf_layout = { 'down': '20%' }
 
 
-    """" Wildmenu
-
-    " wildmode, wildmenu - first tab completes as much as possible, second tab shows
-    " list, third tab cycles through list
-    set wildmode=longest,full
-    set wildmenu
-
-
-    """" Wrapping
-
-    " c - Auto-wrap comments using textwidth; insert the comment leader automatically
-    " r - Automatically insert comment leader after hitting <Enter> in Insert mode
-    " o - Automatically insert comment leader after hitting 'o' or 'O' in Normal mode
-    " q - Allow formatting of comments using `gq`
-    set formatoptions=croq
-
-
-    """" Tabs
-
-    " expandtab - Insert *tabstop* space bytes instead of a tab byte
-    " shiftwidth - How many character blocks are inserted using >> (and friends)
-    " softtabstop - How much whitespace is inserted/removed when pressing Tab/Backspace
-    " tabstop - How many character blocks a tab byte appears as on the screen
-    set expandtab
-    set shiftwidth=4
-    set softtabstop=4
-    set tabstop=4
-
-
-    """" Searching
-
-    " hlsearch - Highlight search matches
-    " ignorecase - Case-insensitive searching
-    " incsearch - Highlight matches while typing a search regex
-    " smartcase - Searches with all lowercase are case-insensitive; searches containing
-    "             at least one capital are case-sensitive (\c and \C override this
-    "             behavior)
-    set hlsearch
-    set ignorecase
-    set incsearch
-    set smartcase
-
-
-    """" Whitespace
-
-    " list - Show invisible characters from 'listchars'
-    " listchars - trail:U2219,tab:U2192
-    set list
-    set listchars=trail:∙,tab:→\∙
-
-
-    """" Statusline
-
-    set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%4b%=%{getcwd()}
-
-
-    """" Commands
-
-    " :H opens help in new buffer
+    " :H
+    "           Opens help in new buffer
     command! -nargs=1 -complete=help H :enew | :set buftype=help | :h <args>
 
-    " Remove trailing whitespace from entire file
-    " Inspired by: https://github.com/mislav/vimfiles
+    " :KillTrailingWhitespace
+    "           Remove trailing whitespace from entire file
+    "           (inspired by: https://github.com/mislav/vimfiles)
     command! KillTrailingWhitespace :normal :%s/ *$//g<cr><c-o><cr><c-l>
 
-    " This command is a thin wrapper around FormatRange() to allow the cursor to return
-    " to the original position. Without this, FormatRange, which accepts a range, puts
-    " the cursor at the beginning of the range after completing. When the range is the
-    " entire buffer, this means jumping to line 1... sigh.
-    " Credit to: https://stackoverflow.com/a/73002057.
+    " :FormatRange
+    "           This command is a thin wrapper around FormatRange() to allow the cursor
+    "           to return to the original position. Without this, FormatRange, which
+    "           accepts a range, puts the cursor at the beginning of the range after
+    "           completing. When the range is the entire buffer, this means jumping to
+    "           line 1... sigh.
+    "           (credit to: https://stackoverflow.com/a/73002057)
     command! -range -bar FormatRange
         \ let s:pos = getcurpos() |
         \ <line1>,<line2>call FormatRange() |
