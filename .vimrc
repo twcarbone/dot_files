@@ -51,37 +51,17 @@ function! SetupAll()
                                 " o - Insert comment leader after hitting o or O
                                 " q - Allow formatting of comments using gq
     set expandtab               " Insert 'tabstop' space bytes instead of a tab byte
-    set shiftwidth=4            " How many character blocks are inserted using >> (and friends)
-    set softtabstop=4           " How much whitespace is inserted/removed when pressing Tab/Backspace
+    set shiftwidth=4            " How many character blocks are inserted using >>
+    set softtabstop=4           " How much whitespace is inserted/removed on tab/backspace
     set tabstop=4               " How many character blocks a tab byte appears as on the screen
     set cinoptions+=f0          " First opening brace is in column 0
-    set cinoptions+=g0          " Access modifiers (ie, public/protected/private)
-
-
-    """" Filetype settings
+    set cinoptions+=g0          " Access modifiers at column 0
 
     " Python
     let g:pyindent_open_paren = 'shiftwidth()'
     let g:python_no_doctest_highlight = 1
 
-
-    """" netrw
-
-    " noma - buffer cannot be modified
-    " nomod - buffer is considered to be not modified
-    " rnu - display current line number and relative line numbers
-    " nobl - do not display in buffer list
-    " nowrap - do not wrap long lines
-    " ro - read-only
-    let g:netrw_bufsettings = 'noma nomod rnu nobl nowrap ro'
-
-    let g:netrw_banner=0        " Do not show banner
-    let g:netrw_liststyle=3     " Tree listing style
-    let g:netrw_winsize=30      " Occupy 30% of the total width
-
-
-    """" YouCompleteMe
-
+    " Plugin - YouCompleteMe
     let g:ycm_add_preview_to_completeopt="popup"
     let g:ycm_auto_hover = ""
     let g:ycm_clangd_binary_path = exepath("clangd")
@@ -93,20 +73,15 @@ function! SetupAll()
     let g:ycm_show_detailed_diag_in_popup = 1
     let g:ycm_warning_symbol = "W"
 
-
-    """" vim-closetag
-
+    " Plugin - vim-closetag
     let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.jsx,*.ts,*.tsx,*.xml'
     let g:closetag_filetypes = 'html,xhtml,phtml,js,jsx,ts,tsx,xml'
 
-
-    """" FZF
-
+    " Plugin - FZF
     set runtimepath+=~/.fzf
     let g:fzf_vim = {}
     let g:fzf_vim.preview_window = ['hidden']
     let g:fzf_layout = { 'down': '20%' }
-
 
     " :H
     "           Opens help in new buffer
@@ -129,17 +104,12 @@ function! SetupAll()
         \ <line1>,<line2>call FormatRange() |
         \ call setpos('.', s:pos)
 
-
      tnoremap <esc> <c-w>N
      tnoremap jk    <c-w>N
      inoremap jk    <esc>
 
      nnoremap <space> :
      vnoremap <space> :
-
-     nnoremap         <c-d> <c-d>zz
-     nnoremap         <c-u> <c-u>zz
-     noremap <silent> <c-l> :nohlsearch<cr>
 
      noremap Y y$
 
@@ -151,31 +121,23 @@ function! SetupAll()
      inoremap ` ``<left>
      inoremap { {}<left>
 
-     inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
+     nnoremap         <c-d> <c-d>zz
+     nnoremap         <c-u> <c-u>zz
+     noremap <silent> <c-l> :nohlsearch<cr>
 
-     nnoremap gd :YcmCompleter GoToDefinition<cr>
-     nnoremap q<space> q:
-     nnoremap <silent> <leader><tab> :bn<cr>
-     nnoremap <silent> <leader>h :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
-     nnoremap <silent> <leader>hgg :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
-     nnoremap <silent> <leader>hl :.s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
-     nnoremap <silent> <leader>m :w<cr> :tab term make<cr>
-     nnoremap <silent> <leader>r :%FormatRange<cr>
-     nnoremap <silent> <leader>sv :source ~/.vimrc<cr>
-     nnoremap <silent> <leader>t :vertical term<cr>
-
+     nnoremap <silent>        <leader>h :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
      nnoremap <silent> <expr> <leader>j InsertDoxygenCommentBlock()
+     nnoremap <silent>        <leader>r :%FormatRange<cr>
+     vnoremap <silent>        <leader>r :call FormatRange()<cr>
 
-     nnoremap <expr> * ':%s/'.expand('<cword>').'//gn<CR>'
-     nnoremap <leader>d <plug>(YCMHover)
+     inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
+     nnoremap <expr> *    ':%s/'.expand('<cword>').'//gn<CR>'
+
+     nnoremap <silent> <leader><tab>    :bn<cr>
 
      nnoremap <leader>b :Buffers<cr>
      nnoremap <leader>f :GFiles<cr>
      nnoremap <leader>l :BLines<cr>
-
-
-     vnoremap <silent> <leader>r :call FormatRange()<cr>
-
 endfunction
 
 function! FormatRange() range
