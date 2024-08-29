@@ -9,76 +9,53 @@ function! SetupAll()
 
     " This needs to be sourced if vim was built from source
     source $VIMRUNTIME/defaults.vim
+
     " Turn off hints (eg, 'You discovered the command-line window...')
     autocmd! vimHints
 
-    " Load the indent file based on file type
-    filetype indent on
-    " Enable syntax highlighting
-    syntax on
+    filetype indent on      " Load indentation file based on file type
+    syntax on               " Enable syntax highlighting
 
-    " Enable syntax highlighting on the current line
-    set cursorline
-    " Do not prompt to save buffers when switching
-    set hidden
-    " Show line number of the current line and relative numbers for above/below cursor
-    set number relativenumber
-    " Highlight bad spelling
-    set spell
-    " Put new split to the right, not left
-    set splitright
-    " Use 24-bit 'true color' attributes (e.g., 'guifg')
-    set termguicolors
-    " Enable wildmenu
-    set wildmenu
-    " Highlight search matches
-    set hlsearch
-    " Case-insensitive searching
-    set ignorecase
-    " Highlight matches while typing a search regex
-    set incsearch
-    " Searches with all lowercase are case-insensitive; searches containing at least one
-    " capital are case-sensitive (\c and \C override this behavior)
-    set smartcase
-    " Show invisible characters from 'listchars'
-    set list
+    set cursorline          " Enable syntax highlighting on the current line
+    set hidden              " Do not prompt to save buffers when switching
+    set number              " Show line numbers
+    set relativenumber      " Show relative line numbers
+    set spell               " Highlight bad spelling
+    set splitright          " Put new split to the right, not left
+    set termguicolors       " Use 24-bit 'true color' attributes (eg, 'guifg')
+    set wildmenu            " Enable wildmenu
+    set hlsearch            " Highlight search matches
+    set ignorecase          " Case-insensitive searching
+    set incsearch           " Highlight matches while typing a search regex
+    set smartcase           " Override 'ignorecase' if the search contains a capital
+                            " \c forces case-insensitive
+                            " \C forces case-sensitive
+    set list                " Show invisible characters from 'listchars'
 
-    " Location of swap files
-    set directory=$HOME/.vim/swapfiles//
-    " Show vertical bar at this column
-    set colorcolumn=90
-    " Show status line on 2nd to last line
-    set laststatus=2
-    " Toggle paste mode
-    set pastetoggle=<F2>
-    " Keep 1 line above/below cursor
-    set scrolloff=1
-    " Wrap text at this column
-    set textwidth=89
-    " First tab completes as much as possible, second tab shows list, third tab cycles
-    " through list
-    set wildmode=longest,full
-    " c - Auto-wrap comments using textwidth; insert the comment leader automatically
-    " r - Automatically insert comment leader after hitting <Enter> in Insert mode
-    " o - Automatically insert comment leader after hitting 'o' or 'O' in Normal mode
-    " q - Allow formatting of comments using 'gq'
-    set formatoptions=croq
-    " Insert *tabstop* space bytes instead of a tab byte
-    set expandtab
-    " How many character blocks are inserted using >> (and friends)
-    set shiftwidth=4
-    " How much whitespace is inserted/removed when pressing Tab/Backspace
-    set softtabstop=4
-    " How many character blocks a tab byte appears as on the screen
-    set tabstop=4
-    " trailing:U2219, tab:U2192
-    set listchars=trail:∙,tab:→\∙
-    " Status line
     set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%4b%=%{getcwd()}
-    " First opening brace is in column 0
-    set cinoptions+=f0
-    " Access modifiers (ie, public/protected/private)
-    set cinoptions+=g0
+
+    set directory=$HOME/.vim/swapfiles//    " Location of swap files
+    set listchars=trail:∙,tab:→\∙           " trailing:U2219, tab:U2192
+
+    set colorcolumn=90          " Show vertical bar at this column
+    set laststatus=2            " Show status line on 2nd to last line
+    set pastetoggle=<F2>        " Toggle paste mode
+    set scrolloff=1             " Keep 1 line above/below cursor
+    set textwidth=89            " Wrap text at this column
+    set wildmode=longest,full   " 1st <tab> completes as much as possible
+                                " 2nd <tab> shows list of options
+                                " 3rd <tab> cycles through options
+    set formatoptions=croq      " c - Wrap comments at 'textwidth'
+                                "     Inserts comment leader automatically
+                                " r - Insert comment leader after hitting <Enter>
+                                " o - Insert comment leader after hitting o or O
+                                " q - Allow formatting of comments using gq
+    set expandtab               " Insert 'tabstop' space bytes instead of a tab byte
+    set shiftwidth=4            " How many character blocks are inserted using >> (and friends)
+    set softtabstop=4           " How much whitespace is inserted/removed when pressing Tab/Backspace
+    set tabstop=4               " How many character blocks a tab byte appears as on the screen
+    set cinoptions+=f0          " First opening brace is in column 0
+    set cinoptions+=g0          " Access modifiers (ie, public/protected/private)
 
 
     """" Filetype settings
@@ -110,7 +87,7 @@ function! SetupAll()
     let g:ycm_clangd_binary_path = exepath("clangd")
     let g:ycm_clangd_uses_ycmd_caching = 0
     let g:ycm_enable_diagnostic_highlighting = 0
-    let g:ycm_enable_diagnostic_signs = 1
+    let g:ycm_enable_diagnostic_signs = 0
     let g:ycm_error_symbol = "E"
     let g:ycm_key_list_select_completion = ['<C-n>']
     let g:ycm_show_detailed_diag_in_popup = 1
@@ -157,8 +134,6 @@ function! SetupAll()
 
     " TODO: (4) 'nnoremap <expr> *' jumps to beginning of line
 
-     noremap G gg
-     noremap gg G
      noremap <silent> <c-l> :nohlsearch<cr>
      noremap Y y$
 
@@ -303,9 +278,10 @@ endfunction
 call SetupAll()
 autocmd BufNewFile,BufRead *.c,*.cpp,*.h    call SetupC()
 autocmd BufNewFile,BufRead *.csv            call SetupCSV()
-autocmd BufNewFile,BufRead *.diff           call SetupDiff()
 autocmd BufNewFile,BufRead *.html,*.xml     call SetupMarkup()
 autocmd BufNewFile,BufRead *.log            call SetupLog()
 autocmd BufNewFile,BufRead *.py             call SetupPython()
 autocmd TerminalOpen *                      call OnTerminalOpen()
 autocmd VimResized *                        call OnVimResized()
+
+autocmd FileType diff                       call SetupDiff()
