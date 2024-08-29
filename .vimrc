@@ -194,12 +194,6 @@ function! SetupC()
     set signcolumn=yes
 endfunction
 
-function! SetupMarkup()
-    set autoindent
-    set smartindent
-    silent! iunmap <
-endfunction
-
 function! SetupCSV()
     set nowrap
     set colorcolumn=
@@ -243,10 +237,12 @@ endfunction
 call SetupAll()
 autocmd BufNewFile,BufRead *.c,*.cpp,*.h    call SetupC()
 autocmd BufNewFile,BufRead *.csv            call SetupCSV()
-autocmd BufNewFile,BufRead *.html,*.xml     call SetupMarkup()
 autocmd BufNewFile,BufRead *.log            call SetupLog()
 autocmd BufNewFile,BufRead *.py             call SetupPython()
 autocmd TerminalOpen *                      call OnTerminalOpen()
 autocmd VimResized *                        call OnVimResized()
+
+autocmd BufEnter *.html,*.xml silent! iunmap <
+autocmd BufLeave *.html,*.xml silent! imap   < <><left>
 
 autocmd FileType diff                       call SetupDiff()
