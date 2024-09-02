@@ -96,6 +96,7 @@ main()
     init_vim_plugin 'junegunn/fzf.vim' 'vim-fzf'
     init_vim_plugin 'tpope/vim-commentary' 'vim-commentary'
     init_vim_plugin 'ycm-core/YouCompleteMe' 'vim-ycm'
+    init_vim_plugin 'airblade/vim-gitgutter' 'vim-gitgutter'
 
     # Install python tools
     rm -rm .pytools
