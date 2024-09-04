@@ -125,7 +125,7 @@ function! SetupAll()
      nnoremap         <c-u> <c-u>zz
      noremap <silent> <c-l> :nohlsearch<cr>
 
-     nnoremap <silent>        <leader>h :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
+     nnoremap <silent>        <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
      nnoremap <silent> <expr> <leader>j InsertDoxygenCommentBlock()
      nnoremap <silent>        <leader>r :%FormatRange<cr>
      vnoremap <silent>        <leader>r :call FormatRange()<cr>
