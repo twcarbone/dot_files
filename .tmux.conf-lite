@@ -1,0 +1,16 @@
+# Switch panes using Alt-[hjkl]
+bind -n M-h select-pane -L
+bind -n M-l select-pane -R
+bind -n M-k select-pane -U
+bind -n M-j select-pane -D
+
+# Cycle through windows using Alt-[np]
+bind -n M-n next-window
+bind -n M-p previous-window
+
+# Vi-style keybindings
+setw -g mode-keys vi
+
+# Swap N/n when in copy mode (ie, ctrl+b [)
+bind -T copy-mode-vi n send -X search-reverse
+bind -T copy-mode-vi N send -X search-again
