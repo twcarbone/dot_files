@@ -10,52 +10,46 @@ function! SetupAll()
     " This needs to be sourced if vim was built from source
     source $VIMRUNTIME/defaults.vim
 
-    " Turn off hints (eg, 'You discovered the command-line window...')
-    autocmd! vimHints
-
     filetype indent on      " Load indentation file based on file type
     syntax on               " Enable syntax highlighting
 
     set cursorline          " Enable syntax highlighting on the current line
     set hidden              " Do not prompt to save buffers when switching
-    set number              " Show line numbers
-    set relativenumber      " Show relative line numbers
-    set spell               " Highlight bad spelling
-    set splitright          " Put new split to the right, not left
-    set termguicolors       " Use 24-bit 'true color' attributes (eg, 'guifg')
-    set wildmenu            " Enable wildmenu
     set hlsearch            " Highlight search matches
     set ignorecase          " Case-insensitive searching
     set incsearch           " Highlight matches while typing a search regex
+    set nocompatible
+    set number              " Show line numbers
+    set relativenumber      " Show relative line numbers
     set smartcase           " Override 'ignorecase' if the search contains a capital
                             " \c forces case-insensitive
                             " \C forces case-sensitive
     set list                " Show invisible characters from 'listchars'
-
-    set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%4b%=%{getcwd()}
+    set spell               " Highlight bad spelling
+    set splitright          " Put new split to the right, not left
+    set termguicolors       " Use 24-bit 'true color' attributes (eg, 'guifg')
+    set wildmenu            " Enable wildmenu
 
     set directory=$HOME/.vim/swapfiles//    " Location of swap files
     set listchars=trail:∙,tab:→\∙           " trailing:U2219, tab:U2192
 
+    set cinoptions+==0          " Anything after 'case:' labels is not indented
+    set cinoptions+=f0          " First opening brace is in column 0
+    set cinoptions+=g0          " Access modifiers at column 0
+    set cmdwinheight=12         " Height of command-line window
     set colorcolumn=90          " Show vertical bar at this column
+    set expandtab               " Insert 'tabstop' space bytes instead of a tab byte
+    set formatoptions=croq      " Formatting, continuation of comments
     set laststatus=2            " Show status line on 2nd to last line
     set pastetoggle=<F2>        " Toggle paste mode
     set scrolloff=1             " Keep 1 line above/below cursor
-    set textwidth=89            " Wrap text at this column
-    set wildmode=longest,full   " 1st <tab> completes as much as possible
-                                " 2nd <tab> shows list of options
-                                " 3rd <tab> cycles through options
-    set formatoptions=croq      " c - Wrap comments at 'textwidth'
-                                "     Inserts comment leader automatically
-                                " r - Insert comment leader after hitting <Enter>
-                                " o - Insert comment leader after hitting o or O
-                                " q - Allow formatting of comments using gq
-    set expandtab               " Insert 'tabstop' space bytes instead of a tab byte
     set shiftwidth=4            " How many character blocks are inserted using >>
     set softtabstop=4           " How much whitespace is inserted/removed on tab/backspace
     set tabstop=4               " How many character blocks a tab byte appears as on the screen
-    set cinoptions+=f0          " First opening brace is in column 0
-    set cinoptions+=g0          " Access modifiers at column 0
+    set textwidth=89            " Wrap text at this column
+    set wildmode=longest,full   " Tab semantics when completing in command line
+
+    set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%4b%=%{getcwd()}
 
     " Python
     let g:pyindent_open_paren = 'shiftwidth()'
@@ -125,7 +119,7 @@ function! SetupAll()
      nnoremap         <c-u> <c-u>zz
      noremap <silent> <c-l> :nohlsearch<cr>
 
-     nnoremap <silent>        <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/b
+     nnoremap <silent>        <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>
      nnoremap <silent> <expr> <leader>j InsertDoxygenCommentBlock()
      nnoremap <silent>        <leader>r :%FormatRange<cr>
      vnoremap <silent>        <leader>r :call FormatRange()<cr>
@@ -235,6 +229,7 @@ function! OnVimResized()
 endfunction
 
 call SetupAll()
+
 autocmd BufNewFile,BufRead *.c,*.cpp,*.h    call SetupC()
 autocmd BufNewFile,BufRead *.csv            call SetupCSV()
 autocmd BufNewFile,BufRead *.log            call SetupLog()
@@ -242,7 +237,13 @@ autocmd BufNewFile,BufRead *.py             call SetupPython()
 autocmd TerminalOpen *                      call OnTerminalOpen()
 autocmd VimResized *                        call OnVimResized()
 
+" Turn off hints (eg, 'You discovered the command-line window...')
+autocmd! vimHints
+
 autocmd BufEnter *.html,*.xml silent! iunmap <
 autocmd BufLeave *.html,*.xml silent! imap   < <><left>
+
+autocmd CmdwinEnter : startinsert!
+autocmd CmdwinEnter : set colorcolumn=
 
 autocmd FileType diff                       call SetupDiff()
