@@ -39,7 +39,7 @@ function! SetupAll()
     set cmdwinheight=12         " Height of command-line window
     set colorcolumn=90          " Show vertical bar at this column
     set expandtab               " Insert 'tabstop' space bytes instead of a tab byte
-    set formatoptions=croq      " Formatting, continuation of comments
+    set formatoptions=croq/     " See :h fo-table
     set laststatus=2            " Show status line on 2nd to last line
     set pastetoggle=<F2>        " Toggle paste mode
     set scrolloff=1             " Keep 1 line above/below cursor
