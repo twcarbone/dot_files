@@ -118,10 +118,9 @@ function! SetupAll()
      nnoremap         <c-u> <c-u>zz
      noremap <silent> <c-l> :nohlsearch<cr>
 
-     nnoremap <silent>        <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>
-     nnoremap <silent> <expr> <leader>j InsertDoxygenCommentBlock()
-     nnoremap <silent>        <leader>r :%FormatRange<cr>
-     vnoremap <silent>        <leader>r :call FormatRange()<cr>
+     nnoremap <silent> <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>
+     nnoremap <silent> <leader>r :%FormatRange<cr>
+     vnoremap <silent> <leader>r :call FormatRange()<cr>
 
      inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
      nnoremap <expr> *    ':%s/'.expand('<cword>').'//gn<CR>'
@@ -163,19 +162,6 @@ function! InsertTabWrapper()
         return "\<tab>"
     else
         return "\<c-n>"
-    endif
-endfunction
-
-function! InsertDoxygenCommentBlock()
-    if index(["c", "cpp", "h"], expand("%:e")) >= 0
-        return "o/**\<cr>/\<esc>O
-            \@brief\<cr>
-            \@detail\<cr>
-            \@note\<cr>
-            \@param[in]\<cr>
-            \@exception\<cr>
-            \@return
-            \\<esc>kkkkkA"
     endif
 endfunction
 
