@@ -214,5 +214,4 @@ autocmd! vimHints
 autocmd BufEnter *.html,*.xml silent! iunmap <
 autocmd BufLeave *.html,*.xml silent! imap   < <><left>
 
-autocmd CmdwinEnter : startinsert!
 autocmd CmdwinEnter : set colorcolumn=
