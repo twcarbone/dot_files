@@ -91,6 +91,9 @@ main()
     ln -s $HOME/vim-syntax/after/syntax/python.vim  .vim/after/syntax/python.vim
     ln -s $HOME/vim-zz                              .vim/pack/plugins/start/zz
 
+    ln -s $HOME/dot_files/vim-ftdetect              .vim/ftdetect
+    ln -s $HOME/dot_files/vim-ftplugin              .vim/ftplugin
+
     # Create repositories in ~/.vim/pack/plugins/start
     init_vim_plugin 'alvan/vim-closetag'
     init_vim_plugin 'junegunn/fzf.vim' 'vim-fzf'

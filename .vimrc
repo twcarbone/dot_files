@@ -180,41 +180,6 @@ function! InsertDoxygenCommentBlock()
     endif
 endfunction
 
-function! SetupPython()
-    set colorcolumn=90
-endfunction
-
-function! SetupC()
-    set signcolumn=yes
-endfunction
-
-function! SetupCSV()
-    set nowrap
-    set colorcolumn=
-endfunction
-
-function! SetupDiff()
-    set readonly
-    set nospell
-endfunction
-
-function! SetupLog()
-    set colorcolumn=
-    set nospell
-    set nowrap
-    set readonly
-endfunction
-
-function! SetupTxt()
-    set autoindent
-    set comments=fb:-,fb:*,fb:>         " see :h format-comments
-    set formatoptions=tcrnq             " see :h fo-table
-
-    " The <leader>r mapping is typically used to format the entire buffer or a range (see
-    " `:FormatRange`). For .txt files, we just it format the current paragraph.
-    nnoremap <buffer> <leader>r gwip
-endfunction
-
 function! SetTermWindowMargin(margin)
     " Set the width of the terminal to be a:margin columns less than the available space.
     " This is a workaround to address the situation where long lines are wrapped in the
@@ -240,11 +205,6 @@ endfunction
 
 call SetupAll()
 
-autocmd BufNewFile,BufRead *.c,*.cpp,*.h    call SetupC()
-autocmd BufNewFile,BufRead *.csv            call SetupCSV()
-autocmd BufNewFile,BufRead *.log            call SetupLog()
-autocmd BufNewFile,BufRead *.py             call SetupPython()
-autocmd BufNewFile,BufRead *.txt            call SetupTxt()
 autocmd TerminalOpen *                      call OnTerminalOpen()
 autocmd VimResized *                        call OnVimResized()
 
@@ -256,5 +216,3 @@ autocmd BufLeave *.html,*.xml silent! imap   < <><left>
 
 autocmd CmdwinEnter : startinsert!
 autocmd CmdwinEnter : set colorcolumn=
-
-autocmd FileType diff                       call SetupDiff()
