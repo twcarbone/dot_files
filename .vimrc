@@ -110,7 +110,6 @@ function! SetupAll()
      inoremap " ""<left>
      inoremap ' ''<left>
      inoremap ( ()<left>
-     inoremap < <><left>
      inoremap [ []<left>
      inoremap ` ``<left>
      inoremap { {}<left>
@@ -212,12 +211,6 @@ augroup __twc_terminal
     autocmd!
     autocmd TerminalOpen * call OnTerminalOpen()
     autocmd VimResized * call OnVimResized()
-augroup END
-
-augroup __twc_markdown
-    autocmd!
-    autocmd BufEnter *.html,*.xml silent! iunmap <
-    autocmd BufLeave *.html,*.xml silent! imap   < <><left>
 augroup END
 
 augroup __twc_cmdwin
