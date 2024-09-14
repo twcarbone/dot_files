@@ -28,6 +28,7 @@ alias gap="git add -p"
 alias gb="git branch"
 alias gba="git branch -a"
 alias gc="git commit"
+alias gcv="git commit -v"
 alias gd="git diff"
 alias gds="git diff --staged"
 alias gr="git restore"
@@ -43,6 +44,7 @@ alias ll="ls \
     --group-directories-first \
     --color=auto \
     --time-style=\"+%b %e %H:%M:%S\""
+alias vi="vim"
 
 
 ## Less
