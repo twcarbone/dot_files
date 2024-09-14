@@ -205,13 +205,22 @@ endfunction
 
 call SetupAll()
 
-autocmd TerminalOpen *                      call OnTerminalOpen()
-autocmd VimResized *                        call OnVimResized()
-
 " Turn off hints (eg, 'You discovered the command-line window...')
 autocmd! vimHints
 
-autocmd BufEnter *.html,*.xml silent! iunmap <
-autocmd BufLeave *.html,*.xml silent! imap   < <><left>
+augroup __twc_terminal
+    autocmd!
+    autocmd TerminalOpen * call OnTerminalOpen()
+    autocmd VimResized * call OnVimResized()
+augroup END
 
-autocmd CmdwinEnter : set colorcolumn=
+augroup __twc_markdown
+    autocmd!
+    autocmd BufEnter *.html,*.xml silent! iunmap <
+    autocmd BufLeave *.html,*.xml silent! imap   < <><left>
+augroup END
+
+augroup __twc_cmdwin
+    autocmd!
+    autocmd CmdwinEnter : set colorcolumn=
+augroup END
