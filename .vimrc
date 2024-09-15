@@ -79,7 +79,7 @@ function! SetupAll()
 
     " :H
     "           Opens help in new buffer
-    command! -nargs=1 -complete=help H :enew | :set buftype=help | :h <args>
+    command! -nargs=? -complete=help H :enew | :set buftype=help | :h <args>
 
     " :KillTrailingWhitespace
     "           Remove trailing whitespace from entire file
