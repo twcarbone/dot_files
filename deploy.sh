@@ -87,12 +87,11 @@ main()
     # Create symlinks in ~/.vim
     ln -s $HOME/vim-colors/chs.vim                  .vim/colors/chs.vim
     ln -s $HOME/vim-colors/gruber.vim               .vim/colors/gruber.vim
-    ln -s $HOME/vim-syntax/syntax/python.vim        .vim/syntax/python.vim
-    ln -s $HOME/vim-syntax/after/syntax/python.vim  .vim/after/syntax/python.vim
-    ln -s $HOME/vim-zz                              .vim/pack/plugins/start/zz
-
     ln -s $HOME/dot_files/filetype.vim              .vim/filetype.vim
+
     ln -s $HOME/dot_files/vim-ftplugin              .vim/ftplugin
+    ln -s $HOME/dot_files/vim-syntax                .vim/syntax
+    ln -s $HOME/vim-zz                              .vim/pack/plugins/start/zz
 
     # Create repositories in ~/.vim/pack/plugins/start
     init_vim_plugin 'alvan/vim-closetag' 'vim-closetag'
