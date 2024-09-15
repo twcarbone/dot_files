@@ -91,18 +91,18 @@ main()
     ln -s $HOME/vim-syntax/after/syntax/python.vim  .vim/after/syntax/python.vim
     ln -s $HOME/vim-zz                              .vim/pack/plugins/start/zz
 
-    ln -s $HOME/dot_files/vim-ftdetect              .vim/ftdetect
+    ln -s $HOME/dot_files/filetype.vim              .vim/filetype.vim
     ln -s $HOME/dot_files/vim-ftplugin              .vim/ftplugin
 
     # Create repositories in ~/.vim/pack/plugins/start
-    init_vim_plugin 'alvan/vim-closetag'
+    init_vim_plugin 'alvan/vim-closetag' 'vim-closetag'
     init_vim_plugin 'junegunn/fzf.vim' 'vim-fzf'
     init_vim_plugin 'tpope/vim-commentary' 'vim-commentary'
     init_vim_plugin 'ycm-core/YouCompleteMe' 'vim-ycm'
     init_vim_plugin 'airblade/vim-gitgutter' 'vim-gitgutter'
 
     # Install python tools
-    rm -rm .pytools
+    rm -rf .pytools
     python3 -m venv .pytools
     source .pytools/bin/activate
     pip3 install -r $HOME/dot_files/.pytools-packages
