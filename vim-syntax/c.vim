@@ -38,6 +38,8 @@ syn keyword	cTodo		contained TODO FIXME XXX
 " unpredictable and should be avoided.
 syn match	cBadContinuation contained "\\\s\+$"
 
+syn match       cInlineCode     contained "`.\{-}`"
+
 " cCommentGroup allows adding matches for special things in comments
 syn cluster	cCommentGroup	contains=cTodo,cBadContinuation
 
@@ -221,22 +223,22 @@ if exists("c_comment_strings")
   " "*/", and sees a "*" at the start of the line as comment again.
   " Unfortunately this doesn't very well work for // type of comments :-(
   syn match	cCommentSkip	contained "^\s*\*\%($\|\s\+\)"
-  syn region cCommentString	contained start=+L\=\\\@<!"+ skip=+\\\\\|\\"+ end=+"+ end=+\*/+me=s-1 contains=cSpecial,cCommentSkip
-  syn region cComment2String	contained start=+L\=\\\@<!"+ skip=+\\\\\|\\"+ end=+"+ end="$" contains=cSpecial
-  syn region  cCommentL	start="//" skip="\\$" end="$" keepend contains=@cCommentGroup,cSpaceError,cWrongComTail,@Spell
+  syn region cCommentString	contained start=+L\=\\\@<!"+ skip=+\\\\\|\\"+ end=+"+ end=+\*/+me=s-1 contains=cSpecial,cCommentSkip,cInlineCode
+  syn region cComment2String	contained start=+L\=\\\@<!"+ skip=+\\\\\|\\"+ end=+"+ end="$" contains=cSpecial,cInlineCode
+  syn region  cCommentL	start="//" skip="\\$" end="$" keepend contains=@cCommentGroup,cSpaceError,cWrongComTail,@Spell,cInlineCode
   if exists("c_no_comment_fold")
     " Use "extend" here to have preprocessor lines not terminate halfway a
     " comment.
-    syn region cComment	matchgroup=cCommentStart start="/\*" end="\*/" contains=@cCommentGroup,cCommentStartError,cSpaceError,@Spell extend
+    syn region cComment	matchgroup=cCommentStart start="/\*" end="\*/" contains=@cCommentGroup,cCommentStartError,cSpaceError,cInlineCode,@Spell extend
   else
-    syn region cComment	matchgroup=cCommentStart start="/\*" end="\*/" contains=@cCommentGroup,cCommentStartError,cSpaceError,@Spell fold extend
+    syn region cComment	matchgroup=cCommentStart start="/\*" end="\*/" contains=@cCommentGroup,cCommentStartError,cSpaceError,cInlineCode,@Spell fold extend
   endif
 else
   syn region	cCommentL	start="//" skip="\\$" end="$" keepend contains=@cCommentGroup,cSpaceError,@Spell
   if exists("c_no_comment_fold")
-    syn region	cComment	matchgroup=cCommentStart start="/\*" end="\*/" contains=@cCommentGroup,cCommentStartError,cSpaceError,@Spell extend
+    syn region	cComment	matchgroup=cCommentStart start="/\*" end="\*/" contains=@cCommentGroup,cCommentStartError,cSpaceError,cInlineCode,@Spell extend
   else
-    syn region	cComment	matchgroup=cCommentStart start="/\*" end="\*/" contains=@cCommentGroup,cCommentStartError,cSpaceError,@Spell fold extend
+    syn region	cComment	matchgroup=cCommentStart start="/\*" end="\*/" contains=@cCommentGroup,cCommentStartError,cSpaceError,cInlineCode,@Spell fold extend
   endif
 endif
 " keep a // comment separately, it terminates a preproc. conditional
@@ -523,6 +525,7 @@ hi def link cCppOutIf2		cCppOut
 hi def link cCppOut		Comment
 hi def link cFunction		Function
 hi def link cFunctionPointer	Function
+hi def link cInlineCode         Character
 
 let b:current_syntax = "c"
 
