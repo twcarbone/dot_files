@@ -47,6 +47,12 @@ alias gr="git restore"
 
 alias gs="git status"
 
+alias ll="ls \
+    -lhva \
+    --group-directories-first \
+    --color=auto \
+    --time-style=\"+%b %e %H:%M:%S\""
+
 alias vi="vim"
 
 alias gap="git add -p"
@@ -60,12 +66,6 @@ alias gds="git diff --staged"
 alias qlg="git qlg"
 
 alias grs="git restore --staged"
-
-alias ll="ls \
-    -lhva \
-    --group-directories-first \
-    --color=auto \
-    --time-style=\"+%b %e %H:%M:%S\""
 
 # Other ---------------------------------------------------------------------------------
 
