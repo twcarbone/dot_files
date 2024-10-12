@@ -1,53 +1,12 @@
 # .bashrc
 
-## General
-
-# Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+# Exports -------------------------------------------------------------------------------
 
-## Prompt
-
-export PS1="\[\e[38;5;46m\]\u@\h \[\e[38;5;39m\]\w \[\e[00m\]\$ "
-
-
-## Alias
-
-# .gitconfig
-alias qlg="git qlg"
-
-# Alembic
-alias ac="alembic current"
-alias ah="alembic history"
-
-# Git
-alias ga="git add"
-alias gap="git add -p"
-alias gb="git branch"
-alias gba="git branch -a"
-alias gc="git commit"
-alias gcv="git commit -v"
-alias gd="git diff"
-alias gds="git diff --staged"
-alias gr="git restore"
-alias grs="git restore --staged"
-alias gs="git status"
-alias gss="git status -s"
-alias gwd="git diff --word-diff"
-
-# System
-alias cl="clear"
-alias ll="ls \
-    -lhva \
-    --group-directories-first \
-    --color=auto \
-    --time-style=\"+%b %e %H:%M:%S\""
-alias vi="vim"
-
-
-## Less
+export FCEDIT=vim
 
 # i     Smart-case searching
 # F     Exit immediately if content fits on one screen
@@ -55,10 +14,7 @@ alias vi="vim"
 # X     Do not clear the screen when exiting
 export LESS="iFRX"
 
-
-## FZF
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export PS1="\[\e[38;5;46m\]\u@\h \[\e[38;5;39m\]\w \[\e[00m\]\$ "
 
 # -m                Enable multiple selections using tab/shift-tab
 # --no-height       (Undocumented in 0.53.0 c4a9ccd)
@@ -69,11 +25,53 @@ export LESS="iFRX"
 # --walker-skip     List of directories to skip while walking
 export FZF_DEFAULT_OPTS="-m --no-height --walker-skip .git,.venv,.moc,.obj,__pycache__"
 
-
 export FZF_CTRL_T_OPTS="--select-1 --exit-0"
 
+# Aliases -------------------------------------------------------------------------------
 
-## Functions
+alias ac="alembic current"
+
+alias ah="alembic history"
+
+alias cl="clear"
+
+alias ga="git add"
+
+alias gb="git branch"
+
+alias gc="git commit"
+
+alias gd="git diff"
+
+alias gr="git restore"
+
+alias gs="git status"
+
+alias vi="vim"
+
+alias gap="git add -p"
+
+alias gba="git branch -a"
+
+alias gcv="git commit -v"
+
+alias gds="git diff --staged"
+
+alias qlg="git qlg"
+
+alias grs="git restore --staged"
+
+alias ll="ls \
+    -lhva \
+    --group-directories-first \
+    --color=auto \
+    --time-style=\"+%b %e %H:%M:%S\""
+
+# Other ---------------------------------------------------------------------------------
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Functions -----------------------------------------------------------------------------
 
 ext()
 {
