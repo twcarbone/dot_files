@@ -48,6 +48,7 @@ function! SetupAll()
     set softtabstop=4           " How much whitespace is inserted/removed on tab/backspace
     set tabstop=4               " How many character blocks a tab byte appears as on the screen
     set textwidth=89            " Wrap text at this column
+    set updatetime=100          " 100 ms update time
     set wildmode=longest:full   " Tab semantics when completing in command line
 
     set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%4b%=%{getcwd()}
