@@ -28,6 +28,7 @@ function! SetupAll()
     set spell               " Highlight bad spelling
     set splitright          " Put new split to the right, not left
     set termguicolors       " Use 24-bit 'true color' attributes (eg, 'guifg')
+    set wildignorecase      " Ignore case when matching
     set wildmenu            " Enable wildmenu
 
     set directory=$HOME/.vim/swapfiles//    " Location of swap files
@@ -47,7 +48,7 @@ function! SetupAll()
     set softtabstop=4           " How much whitespace is inserted/removed on tab/backspace
     set tabstop=4               " How many character blocks a tab byte appears as on the screen
     set textwidth=89            " Wrap text at this column
-    set wildmode=longest,full   " Tab semantics when completing in command line
+    set wildmode=longest:full   " Tab semantics when completing in command line
 
     set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%4b%=%{getcwd()}
 
