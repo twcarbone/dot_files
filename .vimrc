@@ -107,7 +107,13 @@ function! SetupAll()
      nnoremap <space> :
      vnoremap <space> :
 
+     " C and D delete or change until the end of the line, but Y doesn't
+     " :h Y actually suggests this mapping
      noremap Y y$
+
+     " Jump to beginning and end of line easier
+     noremap H ^
+     noremap L $
 
      inoremap " ""<left>
      inoremap ' ''<left>
@@ -116,11 +122,18 @@ function! SetupAll()
      inoremap ` ``<left>
      inoremap { {}<left>
 
-     nnoremap         <c-d> <c-d>zz
-     nnoremap         <c-u> <c-u>zz
-     noremap <silent> <c-l> :nohlsearch<cr>
+     " Easier window navigation
+     nnoremap <c-h> <c-w><c-h>
+     nnoremap <c-j> <c-w><c-j>
+     nnoremap <c-k> <c-w><c-k>
+     nnoremap <c-l> <c-w><c-l>
+
+     " Put cursor in middle of screen after jumping half-screens
+     nnoremap <c-d> <c-d>zz
+     nnoremap <c-u> <c-u>zz
 
      nnoremap <silent> <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>
+     noremap  <silent> <leader>e :nohlsearch<cr>
      nnoremap <silent> <leader>r :%FormatRange<cr>
      vnoremap <silent> <leader>r :call FormatRange()<cr>
 
