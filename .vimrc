@@ -26,7 +26,6 @@ function! SetupAll()
                             " \C forces case-sensitive
     set list                " Show invisible characters from 'listchars'
     set spell               " Highlight bad spelling
-    set splitbelow          " Put new split below, not to the top
     set splitright          " Put new split to the right, not left
     set termguicolors       " Use 24-bit 'true color' attributes (eg, 'guifg')
     set wildignorecase      " Ignore case when matching
