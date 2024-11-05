@@ -44,7 +44,7 @@ function! SetupAll()
     set formatoptions=cro/qj    " See :h fo-table
     set laststatus=2            " Show status line on 2nd to last line
     set pastetoggle=<F2>        " Toggle paste mode
-    set scrolloff=1             " Keep 1 line above/below cursor
+    set scrolloff=5             " Keep 1 line above/below cursor
     set shiftwidth=4            " How many character blocks are inserted using >>
     set softtabstop=4           " How much whitespace is inserted/removed on tab/backspace
     set tabstop=4               " How many character blocks a tab byte appears as on the screen
