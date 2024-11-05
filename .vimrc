@@ -19,6 +19,7 @@ function! SetupAll()
     set ignorecase          " Case-insensitive searching
     set incsearch           " Highlight matches while typing a search regex
     set nocompatible
+    set nojoinspaces        " Inset only one space after join commands (eg, 'J', 'gwip')
     set number              " Show line numbers
     set relativenumber      " Show relative line numbers
     set smartcase           " Override 'ignorecase' if the search contains a capital
