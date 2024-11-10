@@ -39,7 +39,7 @@ syn match specDirective "%\(setup\|attrib\|defattr\|attr\|dir\|config\|docdir\|d
 
 "" Scripts
 
-syn match specScript "^%\(prep\|build\|install\|clean\|check\|pre\|postun\|preun\|post\|posttrans\)" contains=@NoSpell
+syn match specScript "^%\(prep\|build\|install\|clean\|check\|preun\|pre\|postun\|posttrans\|post\)" contains=@NoSpell
 
 
 "" Shell
