@@ -145,8 +145,8 @@ function! SetupAll()
      noremap <leader>9 9gt
      noremap <silent> <leader>0 :tablast<cr>
 
-     nnoremap <silent> <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>
      nnoremap <silent> <leader>a :call ToggleHeaderSource()<cr>
+     nnoremap <silent> <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>bbb
      noremap  <silent> <leader>e :nohlsearch<cr>
      nnoremap <silent> <leader>r :%FormatRange<cr>
      vnoremap <silent> <leader>r :call FormatRange()<cr>
