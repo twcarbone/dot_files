@@ -145,6 +145,7 @@ function! SetupAll()
      noremap <silent> <leader>0 :tablast<cr>
 
      nnoremap <silent> <leader>c :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>
+     nnoremap <silent> <leader>a :call ToggleHeaderSource()<cr>
      noremap  <silent> <leader>e :nohlsearch<cr>
      nnoremap <silent> <leader>r :%FormatRange<cr>
      vnoremap <silent> <leader>r :call FormatRange()<cr>
@@ -179,6 +180,17 @@ function! FormatRange() range
     echo "Formatting ... OK"
     silent write
 
+endfunction
+
+function! ToggleHeaderSource()
+    if index(["h"], expand("%:e")) >= 0
+        silent execute "e %<.cpp"
+    elseif index(["cpp"], expand("%:e")) >= 0
+        silent execute "e %<.h"
+    else
+        echo "Error: must .cpp or .h file"
+        return
+    endif
 endfunction
 
 function! InsertTabWrapper()
