@@ -47,6 +47,7 @@ function! SetupAll()
     set scrolloff=5             " Keep 1 line above/below cursor
     set shiftwidth=4            " How many character blocks are inserted using >>
     set softtabstop=4           " How much whitespace is inserted/removed on tab/backspace
+    set tabline=%!Tabline()
     set tabstop=4               " How many character blocks a tab byte appears as on the screen
     set textwidth=89            " Wrap text at this column
     set updatetime=100          " 100 ms update time
@@ -225,6 +226,34 @@ endfunction
 
 function! OnVimResized()
     call SetTermWindowMargin(6)
+endfunction
+
+function! Tabline()
+    " Credit: https://github.com/mkitt/tabline.vim
+    let s = ''
+    for i in range(tabpagenr('$'))
+        let tab = i + 1
+        let winnr = tabpagewinnr(tab)
+        let buflist = tabpagebuflist(tab)
+        let bufnr = buflist[winnr - 1]
+        let bufname = bufname(bufnr)
+        let bufmodified = getbufvar(bufnr, "&mod")
+
+        let s .= '%' . tab . 'T'
+        let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+        let s .= ' ' . tab .':'
+        let s .= (bufname != '' ? '['. fnamemodify(bufname, ':t') . '] ' : '[No Name] ')
+
+        if bufmodified
+            let s .= '[+] '
+        endif
+    endfor
+
+    let s .= '%#TabLineFill#'
+    if (exists("g:tablineclosebutton"))
+        let s .= '%=%999XX'
+    endif
+    return s
 endfunction
 
 call SetupAll()
