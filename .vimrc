@@ -102,6 +102,9 @@ function! SetupAll()
         \ <line1>,<line2>call FormatRange() |
         \ call setpos('.', s:pos)
 
+    command! -range Disable <line1>,<line2>call Disable()
+    command! -range Enable <line1>,<line2>call Enable()
+
     tnoremap <esc> <c-w>N
     tnoremap jk    <c-w>N
     inoremap jk    <esc>
@@ -157,6 +160,32 @@ function! SetupAll()
 
     inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
     nnoremap <expr> *    ':%s/'.expand('<cword>').'//gn<CR>'
+endfunction
+
+function! Disable() range
+    if index(["c", "cpp", "h"], expand("%:e")) == -1
+        echo "Error: Must be c file"
+        return
+    endif
+
+    let failed = append(a:firstline - 1, "#if 0")
+    let failed = append(a:lastline + 1, "#endif")
+endfunction
+
+function! Enable() range
+    if index(["c", "cpp", "h"], expand("%:e")) == -1
+        echo "Error: Must be c file"
+        return
+    elseif getline(a:firstline) != "#if 0"
+        echo "Error: Range must start with '#if 0'"
+        return
+    elseif getline(a:lastline) != "#endif"
+        echo "Error: Range must end with '#endif'"
+        return
+    endif
+
+    silent execute a:lastline 'd'
+    silent execute a:firstline 'd'
 endfunction
 
 function! FormatRange() range
