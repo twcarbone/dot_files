@@ -102,61 +102,61 @@ function! SetupAll()
         \ <line1>,<line2>call FormatRange() |
         \ call setpos('.', s:pos)
 
-     tnoremap <esc> <c-w>N
-     tnoremap jk    <c-w>N
-     inoremap jk    <esc>
+    tnoremap <esc> <c-w>N
+    tnoremap jk    <c-w>N
+    inoremap jk    <esc>
 
-     nnoremap <space> :
-     vnoremap <space> :
+    nnoremap <space> :
+    vnoremap <space> :
 
-     " C and D delete or change until the end of the line, but Y doesn't
-     " :h Y actually suggests this mapping
-     noremap Y y$
+    " C and D delete or change until the end of the line, but Y doesn't
+    " :h Y actually suggests this mapping
+    noremap Y y$
 
-     " Jump to beginning and end of line easier
-     noremap H ^
-     noremap L $
+    " Jump to beginning and end of line easier
+    noremap H ^
+    noremap L $
 
-     inoremap " ""<left>
-     inoremap ' ''<left>
-     inoremap ( ()<left>
-     inoremap [ []<left>
-     inoremap ` ``<left>
-     inoremap { {}<left>
+    inoremap " ""<left>
+    inoremap ' ''<left>
+    inoremap ( ()<left>
+    inoremap [ []<left>
+    inoremap ` ``<left>
+    inoremap { {}<left>
 
-     " Easier window navigation
-     nnoremap <c-h> <c-w><c-h>
-     nnoremap <c-j> <c-w><c-j>
-     nnoremap <c-k> <c-w><c-k>
-     nnoremap <c-l> <c-w><c-l>
+    " Easier window navigation
+    nnoremap <c-h> <c-w><c-h>
+    nnoremap <c-j> <c-w><c-j>
+    nnoremap <c-k> <c-w><c-k>
+    nnoremap <c-l> <c-w><c-l>
 
-     " Put cursor in middle of screen after jumping half-screens
-     nnoremap <c-d> <c-d>zz
-     nnoremap <c-u> <c-u>zz
+    " Put cursor in middle of screen after jumping half-screens
+    nnoremap <c-d> <c-d>zz
+    nnoremap <c-u> <c-u>zz
 
-      noremap <silent> <leader>0        :tablast<cr>
-      noremap          <leader>1        1gt
-      noremap          <leader>2        2gt
-      noremap          <leader>3        3gt
-      noremap          <leader>4        4gt
-      noremap          <leader>5        5gt
-      noremap          <leader>6        6gt
-      noremap          <leader>7        7gt
-      noremap          <leader>8        8gt
-      noremap          <leader>9        9gt
-     nnoremap <silent> <leader>a        :call ToggleHeaderSource()<cr>
-     nnoremap          <leader>b        :Buffers<cr>
-     nnoremap <silent> <leader>c        :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>bbb
-      noremap <silent> <leader>e        :nohlsearch<cr>
-     nnoremap          <leader>f        :Files<cr>
-     nnoremap          <leader>g        :GFiles<cr>
-     nnoremap          <leader>l        :BLines<cr>
-     nnoremap <silent> <leader>r        :%FormatRange<cr>
-     vnoremap <silent> <leader>r        :call FormatRange()<cr>
-     nnoremap <silent> <leader><tab>    :bn<cr>
+     noremap <silent> <leader>0        :tablast<cr>
+     noremap          <leader>1        1gt
+     noremap          <leader>2        2gt
+     noremap          <leader>3        3gt
+     noremap          <leader>4        4gt
+     noremap          <leader>5        5gt
+     noremap          <leader>6        6gt
+     noremap          <leader>7        7gt
+     noremap          <leader>8        8gt
+     noremap          <leader>9        9gt
+    nnoremap <silent> <leader>a        :call ToggleHeaderSource()<cr>
+    nnoremap          <leader>b        :Buffers<cr>
+    nnoremap <silent> <leader>c        :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>bbb
+     noremap <silent> <leader>e        :nohlsearch<cr>
+    nnoremap          <leader>f        :Files<cr>
+    nnoremap          <leader>g        :GFiles<cr>
+    nnoremap          <leader>l        :BLines<cr>
+    nnoremap <silent> <leader>r        :%FormatRange<cr>
+    vnoremap <silent> <leader>r        :call FormatRange()<cr>
+    nnoremap <silent> <leader><tab>    :bn<cr>
 
-     inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
-     nnoremap <expr> *    ':%s/'.expand('<cword>').'//gn<CR>'
+    inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
+    nnoremap <expr> *    ':%s/'.expand('<cword>').'//gn<CR>'
 endfunction
 
 function! FormatRange() range
