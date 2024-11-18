@@ -88,7 +88,9 @@ function! s:SetupAll()
     " :KillTrailingWhitespace
     "           Remove trailing whitespace from entire file
     "           (inspired by: https://github.com/mislav/vimfiles)
-    command! KillTrailingWhitespace :normal :%s/ *$//g<cr><c-o><cr><c-l>
+    command! -bar KillTrailingWhitespace
+        \ :normal :%s/ *$//g<cr><c-o><cr><c-l> |
+        \ :nohlsearch<cr>
 
     " :FormatRange
     "           This command is a thin wrapper around FormatRange() to allow the cursor
