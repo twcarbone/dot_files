@@ -1,4 +1,4 @@
-function! SetupAll()
+function! s:SetupAll()
 
     if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -47,7 +47,7 @@ function! SetupAll()
     set scrolloff=5             " Keep 1 line above/below cursor
     set shiftwidth=4            " How many character blocks are inserted using >>
     set softtabstop=4           " How much whitespace is inserted/removed on tab/backspace
-    set tabline=%!Tabline()
+    set tabline=%!<SID>Tabline()
     set tabstop=4               " How many character blocks a tab byte appears as on the screen
     set textwidth=89            " Wrap text at this column
     set updatetime=100          " 100 ms update time
@@ -99,7 +99,7 @@ function! SetupAll()
     "           (credit to: https://stackoverflow.com/a/73002057)
     command! -range -bar FormatRange
         \ let s:pos = getcurpos() |
-        \ <line1>,<line2>call FormatRange() |
+        \ <line1>,<line2>call <SID>FormatRange() |
         \ call setpos('.', s:pos)
 
     command! -range Disable <line1>,<line2>call <SID>Disable()
@@ -147,7 +147,7 @@ function! SetupAll()
      noremap          <leader>7        7gt
      noremap          <leader>8        8gt
      noremap          <leader>9        9gt
-    nnoremap <silent> <leader>a        :call ToggleHeader()<cr>
+    nnoremap <silent> <leader>a        :call <SID>ToggleHeader()<cr>
     nnoremap          <leader>b        :Buffers<cr>
     nnoremap <silent> <leader>c        :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>bbb
      noremap <silent> <leader>e        :nohlsearch<cr>
@@ -155,7 +155,7 @@ function! SetupAll()
     nnoremap          <leader>g        :GFiles<cr>
     nnoremap          <leader>l        :BLines<cr>
     nnoremap <silent> <leader>r        :%FormatRange<cr>
-    vnoremap <silent> <leader>r        :call FormatRange()<cr>
+    vnoremap <silent> <leader>r        :call <SID>FormatRange()<cr>
     nnoremap <silent> <leader><tab>    :bn<cr>
 
     inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
@@ -204,7 +204,7 @@ function! s:Enable() range
     silent execute a:firstline 'd'
 endfunction
 
-function! FormatRange() range
+function! s:FormatRange() range
     " Format current buffer based on file extension
     " TODO: (5) Formatting buffer with range does not respect contextual indentation
     silent write
@@ -226,7 +226,7 @@ function! FormatRange() range
 
 endfunction
 
-function! ToggleHeader()
+function! s:ToggleHeader()
     if index(["h"], expand("%:e")) >= 0
         call <SID>EditIfExists(expand("%:r") .. ".cpp")
     elseif index(["cpp"], expand("%:e")) >= 0
@@ -236,7 +236,7 @@ function! ToggleHeader()
     endif
 endfunction
 
-function! InsertTabWrapper()
+function! s:InsertTabWrapper()
     " <Tab> indents if at the beginning of a line; otherwise does completion
     " Credit: https://github.com/mislav/vimfiles
     let col = col('.') - 1
@@ -247,7 +247,7 @@ function! InsertTabWrapper()
     endif
 endfunction
 
-function! SetTermWindowMargin(margin)
+function! s:SetTermWindowMargin(margin)
     " Set the width of the terminal to be a:margin columns less than the available space.
     " This is a workaround to address the situation where long lines are wrapped in the
     " terminal by inserting newlines in the terminal output. When going to terminal
@@ -259,18 +259,18 @@ function! SetTermWindowMargin(margin)
 
 endfunction
 
-function! OnTerminalOpen()
+function! s:OnTerminalOpen()
     set nospell
     set colorcolumn=
     set nohidden
-    call SetTermWindowMargin(6)
+    call <SID>SetTermWindowMargin(6)
 endfunction
 
-function! OnVimResized()
-    call SetTermWindowMargin(6)
+function! s:OnVimResized()
+    call <SID>SetTermWindowMargin(6)
 endfunction
 
-function! Tabline()
+function! s:Tabline()
     " Credit: https://github.com/mkitt/tabline.vim
     let s = ''
     for i in range(tabpagenr('$'))
@@ -298,15 +298,15 @@ function! Tabline()
     return s
 endfunction
 
-call SetupAll()
+call <SID>SetupAll()
 
 " Turn off hints (eg, 'You discovered the command-line window...')
 autocmd! vimHints
 
 augroup __twc_terminal
     autocmd!
-    autocmd TerminalOpen * call OnTerminalOpen()
-    autocmd VimResized * call OnVimResized()
+    autocmd TerminalOpen * call <SID>OnTerminalOpen()
+    autocmd VimResized * call <SID>OnVimResized()
 augroup END
 
 augroup __twc_cmdwin
