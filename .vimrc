@@ -156,6 +156,8 @@ function! s:SetupAll()
     nnoremap          <leader>l        :BLines<cr>
     nnoremap <silent> <leader>r        :%FormatRange<cr>
     vnoremap <silent> <leader>r        :call <SID>FormatRange()<cr>
+    nnoremap <silent> <leader>s        :source ~/.vimrc<cr>
+                                       \ :call <SID>ShowInfo("Sourcing ~/.vimrc ... OK")<cr>
     nnoremap <silent> <leader><tab>    :bn<cr>
 
     inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
