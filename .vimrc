@@ -153,6 +153,7 @@ function! s:SetupAll()
     nnoremap          <leader>b        :Buffers<cr>
     nnoremap <silent> <leader>c        :nohlsearch<cr>
                                        \ :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>bbb
+    nnoremap <silent> <leader>cw       :botright cwindow 20<cr>
      noremap <silent> <leader>e        :nohlsearch<cr>
     nnoremap          <leader>f        :Files<cr>
     nnoremap          <leader>g        :GFiles<cr>
