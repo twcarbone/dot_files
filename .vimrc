@@ -102,8 +102,8 @@ function! SetupAll()
         \ <line1>,<line2>call FormatRange() |
         \ call setpos('.', s:pos)
 
-    command! -range Disable <line1>,<line2>call Disable()
-    command! -range Enable <line1>,<line2>call Enable()
+    command! -range Disable <line1>,<line2>call <SID>Disable()
+    command! -range Enable <line1>,<line2>call <SID>Enable()
 
     tnoremap <esc> <c-w>N
     tnoremap jk    <c-w>N
@@ -147,7 +147,7 @@ function! SetupAll()
      noremap          <leader>7        7gt
      noremap          <leader>8        8gt
      noremap          <leader>9        9gt
-    nnoremap <silent> <leader>a        :call ToggleHeaderSource()<cr>
+    nnoremap <silent> <leader>a        :call ToggleHeader()<cr>
     nnoremap          <leader>b        :Buffers<cr>
     nnoremap <silent> <leader>c        :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>bbb
      noremap <silent> <leader>e        :nohlsearch<cr>
@@ -162,9 +162,25 @@ function! SetupAll()
     nnoremap <expr> *    ':%s/'.expand('<cword>').'//gn<CR>'
 endfunction
 
-function! Disable() range
+function! s:ShowError(str)
+    echo "Error: " .. a:str
+endfunction
+
+function! s:ShowInfo(str)
+    echo "Info: " .. a:str
+endfunction
+
+function! s:EditIfExists(path)
+    if filereadable(a:path) == 0
+        call <SID>ShowError("no such file:" .. a:path)
+    else
+        execute "edit " .. a:path
+    endif
+endfunction
+
+function! s:Disable() range
     if index(["c", "cpp", "h"], expand("%:e")) == -1
-        echo "Error: Must be c file"
+        call <SID>ShowError("Must be c file")
         return
     endif
 
@@ -172,15 +188,15 @@ function! Disable() range
     let failed = append(a:lastline + 1, "#endif")
 endfunction
 
-function! Enable() range
+function! s:Enable() range
     if index(["c", "cpp", "h"], expand("%:e")) == -1
-        echo "Error: Must be c file"
+        call <SID>ShowError("Must be c file")
         return
     elseif getline(a:firstline) != "#if 0"
-        echo "Error: Range must start with '#if 0'"
+        call <SID>ShowError("Range must start with '#if 0'")
         return
     elseif getline(a:lastline) != "#endif"
-        echo "Error: Range must end with '#endif'"
+        call <SID>ShowError("Range must end with '#endif'")
         return
     endif
 
@@ -202,22 +218,21 @@ function! FormatRange() range
         silent execute a:firstline ',' a:lastline '!~/.pytools/bin/black - -q'
         silent execute a:firstline ',' a:lastline '!~/.pytools/bin/isort --force-single-line-imports -'
     else
-        echo "Error: No formatter program specified"
+        call <SID>ShowError("No formatter program specified")
         return
     endif
-    echo "Formatting ... OK"
+    call <SID>ShowInfo("Formatting ... OK")
     silent write
 
 endfunction
 
-function! ToggleHeaderSource()
+function! ToggleHeader()
     if index(["h"], expand("%:e")) >= 0
-        silent execute "e %<.cpp"
+        call <SID>EditIfExists(expand("%:r") .. ".cpp")
     elseif index(["cpp"], expand("%:e")) >= 0
-        silent execute "e %<.h"
+        call <SID>EditIfExists(expand("%:r") .. ".h")
     else
-        echo "Error: must .cpp or .h file"
-        return
+        call <SID>ShowError("Must be c file")
     endif
 endfunction
 
