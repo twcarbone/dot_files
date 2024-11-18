@@ -139,30 +139,31 @@ function! s:SetupAll()
     nnoremap <c-d> <c-d>zz
     nnoremap <c-u> <c-u>zz
 
-     noremap <silent> <leader>0        :tablast<cr>
-     noremap          <leader>1        1gt
-     noremap          <leader>2        2gt
-     noremap          <leader>3        3gt
-     noremap          <leader>4        4gt
-     noremap          <leader>5        5gt
-     noremap          <leader>6        6gt
-     noremap          <leader>7        7gt
-     noremap          <leader>8        8gt
-     noremap          <leader>9        9gt
-    nnoremap <silent> <leader>a        :call <SID>ToggleHeader()<cr>
-    nnoremap          <leader>b        :Buffers<cr>
-    nnoremap <silent> <leader>c        :nohlsearch<cr>
-                                       \ :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>bbb
-    nnoremap <silent> <leader>cw       :botright cwindow 20<cr>
-     noremap <silent> <leader>e        :nohlsearch<cr>
-    nnoremap          <leader>f        :Files<cr>
-    nnoremap          <leader>g        :GFiles<cr>
-    nnoremap          <leader>l        :BLines<cr>
-    nnoremap <silent> <leader>r        :%FormatRange<cr>
-    vnoremap <silent> <leader>r        :call <SID>FormatRange()<cr>
-    nnoremap <silent> <leader>s        :source ~/.vimrc<cr>
-                                       \ :call <SID>ShowInfo("Sourcing ~/.vimrc ... OK")<cr>
-    nnoremap <silent> <leader><tab>    :bn<cr>
+    " Leader mappings
+     noremap <silent> <leader>0         :tablast<cr>
+     noremap          <leader>1         1gt
+     noremap          <leader>2         2gt
+     noremap          <leader>3         3gt
+     noremap          <leader>4         4gt
+     noremap          <leader>5         5gt
+     noremap          <leader>6         6gt
+     noremap          <leader>7         7gt
+     noremap          <leader>8         8gt
+     noremap          <leader>9         9gt
+    nnoremap <silent> <leader>a         :call <SID>ToggleHeader()<cr>
+    nnoremap          <leader>b         :Buffers<cr>
+    nnoremap <silent> <leader>c         :nohlsearch<cr>
+                                        \ :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>bbb
+    nnoremap <silent> <leader>cw        :botright cwindow 20<cr>
+     noremap <silent> <leader>e         :nohlsearch<cr>
+    nnoremap          <leader>f         :Files<cr>
+    nnoremap          <leader>g         :GFiles<cr>
+    nnoremap          <leader>l         :BLines<cr>
+    nnoremap <silent> <leader>r         :%FormatRange<cr>
+    vnoremap <silent> <leader>r         :call <SID>FormatRange()<cr>
+    nnoremap <silent> <leader>s         :source ~/.vimrc<cr>
+                                        \ :call <SID>ShowInfo("Sourcing ~/.vimrc ... OK")<cr>
+    nnoremap <silent> <leader><tab>     :bn<cr>
 
     inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
     nnoremap <expr> *    ':%s/'.expand('<cword>').'//gn<CR>'
