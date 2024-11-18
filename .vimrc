@@ -47,7 +47,7 @@ function! s:SetupAll()
     set scrolloff=5             " Keep 1 line above/below cursor
     set shiftwidth=4            " How many character blocks are inserted using >>
     set softtabstop=4           " How much whitespace is inserted/removed on tab/backspace
-    set tabline=%!<SID>Tabline()
+    set tabline=%!Tabline()
     set tabstop=4               " How many character blocks a tab byte appears as on the screen
     set textwidth=89            " Wrap text at this column
     set updatetime=100          " 100 ms update time
@@ -274,7 +274,7 @@ function! s:OnVimResized()
     call <SID>SetTermWindowMargin(6)
 endfunction
 
-function! s:Tabline()
+function! Tabline()
     " Credit: https://github.com/mkitt/tabline.vim
     let s = ''
     for i in range(tabpagenr('$'))
