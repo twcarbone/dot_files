@@ -151,7 +151,8 @@ function! s:SetupAll()
      noremap          <leader>9        9gt
     nnoremap <silent> <leader>a        :call <SID>ToggleHeader()<cr>
     nnoremap          <leader>b        :Buffers<cr>
-    nnoremap <silent> <leader>c        :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>bbb
+    nnoremap <silent> <leader>c        :nohlsearch<cr>
+                                       \ :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>bbb
      noremap <silent> <leader>e        :nohlsearch<cr>
     nnoremap          <leader>f        :Files<cr>
     nnoremap          <leader>g        :GFiles<cr>
