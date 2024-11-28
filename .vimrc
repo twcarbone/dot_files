@@ -179,7 +179,7 @@ endfunction
 
 function! s:EditIfExists(path)
     if filereadable(a:path) == 0
-        call <SID>ShowError("no such file:" .. a:path)
+        call <SID>ShowError("no such file: " .. a:path)
     else
         execute "edit " .. a:path
     endif
