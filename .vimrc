@@ -43,6 +43,7 @@ function! s:SetupAll()
     set expandtab               " Insert 'tabstop' space bytes instead of a tab byte
     set formatoptions=cro/qj    " See :h fo-table
     set laststatus=2            " Show status line on 2nd to last line
+    set makeprg=make\ -j
     set pastetoggle=<F2>        " Toggle paste mode
     set scrolloff=5             " Keep 1 line above/below cursor
     set shiftwidth=4            " How many character blocks are inserted using >>
