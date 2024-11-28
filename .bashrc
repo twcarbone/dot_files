@@ -90,8 +90,8 @@ dir2gpg()
 gg()
 {
     # Usage: gg [options] <regex>
-    # Performs 'git grep -En', in addition to [options]
-    git grep -En "$@"
+    # Performs 'git grep -Pn', in addition to [options]
+    git grep -Pn "$@"
 }
 
 gl()
