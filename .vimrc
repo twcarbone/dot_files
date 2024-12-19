@@ -235,6 +235,7 @@ function! s:FormatRange() range
 endfunction
 
 function! s:ToggleHeader()
+    silent write
     if index(["h"], expand("%:e")) >= 0
         call <SID>EditIfExists(expand("%:r") .. ".cpp")
     elseif index(["cpp"], expand("%:e")) >= 0
