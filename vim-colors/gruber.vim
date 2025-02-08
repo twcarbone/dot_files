@@ -171,8 +171,8 @@ call s:hl("SpellLocal",     { "fg": s:red })
 call s:hl("SpellRare",      { "fg": s:red })
 
 " Folding
-call s:hl("Folded",         { "fg": s:brown, "bg": s:lightblack , "style": "italic" })
-call s:hl("FoldColumn",     { "fg": s:brown })
+call s:hl("Folded",         { "fg": s:gray, "style": "italic" })
+call s:hl("FoldColumn",     { "fg": s:yellow })
 
 " Diagnostic
 call s:hl("DiagnosticError",{ "fg": s:red })
