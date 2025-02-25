@@ -25,7 +25,8 @@ export PS1="\[\e[38;5;46m\]\u@\h \[\e[38;5;39m\]\w \[\e[00m\]\$ "
 # --walker-skip     List of directories to skip while walking
 export FZF_DEFAULT_OPTS="-m --no-height --walker-skip .git,.venv,.moc,.obj,__pycache__"
 
-export FZF_CTRL_T_OPTS="--select-1 --exit-0"
+export FZF_CTRL_T_OPTS="--select-1 --exit-0 --layout=default"
+export FZF_ALT_C_OPTS="--layout=default"
 
 # Aliases -------------------------------------------------------------------------------
 
