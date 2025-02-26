@@ -45,6 +45,7 @@ function! s:SetupAll()
     set formatoptions=cro/qj    " See :h fo-table
     set laststatus=2            " Show status line on 2nd to last line
     set makeprg=make\ -j
+    set nrformats+=alpha        " Ctrl-a/x also increment single characters
     set pastetoggle=<F2>        " Toggle paste mode
     set scrolloff=5             " Keep 1 line above/below cursor
     set shiftwidth=4            " How many character blocks are inserted using >>
