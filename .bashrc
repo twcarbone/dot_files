@@ -6,7 +6,13 @@ fi
 
 # Exports -------------------------------------------------------------------------------
 
+# Use 'fc' to edit the previous command in vim
+# Hint: use ':cq' to exit vim without executing the command
 export FCEDIT=vim
+
+# Use 'Ctrl-x Ctrl-e' to edit the current command in vim
+# Hint: use ':cq' to exit vim without executing the command
+export EDITOR=vim
 
 # i     Smart-case searching
 # F     Exit immediately if content fits on one screen
