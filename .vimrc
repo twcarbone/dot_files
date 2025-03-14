@@ -57,6 +57,7 @@ function! s:SetupAll()
     set wildmode=longest:full   " Tab semantics when completing in command line
 
     set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%4b%=%{getcwd()}
+    set formatlistpat="^\s*[\d\a-]+[:.)\t ]\s*"
 
     " Python
     let g:pyindent_open_paren = 'shiftwidth()'
@@ -86,7 +87,6 @@ function! s:SetupAll()
     let g:fzf_vim = {}
     let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
     let g:fzf_layout = { 'down': '50%' }
-    let g:fzf_vim.buffers_jump = 1
 
     " :H
     "           Opens help in new buffer
@@ -95,9 +95,7 @@ function! s:SetupAll()
     " :KillTrailingWhitespace
     "           Remove trailing whitespace from entire file
     "           (inspired by: https://github.com/mislav/vimfiles)
-    command! -bar KillTrailingWhitespace
-        \ :normal :%s/ *$//g<cr><c-o><cr><c-l> |
-        \ :nohlsearch<cr>
+    command! -bar KillTrailingWhitespace :normal :%s/ *$//g<cr><c-o><cr><c-l> | :nohlsearch<cr>
 
     " :FormatRange
     "           This command is a thin wrapper around FormatRange() to allow the cursor
@@ -119,7 +117,7 @@ function! s:SetupAll()
     command! -bang -nargs=* Rg
         \ call fzf#vim#grep(
         \     "rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
-        \     1, 
+        \     1,
         \     fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}),
         \     <bang>0
         \ )
@@ -156,9 +154,11 @@ function! s:SetupAll()
     nnoremap <c-k> <c-w><c-k>
     nnoremap <c-l> <c-w><c-l>
 
-    " Put cursor in middle of screen after jumping half-screens
+    " Put cursor in middle of screen after jumping
     nnoremap <c-d> <c-d>zz
     nnoremap <c-u> <c-u>zz
+    nnoremap <c-o> <c-o>zz
+    nnoremap <c-i> <c-i>zz
 
     " Ctrl-s to write current buffer
     nnoremap <c-s> :w<cr>
@@ -176,19 +176,16 @@ function! s:SetupAll()
      noremap          <leader>9         9gt
     nnoremap <silent> <leader>a         :call <SID>ToggleCppHeader()<cr>
     nnoremap          <leader>b         :Buffers<cr>
-    nnoremap <silent> <leader>c         :nohlsearch<cr>
-                                        \ :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>bbb
-    nnoremap <silent> <leader>cw        :botright cwindow 30<cr>
+    nnoremap <silent> <leader>c         :nohlsearch<cr> :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>bbb
      noremap <silent> <leader>e         :nohlsearch<cr>
     nnoremap          <leader>f         :Files<cr>
     nnoremap          <leader>g         :GFiles<cr>
     nnoremap          <leader>i         :Rg<cr>
+    nnoremap          <leader>j         :Jumps<cr>
     nnoremap          <leader>l         :BLines<cr>
-    nnoremap          <leader>m         :w<cr> :make<cr>
     nnoremap <silent> <leader>r         :%FormatRange<cr>
     vnoremap <silent> <leader>r         :call <SID>FormatRange()<cr>
-    nnoremap <silent> <leader>s         :source ~/.vimrc<cr>
-                                        \ :call <SID>ShowInfo("Sourcing ~/.vimrc ... OK")<cr>
+    nnoremap <silent> <leader>s         :source ~/.vimrc<cr> :call <SID>ShowInfo("Sourcing ~/.vimrc ... OK")<cr>
     nnoremap <silent> <leader><tab>     :bn<cr>
 
     inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
@@ -222,6 +219,9 @@ function! s:EditIfExists(path)
     endif
 endfunction
 
+" @brief
+"   Enclose a range with `#if 0` and `#endif`
+"
 function! s:Disable() range
     if index(["c", "cpp", "h"], expand("%:e")) == -1
         call <SID>ShowError("Must be c file")
@@ -232,6 +232,12 @@ function! s:Disable() range
     let failed = append(a:lastline + 1, "#endif")
 endfunction
 
+" @brief
+"   Remove `#if 0` and `#endif` macros from a range.
+"
+" @note
+"   Range must start and end on `#if 0` and `#endif`, respectively.
+"
 function! s:Enable() range
     if index(["c", "cpp", "h"], expand("%:e")) == -1
         call <SID>ShowError("Must be c file")
