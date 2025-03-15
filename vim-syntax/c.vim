@@ -351,8 +351,6 @@ if !exists("c_no_c11")
   syn keyword   cType           atomic_intmax_t atomic_uintmax_t
 endif
 
-syn match cType "\<q[a-z0-9_]\+"
-
 if !exists("c_no_ansi") || exists("c_ansi_constants") || exists("c_gnu")
   if exists("c_gnu")
     syn keyword cConstant __GNUC__ __FUNCTION__ __PRETTY_FUNCTION__ __func__
