@@ -1,5 +1,28 @@
 function! s:SetupAll()
 
+    " @see
+    "   :h Q_op for options quick-reference. Use Ctrl-] to jump to extended definition.
+    "
+
+    " Enable file type detection, plugin, and indent
+    filetype plugin indent on
+    syntax on
+    set backspace=indent,eol,start
+    set nocompatible
+    set showcmd
+    set ttimeout
+    set ttimeoutlen=100
+    set display=truncate
+    set scrolloff=5
+    set incsearch
+    set nrformats+=alpha
+
+    " @see
+    "   :h xterm-true-color
+    "   :h termguicolors
+    "   :h t_8f
+    "   :h t_8b
+    "
     if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -7,24 +30,17 @@ function! s:SetupAll()
 
     colorscheme gruber
 
-    " This needs to be sourced if vim was built from source
-    source $VIMRUNTIME/defaults.vim
-
-    filetype indent on      " Load indentation file based on file type
-    syntax on               " Enable syntax highlighting
-
     set cursorline          " Enable syntax highlighting on the current line
     set hidden              " Do not prompt to save buffers when switching
     set hlsearch            " Highlight search matches
     set ignorecase          " Case-insensitive searching
-    set incsearch           " Highlight matches while typing a search regex
-    set nocompatible
     set nojoinspaces        " Inset only one space after join commands (eg, 'J', 'gwip')
-    set number              " Show line numbers
-    set relativenumber      " Show relative line numbers
-    set smartcase           " Override 'ignorecase' if the search contains a capital
-                            " \c forces case-insensitive
-                            " \C forces case-sensitive
+    set number
+    set relativenumber
+    " Override 'ignorecase' if the search pattern contains a capital letter
+    " A '\c' in the pattern forces case-insensitive matching
+    " A '\C' in the pattern forces case-sensitive matching
+    set smartcase
     set list                " Show invisible characters from 'listchars'
     set spell               " Highlight bad spelling
     set splitright          " Put new split to the right, not left
@@ -45,9 +61,7 @@ function! s:SetupAll()
     set formatoptions=cro/qj    " See :h fo-table
     set laststatus=2            " Show status line on 2nd to last line
     set makeprg=make\ -j
-    set nrformats+=alpha        " Ctrl-a/x also increment single characters
     set pastetoggle=<F2>        " Toggle paste mode
-    set scrolloff=5             " Keep 1 line above/below cursor
     set shiftwidth=4            " How many character blocks are inserted using >>
     set softtabstop=4           " How much whitespace is inserted/removed on tab/backspace
     set tabline=%!Tabline()
@@ -427,8 +441,9 @@ endfunction
 
 call <SID>SetupAll()
 
-" Turn off hints (eg, 'You discovered the command-line window...')
-autocmd! vimHints
+augroup __twc_ftdetect
+
+augroup END
 
 augroup __twc_terminal
     autocmd!
