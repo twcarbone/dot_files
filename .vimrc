@@ -370,20 +370,23 @@ endfunction
 "
 function! s:FormatRange() range
     silent write
-    if index(["c", "cpp", "h"], expand("%:e")) >= 0
+    if &filetype ==# "c" || &filetype ==# "cpp"
         silent execute a:firstline ',' a:lastline '!clang-format'
-    elseif index(["csv"], expand("%:e")) >= 0
+    elseif &filetype ==# "csv"
         silent execute a:firstline ',' a:lastline '!column -s, -t'
-    elseif index(["json"], expand("%:e")) >= 0
+    elseif &filetype ==# "json"
         silent execute a:firstline ',' a:lastline '!jq --indent 4 .'
-    elseif index(["py"], expand("%:e")) >= 0
+    elseif &filetype ==# "python"
         silent execute a:firstline ',' a:lastline '!~/.pytools/bin/black - -q'
         silent execute a:firstline ',' a:lastline '!~/.pytools/bin/isort --force-single-line-imports -'
+    elseif &filetype ==# "xml"
+        call setenv("XMLLINT_INDENT", "    ")
+        silent execute a:firstline ',' a:lastline '!xmllint --format -'
     else
-        call <SID>ShowError("No formatter program specified")
+        call <SID>ShowError("FormatRange: filetype not supported: " .. &filetype)
         return
     endif
-    call <SID>ShowInfo("Formatting ... OK")
+    call <SID>ShowInfo("FormatRange: formatting ... OK")
     silent write
 
 endfunction
