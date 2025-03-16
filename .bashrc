@@ -1,10 +1,21 @@
+# ========================================================================================
+# Contents
+#
+#   1.  Environment variables
+#   2.  Aliases
+#   3.  Plugins
+#   4.  Functions
+#
+
 # .bashrc
 
 if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
+    source /etc/bashrc
 fi
 
-# Exports -------------------------------------------------------------------------------
+
+# ========================================================================================
+# 1. Environment variables
 
 # Use 'fc' to edit the previous command in vim
 # Hint: use ':cq' to exit vim without executing the command
@@ -34,47 +45,37 @@ export FZF_DEFAULT_OPTS="-m --no-height --walker-skip .git,.venv,.moc,.obj,__pyc
 export FZF_CTRL_T_OPTS="--select-1 --exit-0 --layout=default"
 export FZF_ALT_C_OPTS="--layout=default"
 
-# Aliases -------------------------------------------------------------------------------
+
+# ========================================================================================
+# 2. Aliases
 
 alias ac="alembic current"
-
 alias ah="alembic history"
-
 alias cl="clear"
-
 alias ga="git add"
-
 alias gb="git branch"
-
 alias gc="git commit"
-
 alias gd="git diff"
-
 alias gr="git restore"
-
 alias gs="git status"
-
 alias ll="ls -lhva --group-directories-first --color=auto --time-style=\"+%b %e %H:%M:%S\""
-
 alias vi="vim"
-
 alias gap="git add -p"
-
 alias gba="git branch -a"
-
 alias gcv="git commit -v"
-
 alias gds="git diff --staged"
-
+alias grs="git restore --staged"
 alias qlg="git qlg"
 
-alias grs="git restore --staged"
 
-# Other ---------------------------------------------------------------------------------
+# ========================================================================================
+# 3. Plugins
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Functions -----------------------------------------------------------------------------
+
+# ========================================================================================
+# 4. Functions
 
 ext()
 {
