@@ -165,7 +165,7 @@ call s:hl("MoreMsg",        { "fg": s:green })
 call s:hl("Question",       { "fg": s:green })
 
 " Spell
-call s:hl("SpellBad",       { "fg": s:red })
+call s:hl("SpellBad",       { "style": "italic" })
 call s:hl("SpellCap",       {})
 call s:hl("SpellLocal",     { "fg": s:red })
 call s:hl("SpellRare",      { "fg": s:red })
