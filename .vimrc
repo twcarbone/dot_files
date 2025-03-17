@@ -132,7 +132,7 @@ command! -bar KillTrailingWhitespace :normal :%s/ *$//g<cr><c-o><cr><c-l> | :noh
 "           (credit: https://stackoverflow.com/a/73002057)
 command! -range -bar FormatRange
     \ let s:pos = getcurpos() |
-    \ <line1>,<line2>call <SID>FormatRange() |
+    \ <line1>,<line2>call utils#formatrange() |
     \ call setpos('.', s:pos)
 
 " :Rg
@@ -147,9 +147,10 @@ command! -bang -nargs=* Rg
     \     <bang>0
     \ )
 
-command! -range Disable <line1>,<line2>call <SID>Disable()
-command! -range Enable <line1>,<line2>call <SID>Enable()
+command! -range Disable <line1>,<line2>call utils#disable()
+command! -range Enable <line1>,<line2>call utils#enable()
 command! -range MemberSort <line1>,<line2>call <SID>MemberSort()
+command! SourceVimrc call utils#sourcevimrc()
 
 
 " ========================================================================================
@@ -201,7 +202,7 @@ nnoremap <c-s> :w<cr>
  noremap          <leader>7         7gt
  noremap          <leader>8         8gt
  noremap          <leader>9         9gt
-nnoremap <silent> <leader>a         :call <SID>ToggleCppHeader()<cr>
+nnoremap <silent> <leader>a         :call utils#toggleheader()<cr>
 nnoremap          <leader>b         :Buffers<cr>
 nnoremap <silent> <leader>c         :nohlsearch<cr> :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>bbb
  noremap <silent> <leader>e         :nohlsearch<cr>
@@ -211,84 +212,21 @@ nnoremap          <leader>i         :Rg<cr>
 nnoremap          <leader>j         :Jumps<cr>
 nnoremap          <leader>l         :BLines<cr>
 nnoremap <silent> <leader>r         :%FormatRange<cr>
-vnoremap <silent> <leader>r         :call <SID>FormatRange()<cr>
-nnoremap <silent> <leader>s         :source ~/.vimrc<cr> :call <SID>ShowInfo("Sourcing ~/.vimrc ... OK")<cr>
+vnoremap <silent> <leader>r         :call utils#formatrange()<cr>
+nnoremap <silent> <leader>s         :SourceVimrc<cr>
 nnoremap <silent> <leader><tab>     :bn<cr>
 
 inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
 nnoremap <expr> *    ':%s/'.expand('<cword>').'//gn<CR>'
 
 
+
 " ========================================================================================
 " 5. Functions
-
-function! s:ShowError(str)
-    echohl ErrorMsg
-    echo "Error: " .. a:str
-    echohl None
-endfunction
-
-
-function! s:ShowInfo(str)
-    echo "Info: " .. a:str
-endfunction
-
-
-" @brief
-"   Open a file for editing, if it exists.
 "
-" @return
-"   0 (success) if the file exists
-"   1 (fail) if the file does not exist
-"
-function! s:EditIfExists(path)
-    if filereadable(a:path) == 0
-        call <SID>ShowError("no such file: " .. a:path)
-        return 1
-    else
-        execute "edit " .. a:path
-        return 0
-    endif
-endfunction
-
-" @brief
-"   Enclose a range with `#if 0` and `#endif`
-"
-function! s:Disable() range
-    if index(["c", "cpp", "h"], expand("%:e")) == -1
-        call <SID>ShowError("Must be c file")
-        return
-    endif
-
-    let failed = append(a:firstline - 1, "#if 0")
-    let failed = append(a:lastline + 1, "#endif")
-endfunction
-
-" @brief
-"   Remove `#if 0` and `#endif` macros from a range.
-"
-" @post
-"   Lines `#if 0` and `#endif` deleted from the current buffer.
-"
-" @note
-"   Range must start and end on `#if 0` and `#endif`, respectively.
-"
-function! s:Enable() range
-    if index(["c", "cpp", "h"], expand("%:e")) == -1
-        call <SID>ShowError("Must be c file")
-        return
-    elseif getline(a:firstline) != "#if 0"
-        call <SID>ShowError("Range must start with '#if 0'")
-        return
-    elseif getline(a:lastline) != "#endif"
-        call <SID>ShowError("Range must end with '#endif'")
-        return
-    endif
-
-    silent execute a:lastline 'd'
-    silent execute a:firstline 'd'
-endfunction
-
+" See
+"   :h autoload-functions
+"   :h autoload
 
 " @brief
 "   Compare two C-style declarations
@@ -352,75 +290,6 @@ endfunction
 "
 function! s:MemberSort() range
     call <SID>SortBufLines(a:firstline, a:lastline, "<SID>MemberCompare")
-endfunction
-
-
-" @brief
-"   Format a range according to the buffer file type.
-"
-" @detail
-"   Supported file types:
-"       h, c, cpp
-"       csv
-"       python
-"
-" @bug
-"   Formatting buffer with range does not respect contextual indentation
-"   https://github.com/twcarbone/dot_files/issues/5
-"
-function! s:FormatRange() range
-    silent write
-    if &filetype ==# "c" || &filetype ==# "cpp"
-        silent execute a:firstline ',' a:lastline '!clang-format'
-    elseif &filetype ==# "csv"
-        silent execute a:firstline ',' a:lastline '!column -s, -t'
-    elseif &filetype ==# "json"
-        silent execute a:firstline ',' a:lastline '!jq --indent 4 .'
-    elseif &filetype ==# "python"
-        silent execute a:firstline ',' a:lastline '!~/.pytools/bin/black - -q'
-        silent execute a:firstline ',' a:lastline '!~/.pytools/bin/isort --force-single-line-imports -'
-    elseif &filetype ==# "xml"
-        call setenv("XMLLINT_INDENT", "    ")
-        silent execute a:firstline ',' a:lastline '!xmllint --format -'
-    else
-        call <SID>ShowError("FormatRange: filetype not supported: " .. &filetype)
-        return
-    endif
-    call <SID>ShowInfo("FormatRange: formatting ... OK")
-    silent write
-
-endfunction
-
-
-" @brief
-"   Toggle between a .cpp file and its header, and vice versa.
-"
-"   1 - Look in the current directory for a .cpp or .h of the same name.
-"   2 - If 1 fails, and the file ends in .cpp , look in a child 'include' directory.
-"   3 - If 1 fails, and the file ends in .h, look in the parent directory. We may be
-"       inside of a child 'include' directory.
-"   4 - Error if 1, 2, and 3 fail.
-"
-function! s:ToggleCppHeader()
-    silent write
-
-    let l:ext = expand("%:e")
-    let l:parent_dir = expand('%:p:.:h:h') .. '/'
-    let l:child_dir = expand('%:p:.:h') .. '/include/'
-
-    if l:ext == 'h'
-        let l:failed = <SID>EditIfExists(expand('%:s?\.h?\.cpp?:p:.'))
-        if l:failed == 1
-            let l:failed = <SID>EditIfExists(l:parent_dir .. expand('%:s?\.h?\.cpp?:t'))
-        endif
-    elseif l:ext == 'cpp'
-        let l:failed = <SID>EditIfExists(expand('%:s?\.cpp?\.h?:p:.'))
-        if l:failed == 1
-            let l:failed = <SID>EditIfExists(l:child_dir .. expand('%:s?\.cpp?\.h?:t'))
-        endif
-    else
-        call <SID>ShowError("Must be .h or .cpp file")
-    endif
 endfunction
 
 
