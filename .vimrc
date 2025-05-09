@@ -47,7 +47,7 @@ set list
 set listchars=trail:∙,tab:→\∙  " see :h i_CTRL-V_digit (trailing:u2219, tab:u2192)
 set makeprg=make\ -j
 set nojoinspaces
-set nrformats+=alpha
+" set nrformats+=alpha
 set number
 set pastetoggle=<F2>
 set relativenumber
