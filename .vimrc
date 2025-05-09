@@ -51,7 +51,7 @@ set nojoinspaces
 set number
 set pastetoggle=<F2>
 set relativenumber
-set scrolloff=5
+set scrolloff=2
 set shiftwidth=4
 set showcmd
 set smartcase
