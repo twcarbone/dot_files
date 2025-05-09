@@ -149,8 +149,9 @@ command! -bang -nargs=* Rg
 
 command! -range Disable <line1>,<line2>call utils#disable()
 command! -range Enable <line1>,<line2>call utils#enable()
-command! -range MemberSort <line1>,<line2>call <SID>MemberSort()
+command! -range MemberSort <line1>,<line2>call utils#membersort()
 command! SourceVimrc call utils#sourcevimrc()
+command! RmAnsiSeq call utils#rmansiseq()
 
 
 " ========================================================================================
@@ -227,70 +228,6 @@ nnoremap <expr> *    ':%s/'.expand('<cword>').'//gn<CR>'
 " See
 "   :h autoload-functions
 "   :h autoload
-
-" @brief
-"   Compare two C-style declarations
-"
-" @return
-"    =  0 if lines are equal
-"   >=  1 if lhs sorts after rhs
-"   <= -1 if lhs sort before rhs
-"
-" @example
-"
-"   bool finished;
-"   QString name;
-"   int count;
-"
-"   sorts to:
-"
-"   int count;
-"   bool finished;
-"   QString name;
-"
-function! s:MemberCompare(lhs, rhs)
-    let l:lhs_words = split(a:lhs)
-    let l:rhs_words = split(a:rhs)
-    return strlen(l:lhs_words[0]) - strlen(l:rhs_words[0])
-endfunction
-
-
-" @brief
-"   Sort from `first_line` to `last_line` in the current buffer according to compare
-"   function `func`.
-"
-" @post
-"   In-place sort of `first_line` through `last_line` in the current buffer.
-"
-" @return
-"   0 for success, 1 for failure
-"
-function! s:SortBufLines(first_line, last_line, func)
-    let l:lines = getline(a:first_line, a:last_line)
-    let failed = deletebufline(bufname(), a:first_line, a:last_line)
-    let l:sortedlines = sort(l:lines, a:func)
-    return append(a:first_line - 1, l:sortedlines)
-endfunction
-
-
-" @brief
-"   Sort C-style declarations
-"
-" @example
-"
-"   bool finished;
-"   QString name;
-"   int count;
-"
-"   sorts to
-"
-"   int count;
-"   bool finished;
-"   QString name;
-"
-function! s:MemberSort() range
-    call <SID>SortBufLines(a:firstline, a:lastline, "<SID>MemberCompare")
-endfunction
 
 
 " @brief
