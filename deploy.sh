@@ -84,10 +84,11 @@ main()
     ln -s $HOME/dot_files/filetype.vim              .vim/filetype.vim
 
     # Vim standard directories
+    ln -s $HOME/dot_files/vim-after                 .vim/after
+    ln -s $HOME/dot_files/vim-autoload              .vim/autoload
     ln -s $HOME/dot_files/vim-colors                .vim/colors
     ln -s $HOME/dot_files/vim-ftplugin              .vim/ftplugin
     ln -s $HOME/dot_files/vim-syntax                .vim/syntax
-    ln -s $HOME/dot_files/vim-autoload              .vim/autoload
 
     # Plugins
     ln -s $HOME/vim-zz                              .vim/pack/plugins/start/zz
