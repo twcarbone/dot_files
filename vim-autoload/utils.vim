@@ -74,6 +74,10 @@ function! utils#formatrange() range
     elseif &filetype ==# "xml"
         call setenv("XMLLINT_INDENT", "    ")
         silent execute a:firstline ',' a:lastline '!xmllint --format -'
+    elseif &filetype ==# "html"
+        silent execute a:firstline ',' a:lastline '!tidy -q'
+        " Remove <meta ...> that is added in by tidy
+        silent execute 'global /HTML Tidy/ normal dd'
     else
         call utils#error("formatrange: filetype not supported: " .. &filetype)
         return
