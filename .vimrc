@@ -36,7 +36,6 @@ set directory=$HOME/.vim/swapfiles//
 set display=truncate
 set expandtab
 set foldcolumn=1
-set formatlistpat="^\s*[\d\a-]+[:.)\t ]\s*"
 set formatoptions=cro/qj  " see :h fo-table
 set hidden
 set hlsearch
