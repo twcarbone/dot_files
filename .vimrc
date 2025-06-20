@@ -78,6 +78,7 @@ syntax on
 
 " Builtin
 runtime ftplugin/man.vim
+packadd! matchit
 
 " Python
 let g:pyindent_open_paren = 'shiftwidth()'
