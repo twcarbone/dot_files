@@ -66,6 +66,7 @@ main()
     ln -s dot_files/.emacs          .emacs
     ln -s dot_files/.gitconfig      .gitconfig
     ln -s dot_files/.inputrc        .inputrc
+    ln -s dot_files/.tidyrc         .tidyrc
     ln -s dot_files/.tmux.conf      .tmux.conf
     ln -s dot_files/.vimrc          .vimrc
 
