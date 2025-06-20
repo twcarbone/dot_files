@@ -90,7 +90,7 @@ uppercase-tags: no
 vertical-space: no
 warn-proprietary-attributes: yes
 word-2000: no
-wrap: 68
+wrap: 100
 wrap-asp: yes
 wrap-attributes: no
 wrap-jste: yes
