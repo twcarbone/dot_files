@@ -7,13 +7,7 @@
     autocrlf = input
 
 [alias]
-    co = checkout
-    cp = cherry-pick
-    ll = log --oneline
     ql = log --oneline -n 30
-    sl = stash list
-    sp = stash pop
-    ss = stash show
 
     # Show diff of each submodule
     sdiff = !git diff && git submodule foreach 'git diff'
