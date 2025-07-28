@@ -120,9 +120,14 @@ gdsl()
     git diff --staged --color=always "$@" | less -r
 }
 
+# gsl
+#
+# Display column-wise 'git stash list' output
 gsl()
 {
-    git show --color=always "$@" | less -r
+    git stash list \
+        | sed -En 's/^(.*}): (WIP on|On) (\S+): (.*)/\1~\3~\4/p' \
+        | column -s~ -t -N'REF,BRANCH,MESSAGE'
 }
 
 ggl()
