@@ -65,7 +65,6 @@ alias gba="git branch -a"
 alias gcv="git commit -v"
 alias gds="git diff --staged"
 alias grs="git restore --staged"
-alias qlg="git qlg"
 
 
 # ========================================================================================
