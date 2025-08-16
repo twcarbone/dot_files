@@ -57,7 +57,7 @@ set smartcase
 set softtabstop=4
 set spell
 set splitright
-set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)%4b%=%{getcwd()}
+set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)\ 0x%B\ (%b)%=%{getcwd()}
 set tabline=%!Tabline()
 set tabstop=4
 set termguicolors
