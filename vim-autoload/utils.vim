@@ -78,6 +78,7 @@ function! utils#formatrange() range
         silent execute a:firstline ',' a:lastline '!tidy -q'
         " Remove <meta ...> that is added in by tidy
         silent execute 'global /HTML Tidy/ normal dd'
+        silent execute 'global /^<h1\|^<h2\|^<p>/ normal O'
     else
         call utils#error("formatrange: filetype not supported: " .. &filetype)
         return
