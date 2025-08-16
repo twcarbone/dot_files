@@ -90,13 +90,6 @@ dir2gpg()
     tar -czf - "$1" | gpg -c > "$1.tar.gz.gpg"
 }
 
-gg()
-{
-    # Usage: gg [options] <regex>
-    # Performs 'git grep -Pn', in addition to [options]
-    git grep -Pn "$@"
-}
-
 gl()
 {
     # Usage: gl VERBOSITY [OPTIONS]
@@ -127,13 +120,6 @@ gsl()
     git stash list \
         | sed -En 's/^(.*}): (WIP on|On) (\S+): (.*)/\1~\3~\4/p' \
         | column -s~ -t -N'REF,BRANCH,MESSAGE'
-}
-
-ggl()
-{
-    # Usage: ggl [options] <regex>
-    # Performs 'git grep -En', in addition to [options], piping output to 'less'
-    git grep -En --color=always "$@" | less -R
 }
 
 gpg2dir()
