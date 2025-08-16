@@ -49,22 +49,12 @@ export FZF_ALT_C_OPTS="--layout=default"
 # ========================================================================================
 # 2. Aliases
 
-alias ac="alembic current"
-alias ah="alembic history"
-alias cl="clear"
-alias ga="git add"
 alias gb="git branch"
 alias gc="git commit"
 alias gd="git diff"
-alias gr="git restore"
 alias gs="git status"
 alias ll="ls -lhva --group-directories-first --color=auto --time-style=\"+%b %e %H:%M:%S\""
 alias vi="vim"
-alias gap="git add -p"
-alias gba="git branch -a"
-alias gcv="git commit -v"
-alias gds="git diff --staged"
-alias grs="git restore --staged"
 
 
 # ========================================================================================
