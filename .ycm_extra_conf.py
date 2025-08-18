@@ -34,59 +34,21 @@ import os.path as p
 import subprocess
 
 DIR_OF_THIS_SCRIPT = p.abspath( p.dirname( __file__ ) )
-DIR_OF_THIRD_PARTY = p.join( DIR_OF_THIS_SCRIPT, 'third_party' )
-DIR_OF_WATCHDOG_DEPS = p.join( DIR_OF_THIRD_PARTY, 'watchdog_deps' )
 SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]
 
 database = None
 
-# These are the compilation flags that will be used in case there's no
-# compilation database set (by default, one is not set).
-# CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
 flags = [
+'-x',
+'c++',
 '-Wall',
 '-Wextra',
 '-Werror',
-'-Wno-long-long',
-'-Wno-variadic-macros',
-'-fexceptions',
-'-DNDEBUG',
-# You 100% do NOT need -DUSE_CLANG_COMPLETER and/or -DYCM_EXPORT in your flags;
-# only the YCM source code needs it.
-'-DUSE_CLANG_COMPLETER',
-'-DYCM_EXPORT=',
-'-DYCM_ABSEIL_SUPPORTED',
-# THIS IS IMPORTANT! Without the '-x' flag, Clang won't know which language to
-# use when compiling headers. So it will guess. Badly. So C++ headers will be
-# compiled as C headers. You don't want that so ALWAYS specify the '-x' flag.
-# For a C project, you would set this to 'c' instead of 'c++'.
-'-x',
-'c++',
-'-isystem',
-'cpp/absl',
-'-isystem',
-'cpp/pybind11',
-'-isystem',
-'cpp/whereami',
-'-isystem',
-'cpp/BoostParts',
-'-isystem',
-get_path( 'include' ),
-'-isystem',
-'cpp/llvm/include',
-'-isystem',
-'cpp/llvm/tools/clang/include',
+'-fPIC',
 '-I',
-'cpp/ycm',
+'/opt/Qt-5.15.7/5.15.7/gcc_64/include',
 '-I',
-'cpp/ycm/ClangCompleter',
-'-isystem',
-'cpp/ycm/tests/gmock/googlemock/include',
-'-isystem',
-'cpp/ycm/tests/gmock/googletest/include',
-'-isystem',
-'cpp/ycm/benchmarks/benchmark/include',
-'-std=c++17',
+'/opt/Qt-5.15.7/5.15.7/gcc_64/include/QtCore',
 ]
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
@@ -116,16 +78,6 @@ def FindCorrespondingSourceFile( filename ):
         return replacement_file
   return filename
 
-
-def PathToPythonUsedDuringBuild():
-  try:
-    filepath = p.join( DIR_OF_THIS_SCRIPT, 'PYTHON_USED_DURING_BUILDING' )
-    with open( filepath ) as f:
-      return f.read().strip()
-  except OSError:
-    return None
-
-
 def Settings( **kwargs ):
   # Do NOT import ycm_core at module scope.
   import ycm_core
@@ -149,7 +101,7 @@ def Settings( **kwargs ):
       return {
         'flags': flags,
         'include_paths_relative_to_dir': DIR_OF_THIS_SCRIPT,
-        'override_filename': filename
+        # 'override_filename': filename
       }
 
     compilation_info = database.GetCompilationInfoForFile( filename )
@@ -174,47 +126,4 @@ def Settings( **kwargs ):
       'override_filename': filename
     }
 
-  if language == 'python':
-    return {
-      'interpreter_path': PathToPythonUsedDuringBuild(),
-      'ls': {
-        'python': {
-          'analysis': {
-            'extraPaths': [
-              p.join( DIR_OF_THIS_SCRIPT ),
-              p.join( DIR_OF_THIRD_PARTY, 'bottle' ),
-              p.join( DIR_OF_THIRD_PARTY, 'regex-build' ),
-              p.join( DIR_OF_THIRD_PARTY, 'frozendict' ),
-              p.join( DIR_OF_THIRD_PARTY, 'jedi_deps', 'jedi' ),
-              p.join( DIR_OF_THIRD_PARTY, 'jedi_deps', 'parso' ),
-              p.join( DIR_OF_WATCHDOG_DEPS, 'watchdog', 'build', 'lib3' ),
-              p.join( DIR_OF_WATCHDOG_DEPS, 'pathtools' ),
-              p.join( DIR_OF_THIRD_PARTY, 'waitress' )
-            ],
-            'useLibraryCodeForTypes': True
-          }
-        }
-      }
-    }
-
   return {}
-
-
-def PythonSysPath( **kwargs ):
-  sys_path = kwargs[ 'sys_path' ]
-
-  sys_path[ 0:0 ] = [ p.join( DIR_OF_THIS_SCRIPT ),
-                      p.join( DIR_OF_THIRD_PARTY, 'bottle' ),
-                      p.join( DIR_OF_THIRD_PARTY, 'regex-build' ),
-                      p.join( DIR_OF_THIRD_PARTY, 'frozendict' ),
-                      p.join( DIR_OF_THIRD_PARTY, 'jedi_deps', 'jedi' ),
-                      p.join( DIR_OF_THIRD_PARTY, 'jedi_deps', 'parso' ),
-                      p.join( DIR_OF_WATCHDOG_DEPS,
-                              'watchdog',
-                              'build',
-                              'lib3' ),
-                      p.join( DIR_OF_WATCHDOG_DEPS, 'pathtools' ),
-                      p.join( DIR_OF_THIRD_PARTY, 'waitress' ) ]
-
-  sys_path.append( p.join( DIR_OF_THIRD_PARTY, 'jedi_deps', 'numpydoc' ) )
-  return sys_path
