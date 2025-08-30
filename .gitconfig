@@ -62,6 +62,3 @@
 
 [color "diff"]
     meta = yellow
-
-[merge]
-    ff = false
