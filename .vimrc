@@ -187,12 +187,6 @@ nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 nnoremap <c-l> <c-w><c-l>
 
-" Put cursor in middle of screen after jumping
-nnoremap <c-d> <c-d>zz
-nnoremap <c-u> <c-u>zz
-nnoremap <c-o> <c-o>zz
-nnoremap <c-i> <c-i>zz
-
 " Ctrl-s to write current buffer
 nnoremap <c-s> :w<cr>
 
