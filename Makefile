@@ -1,0 +1,28 @@
+.PHONY: install dotfiles pytools fzf
+
+install: dotfiles pytools fzf
+
+dotfiles:
+	rm -f $$HOME/.emacs
+	rm -f $$HOME/.bashrc
+	rm -f $$HOME/.inputrc
+	rm -f $$HOME/.gitconfig
+	rm -f $$HOME/.tmux.conf
+	ln -s $$PWD/.emacs $$HOME/.emacs
+	ln -s $$PWD/.bashrc $$HOME/.bashrc
+	ln -s $$PWD/.inputrc $$HOME/.inputrc
+	ln -s $$PWD/.gitconfig $$HOME/.gitconfig
+	ln -s $$PWD/.tmux.conf $$HOME/.tmux.conf
+
+pytools:
+	rm -rf $$HOME/.pytools
+	python3 -m venv $$HOME/.pytools
+	source $$HOME/.pytools/bin/activate && pip3 install -r .pytools-packages
+
+thirdparty:
+	mkdir -p $$HOME/devl/thirdparty
+
+fzf: thirdparty
+	rm -rf $$HOME/devl/thirdparty/fzf
+	git clone git@github.com:junegunn/fzf.git $$HOME/devl/thirdparty/fzf
+	$$HOME/devl/thirdparty/fzf/install --key-bindings --completion --no-update-rc
