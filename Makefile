@@ -1,6 +1,6 @@
-.PHONY: install dotfiles pytools fzf
+.PHONY: install dotfiles pytools
 
-install: dotfiles pytools fzf
+install: dotfiles pytools
 
 dotfiles:
 	rm -f $$HOME/.emacs
@@ -18,11 +18,3 @@ pytools:
 	rm -rf $$HOME/.pytools
 	python3 -m venv $$HOME/.pytools
 	source $$HOME/.pytools/bin/activate && pip3 install -r .pytools-packages
-
-thirdparty:
-	mkdir -p $$HOME/devl/thirdparty
-
-fzf: thirdparty
-	rm -rf $$HOME/devl/thirdparty/fzf
-	git clone git@github.com:junegunn/fzf.git $$HOME/devl/thirdparty/fzf
-	$$HOME/devl/thirdparty/fzf/install --key-bindings --completion --no-update-rc
