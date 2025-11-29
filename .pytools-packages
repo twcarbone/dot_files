@@ -5,3 +5,5 @@ mypy-extensions==1.0.0
 packaging==24.1
 pathspec==0.12.1
 platformdirs==4.2.2
+tomli==2.3.0
+typing_extensions==4.15.0
