@@ -17,4 +17,4 @@ dotfiles:
 pytools:
 	rm -rf $$HOME/.pytools
 	python3 -m venv $$HOME/.pytools
-	source $$HOME/.pytools/bin/activate && pip3 install -r .pytools-packages
+	$$HOME/.pytools/bin/pip3 install -r .pytools-packages
