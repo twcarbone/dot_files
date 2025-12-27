@@ -102,7 +102,7 @@ IncludeCategories:
   # Everything else
   - Regex:            '.*'
     Priority:         6
-IncludeIsMainRegex: '$'
+IncludeIsMainRegex: 'zzz$'  # Effectively disables putting the 'main' include at the top.
 IncludeIsMainSourceRegex: ''
 IndentAccessModifiers: false
 IndentCaseLabels: true
