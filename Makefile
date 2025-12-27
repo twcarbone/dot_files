@@ -9,12 +9,14 @@ dotfiles:
 	rm -f $$HOME/.inputrc
 	rm -f $$HOME/.gitconfig
 	rm -f $$HOME/.tmux.conf
+	rm -f $$HOME/.clang-format
 	ln -s $$PWD/.emacs $$HOME/.emacs
 	ln -s $$PWD/.bashrc $$HOME/.bashrc
 	ln -s $$PWD/.tidyrc $$HOME/.tidyrc
 	ln -s $$PWD/.inputrc $$HOME/.inputrc
 	ln -s $$PWD/.gitconfig $$HOME/.gitconfig
 	ln -s $$PWD/.tmux.conf $$HOME/.tmux.conf
+	ln -s $$PWD/.clang-format $$HOME/.clang-format
 
 pytools:
 	rm -rf $$HOME/.pytools
