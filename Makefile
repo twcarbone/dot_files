@@ -20,5 +20,5 @@ dotfiles:
 
 pytools:
 	rm -rf $$HOME/.pytools
-	python3 -m venv $$HOME/.pytools
+	python3.11 -m venv $$HOME/.pytools
 	$$HOME/.pytools/bin/pip3 install -r .pytools-packages
