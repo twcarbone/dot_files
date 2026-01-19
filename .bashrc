@@ -97,6 +97,15 @@ gdl()
     git diff --color=always "$@" | less -r
 }
 
+# gitroot
+#
+# Change directory to the root of a git project
+gitroot()
+{
+    local root=$(git rev-parse --show-toplevel)
+    [[ -n $root ]] && cd $root
+}
+
 gdsl()
 {
     git diff --staged --color=always "$@" | less -r
