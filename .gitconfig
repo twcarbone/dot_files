@@ -62,3 +62,11 @@
 
 [color "diff"]
     meta = yellow
+
+# Uncomment to use https and token authentication instead of SSH
+#
+# [credential]
+#     helper = store
+# 
+# [url "https://github.com/"]
+#     insteadOf = git@github.com:
