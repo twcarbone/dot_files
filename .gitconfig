@@ -49,10 +49,10 @@
     v1 = %C(auto)%h% (decorate:prefix=,suffix=,tag=,separator= ) %s %C(bold yellow)%<(2,trunc)%b%-
 
     # Verbosity 2 - same as Verbosity 1, with committer name and relative date
-    v2 = %C(auto)%h% (decorate:prefix=,suffix=,tag=,separator= ) %s %C(brightblue)(%an) %C(brightgreen)(%cr) %C(bold yellow)%<(2,trunc)%b%-
+    v2 = %C(auto)%h% (decorate:prefix=,suffix=,tag=,separator= ) %s %C(brightblue)%an %C(brightgreen)%cr %C(bold yellow)%<(2,trunc)%b%-
 
     # Verbosity 3 - same as Verbosity 2, with child SHA(s)
-    v3 = %C(auto)%h% (decorate:prefix=,suffix=,tag=,separator= ) %C(magenta)%p %C(auto)%s %C(brightblue)(%an) %C(brightgreen)(%cr) %C(bold yellow)%<(2,trunc)%b%-
+    v3 = %C(auto)%h% (decorate:prefix=,suffix=,tag=,separator= ) %C(magenta)%p %C(auto)%s %C(brightblue)%an %C(brightgreen)%cr %C(bold yellow)%<(2,trunc)%b%-
 
 [color]
     # Always display colors. Useful for piping to 'less -R'
