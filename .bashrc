@@ -53,7 +53,7 @@ alias gb="git branch"
 alias gc="git commit"
 alias gd="git diff"
 alias gs="git status"
-alias ll="ls -lhva --group-directories-first --color=auto --time-style=\"+%b %e %H:%M:%S\""
+alias ll="ls -lva --block-size=\"'1\" --group-directories-first --color=auto --time-style=\"+%b %e %H:%M:%S\""
 alias vi="vim"
 
 
