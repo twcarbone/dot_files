@@ -7,6 +7,9 @@
     autocrlf = input
 
 [alias]
+    s = status -sb
+    ap = add --patch
+    cv = commit --verbose
     ql = log --oneline -n 30
 
     # Show diff of each submodule
