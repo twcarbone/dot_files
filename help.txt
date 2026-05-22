@@ -1,0 +1,69 @@
+=========================================================================================
+0. Contents
+
+1.  Gitmodules                                              gitmodules_
+2.  Packages (Ubuntu)                                       packages_ubuntu_
+
+
+=========================================================================================
+1. Gitmodules                                               gitmodules_
+
+
+.gitmodules
+
+     This file has entries that look like this for each submodule:
+
+        [submodule "pack/twcarbone/start/vim-pathlib"]
+            path = pack/twcarbone/start/vim-pathlib
+            url = git@github.com:twcarbone/vim-pathlib.git
+
+
+pack/twcarbone/start/vim-pathlib/.git
+
+    This is not a normal .git directory; it is a regular file:
+
+        $ cat pack/twcarbone/start/vim-pathlib/.git
+        gitdir: ../../../../.git/modules/pack/twcarbone/start/vim-pathlib
+
+
+.git/modules/pack/twcarbone/start/vim-pathlib
+
+    This is the git directory for the submodule.
+
+
+How does the parent project track which commit of a submodule to use?
+
+    If it is encoded into the parent project's git tree:
+
+        $ git ls-tree HEAD pack/twcarbone/start/vim-pathlib
+        160000 commit 4f38[...]7843 pack/twcarbone/start/vim-pathlib
+
+
+How does the parent project update the submodule commit?
+
+    cd /path/to/submodule
+    git fetch
+    git checkout origin/your_branch
+    cd -
+    git add /path/to/submodule
+    git commit -m "[submodule <name>] Update to <commit_id>"  # Or whatever message
+
+
+=========================================================================================
+2. Packages (Ubuntu)                                        packages_ubuntu_
+
+
+apt download <package>              Download a <package>
+
+apt list --installed        or      List installed packages
+dpkg -l
+
+dpkg -L <package>                   List files installed by a <package>
+
+dpkg -S <file>                      List package that installed a <file>
+
+dpkg -c <package.deb>               List contents of a <package.deb>
+
+dpkg -I <package.deb>               List information of a <package.deb>
+
+dpkg -x <package.deb> <dir>         Extract contents of a <package.deb> into <dir>
