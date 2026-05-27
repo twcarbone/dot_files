@@ -49,6 +49,18 @@ How does the parent project update the submodule commit?
     git commit -m "[submodule <name>] Update to <commit_id>"  # Or whatever message
 
 
+Cloning a repository that contains submodules:
+
+    git clone --recurse-submodules
+
+    Note: 'submodule.recurse' setting does not apply to 'git clone'.
+
+
+Initializing and updating all submodules:
+
+    git submodule update --init
+
+
 =========================================================================================
 2. Packages (Ubuntu)                                        packages_ubuntu_
 
