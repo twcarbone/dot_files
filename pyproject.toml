@@ -1,0 +1,5 @@
+[tool.black]
+line-length = 110
+
+[tool.isort]
+force_single_line = true
