@@ -3,6 +3,7 @@
 
 1.  Gitmodules                                              gitmodules_
 2.  Packages (Ubuntu)                                       packages_ubuntu_
+3.  Python                                                  python_
 
 
 =========================================================================================
@@ -79,3 +80,48 @@ dpkg -c <package.deb>               List contents of a <package.deb>
 dpkg -I <package.deb>               List information of a <package.deb>
 
 dpkg -x <package.deb> <dir>         Extract contents of a <package.deb> into <dir>
+
+
+=========================================================================================
+3. Python                                                   python_
+
+Package install locations:
+
+    sudo apt install python3-<pkg>          /usr/lib/python3.x/dist-packages
+                                            /usr/bin
+
+                                            Use for: python3-pip, python3-venv
+
+    sudo pip3 install <pkg>                 /usr/local/lib/python3.x/dist-packages
+                                            /usr/local/bin
+
+                                            DO NOT USE
+
+    pip3 install <pkg>                      ~/.local/lib/python3.x/site-packages
+                                            ~/.local/bin
+
+    (venv) pip3 install <pkg>               <venv_path>/python3.x/site-packages
+                                            <venv_path>/bin
+
+
+Import order:
+
+    1. Current working directory
+
+    2. Directories contained in PYTHONPATH env var
+
+    3. Virtual environment (<venv_path>/python3.x/site-packages)
+
+    4. User site-packages (~/.local/lib/python3.x/site-packages)
+
+    5. System packages (/usr/lib/python3.x/dist-packages)
+
+
+When system python runs, it searches for packages in the order defined by `sys.path`:
+
+                                                # Empty (current directory)
+    /usr/lib/python310.zip                      # PEP 273
+    /usr/lib/python3.10                         # Standard modules
+    /usr/lib/python3.10/lib-dynload             # Compiled C modules
+    /usr/local/lib/python3.10/dist-packages     # 3rd packages installed by 'sudo pip3'
+    /usr/lib/python3/dist-packages              # 3rd packages installed by 'sudo apt'
