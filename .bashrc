@@ -52,7 +52,7 @@ export FZF_ALT_C_OPTS="--layout=default"
 alias gb="git branch"
 alias gc="git commit"
 alias gd="git diff"
-alias gs="git status"
+alias gs="git s"
 alias ll="ls -lva --block-size=\"'1\" --group-directories-first --color=auto --time-style=\"+%b %e %H:%M:%S\""
 alias vi="vim"
 
