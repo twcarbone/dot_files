@@ -9,6 +9,7 @@
 
 [alias]
     b = branch
+    d = diff
     s = status -sb
     ap = add --patch
     cv = commit --verbose
